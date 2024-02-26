@@ -1,0 +1,569 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Sitoi</title><meta name="author" content="Sitoi"><meta name="copyright" content="Sitoi"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="真正的酷都是需要付诸努力的">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sitoi">
+<meta property="og:url" content="https://sitoi.cn/index.html">
+<meta property="og:site_name" content="Sitoi">
+<meta property="og:description" content="真正的酷都是需要付诸努力的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/avatars/avatar.jpg">
+<meta property="article:author" content="Sitoi">
+<meta property="article:tag" content="Sitoi，Blog，博客，Python，爬虫，Scrapy，Spider，Crawl，工程师，程序员，IT，教程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/avatars/avatar.jpg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/favicon.ico"><link rel="canonical" href="https://sitoi.cn/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/manifest.json"/><meta name="msapplication-TileColor" content="#fff"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/medias/logo_32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/medias/logo_16.png"/><link rel="mask-icon" href="/apple-touch-icon.png" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?c29e2dcbe60cb0ec619a76c424a71b11";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-136865061-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-136865061-1');
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Sitoi',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-02-26 10:36:33'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><script async src="https://umami.sitoi.cn/script.js" data-website-id="b23bdc64-5e23-46d5-9e2c-c862f9413a1f"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/background.css"><meta name="baidu_union_verify" content="8822ba856d99c65163dd207aaffc3510"><style type="text/css">.app-refresh{position:fixed;top:-2.2rem;left:0;right:0;z-index:99999;padding:0 1rem;font-size:15px;height:2.2rem;transition:all .3s ease}.app-refresh-wrap{display:flex;color:#fff;height:100%;align-items:center;justify-content:center}.app-refresh-wrap a{color:#fff;text-decoration:underline;cursor:pointer}</style><meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="Sitoi" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/avatars/avatar.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">92</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw fas fa-envelope"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友人</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="https://sitoi.github.io/dailycheckin/"><i class="fa-fw fas fa-location-arrow"></i><span> Dailycheckin</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="https://crawlaio.github.io"><i class="fa-fw fas fa-location-arrow"></i><span> 导航</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/banner/13.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Sitoi"><span class="site-name">Sitoi</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw fas fa-envelope"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友人</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="https://sitoi.github.io/dailycheckin/"><i class="fa-fw fas fa-location-arrow"></i><span> Dailycheckin</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="https://crawlaio.github.io"><i class="fa-fw fas fa-location-arrow"></i><span> 导航</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Sitoi</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="/wechat.jpg" target="_blank" title="Wechat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="tencent://message/?uin=133397418" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=133397418" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://github.com/Sitoi/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/posts/23395.html" title="国内加速访问 GitHub"><img class="post-bg" src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/clean_up_ucm0.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="国内加速访问 GitHub"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/23395.html" title="国内加速访问 GitHub"><i class="fas fa-thumbtack sticky"></i>国内加速访问 GitHub</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-10-29T10:55:22.000Z" title="发表于 2019-10-29 18:55:22">2019-10-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/GitHub/">GitHub</a></span></div><div class="content">国内加速访问 GitHub中国访问 GitHub 的速度不忍直视，那就叫一个慢！
+12Q: 为什么访问速度会很慢？A: GitHub 在国内访问速度慢的问题原因有很多，但最直接和最主要的原因是 GitHub 的分发加速网络的域名遭到 dns 污染。
+
+12Q: 如何解决 DNS 污染？A: 通过修改 hosts 解决污染问题。
+
+解决方法
+不需要科（）学（）上网，也不需要开代理加速器。
+
+一、查询网址对应的 IP 地址查询地址：https://www.ipaddress.com/
+点击下面 域名（domain）自动跳转到 ipaddress.com 查询结果页面：
+
+github.com
+
+assets-cdn.github.com
+
+github.global.ssl.fastly.net
+
+
+
+
+
+二、修改本地系统 hosts 文件
+hosts 文件路径：C:\Windows\System32\drivers\etc\hosts
+
+
+以管理员身份打开 CMD 终端，并输入 notepad ，会打开一个记事本。
+
+
+
+打开文件，输入 hosts 文件路径，选择所有文件，最后点击 ho ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/39218.html" title="如何在 Elasticsearch 中更新索引的 Mapping"><img class="post-bg" src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/mobile_apps_spmp.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="如何在 Elasticsearch 中更新索引的 Mapping"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/39218.html" title="如何在 Elasticsearch 中更新索引的 Mapping">如何在 Elasticsearch 中更新索引的 Mapping</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-14T06:26:21.000Z" title="发表于 2023-10-14 14:26:21">2023-10-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span></div><div class="content">前言在 Elasticsearch 中更新索引的 Mapping 是一个常见的需求，特别是当您需要对字段类型进行修改时。本文将介绍如何通过创建新索引、将搜索请求重定向到新索引、数据迁移（reindex）、测试并最终删除旧索引来有效地完成这个任务。
+一：创建新的索引
+分析当前 Mapping：首先，分析您当前索引的 Mapping。了解哪些字段需要修改，以及它们的新类型是什么。
+
+创建新索引：使用 Elasticsearch 的索引创建 API，创建一个新的索引，设置新的 Mapping。确保新的 Mapping 与您的需求一致。
+
+
+1234567891011121314PUT /新索引名称&#123;  &quot;mappings&quot;: &#123;    &quot;properties&quot;: &#123;      &quot;字段1&quot;: &#123;        &quot;type&quot;: &quot;新数据类型&quot;      &#125;,      &quot;字段2&quot;: &#123;        &quot;typ ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/10054.html" title="简洁登录：在 Linux 终端中去除 'Last login' 信息"><img class="post-bg" src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/mathematics_4otb.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="简洁登录：在 Linux 终端中去除 'Last login' 信息"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/10054.html" title="简洁登录：在 Linux 终端中去除 'Last login' 信息">简洁登录：在 Linux 终端中去除 'Last login' 信息</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-28T02:25:20.000Z" title="发表于 2023-07-28 10:25:20">2023-07-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Linux/">Linux</a></span></div><div class="content">引言当我们登录到 Linux 系统的终端时，通常会看到一条形如 “Last login: xxx xxx xxx” 的信息。这是系统默认的登录提示，显示上一次登录的时间和日期。虽然这对于某些用户来说可能是有用的，但对于其他用户来说可能会觉得这个信息有些多余。如果您也是希望在新建终端窗口时不显示这个登录提示信息，那么您来对地方了！在本文中，我将向您展示如何简洁地登录 Linux 终端，去除这个’Last login’信息。
+去除 ‘Last login’ 信息的方法创建 .hushlogin 的文件执行以下命令即可创建该文件：
+1touch ~/.hushlogin
+
+这样，您在新建终端窗口时将不再看到 “Last login” 信息，终端登录界面将更加简洁。请记得，这个方法只影响您当前用户的终端登录，其他用户登录的终端仍会显示 “Last login” 信息。
+如果您希望恢复 “Last login” 信息的显示，只需删除.hushlogin文件即可：
+1rm ~/.hushlogin
+
+这样，您在新建终端窗口时将不再看到 “Last login” 信息，终端登录界面将更加简洁。请记得 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/46937.html" title="高效下载 NGINX 静态网站：利用 wget 进行递归下载"><img class="post-bg" src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/landing_page_q6hh.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="高效下载 NGINX 静态网站：利用 wget 进行递归下载"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/46937.html" title="高效下载 NGINX 静态网站：利用 wget 进行递归下载">高效下载 NGINX 静态网站：利用 wget 进行递归下载</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-16T01:59:04.000Z" title="发表于 2023-07-16 09:59:04">2023-07-16</time></span></div><div class="content">前言NGINX是一款流行的Web服务器软件，用于托管静态网站和处理HTTP请求。当您需要下载整个NGINX静态网站的所有文件时，使用wget命令进行递归下载是一种高效的方法。
+递归下载是指通过wget命令下载一个网页后，它会自动解析并下载网页中引用的其他文件，包括CSS文件、JavaScript文件、图像文件等，以确保您获取整个网站的完整内容。
+一、安装 wget在 Windows 上安装 wget如果您使用的是Windows操作系统，可以使用Chocolatey（choco）包管理器来安装wget。打开命令提示符或PowerShell，并执行以下命令：
+1choco install wget
+
+该命令将自动下载并安装wget工具。安装完成后，您可以在命令提示符或PowerShell中使用wget命令。
+在Mac上安装wget如果您使用的是Mac操作系统，可以使用Homebrew（brew）包管理器来安装wget。打开终端，并执行以下命令：
+1brew install wget
+
+该命令将自动下载并安装wget工具。安装完成后，您可以在终端中使用wget命令。
+在ubuntu上安装wg ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/29556.html" title="mitmproxy 配置二级代理访问外网"><img class="post-bg" src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/chat_1wo5.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="mitmproxy 配置二级代理访问外网"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/29556.html" title="mitmproxy 配置二级代理访问外网">mitmproxy 配置二级代理访问外网</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-02-18T05:46:45.000Z" title="发表于 2022-02-18 13:46:45">2022-02-18</time></span></div><div class="content">前言做爬虫时常遇到需要使用外网代理的情况，本文以 Google 为例。
+编写 mitmdump 脚本劫持 「Google.com」域名的 URL
+12345678# -*- coding: utf-8 -*-from mitmproxy.http import flowdef response(flow: flow):    url = flow.request.url    if &quot;google.com&quot; in url:        print(f&quot;mitm 劫持成功,URL= &#123;url&#125;&quot;)
+
+命令行启用 upstream 模式1mitmdump --mode upstream:http://127.0.0.1:7890 -p 8000 -q -s mitm_google.py
+
+
+http://127.0.0.1:7890 : 就是使用的二级代理（能访问外网）
+mitm_google.py : 脚本名称
+
+开启 mode 前后对比
+开启前
+
+
+
+开启后
+
+
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/18115.html" title="Dailycheckin - 基于「Docker」/「青龙面板」/「群晖」的每日签到脚本（支持多账号）"><img class="post-bg" src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/profile_data_mk6k.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="Dailycheckin - 基于「Docker」/「青龙面板」/「群晖」的每日签到脚本（支持多账号）"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/18115.html" title="Dailycheckin - 基于「Docker」/「青龙面板」/「群晖」的每日签到脚本（支持多账号）">Dailycheckin - 基于「Docker」/「青龙面板」/「群晖」的每日签到脚本（支持多账号）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-03-03T08:48:50.000Z" title="发表于 2021-03-03 16:48:50">2021-03-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/GitHub/">GitHub</a></span></div><div class="content">
+
+
+
+DailyCheckIn
+
+基于「Docker」&#x2F;「青龙面板」&#x2F;「群晖」&#x2F;「本地」的每日签到脚本
+
+
+✨ 特性
+📦 支持 Pypi 包安装
+💻 支持多个平台部署
+⚙️ 支持多个平台签到
+📢 支持多个平台通知
+♾️ 支持多个账号签到
+🕙 支持定时任务设置
+🆙 支持项目自动更新
+
+🦄 教程https://sitoi.github.io/dailycheckin/
+🧾 列表🟢: 正常运行 🔴: 脚本暂不可用 🔵: 可以执行(需更新) 🟡: 待测试 🟤: 看脸
+
+
+
+状态
+任务名称
+名称网站
+检查日期
+备注
+
+
+
+🟢️
+KGQQ
+全民 K 歌
+24.02.20
+每日签到获取鲜花 每日大约 120 鲜花左右
+
+
+🟢️
+YOUDAO
+有道云笔记
+24.02.20
+每日签到获取存储空间
+
+
+🟢️
+TIEBA
+百度贴吧
+24.02.20
+贴吧每日签到
+
+
+🟢️
+BILIBILI
+BiliBili
+24.02.20
+直播签到，漫画签到，每日经验任务，自动投币，银瓜子换硬币等功能
+
+
+🟢️
+V2EX
+V2EX
+24.02.20
+铜币奖 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/13953.html" title="Mac &amp; Windows 软件推荐"><img class="post-bg" src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/hire_te5y.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="Mac &amp; Windows 软件推荐"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/13953.html" title="Mac &amp; Windows 软件推荐">Mac &amp; Windows 软件推荐</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-13T04:24:51.000Z" title="发表于 2020-11-13 12:24:51">2020-11-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%BD%AF%E4%BB%B6/">软件</a></span></div><div class="content">前言为了记录自己使用的软件，因为公司用的是 Windows 家里用的是 Mac 所以基本上 两个平台的软件都会挑选适合自己的软件。
+
+关于链接什么的有空再补上吧！
+
+软件列表WindowsMac
+终端
+
+Windows Terminal
+Git Bash
+
+图床
+
+PicGo
+
+下载工具
+
+迅雷
+IDM
+
+解压缩
+
+360 Zip 国际版
+
+桌面整理
+
+腾讯桌面整理
+
+网盘
+
+百度网盘
+Nextcloud
+
+录屏软件
+
+ScreenToGif
+
+截图工具
+
+Snipaste
+
+远程连接
+
+远程桌面
+向日葵
+Microsoft Remote Desktops Beta
+
+
+远程连接
+Termius
+Xshell
+Xftp
+
+
+
+思维导图
+
+XMind ZEN
+
+办公软件
+
+Office 套件
+Microsoft Word
+Microsoft Excel
+Microsoft PowerPoint
+
+
+
+笔记软件
+
+幕布
+Typora
+Notion
+
+科学上网
+
+Clash
+OpenVPN
+
+音乐播放器
+
+QQ 音乐
+
+视频播放器
+
+在线
+腾讯视频
+爱奇艺
+优酷
+
+
+离线
+PorPlayer ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/1040.html" title="MongoDB 集群开启分片操作"><img class="post-bg" src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/metrics_gtu7.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="MongoDB 集群开启分片操作"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/1040.html" title="MongoDB 集群开启分片操作">MongoDB 集群开启分片操作</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-09-25T05:18:29.000Z" title="发表于 2020-09-25 13:18:29">2020-09-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span></div><div class="content">开启数据库分片能力
+命令行 进入 mongos
+ 1mongo --host=&lt;host&gt; -u &lt;user&gt;
+
+切换到 admin 库
+ 1use admin
+
+对数据库启用分片能力
+ 123db.adminCommand( &#123;   enableSharding: &quot;&lt;database name&gt;&quot;&#125; )
+
+这一步是对数据库启用分片能力，同一个库的不同 collection 会分布到不同 shard 上，但是一个 collection 只会存在于一个 shard 上
+
+
+
+开启集合分片索引要在开启分片前建好。虽然 MongoDB 说如果是空库，开启分片时会自动创建不存在的索引，但还是建议你事前手动创建好。
+
+
+索引字段最好是在空库的时候就建好。数据量很大的时候新建索引一定要小心，第一找业务不忙的时候做，第二千万别忘了加 background 参数。
+
+
+还是要在 admin 库下执行
+123db.shardCollection( &#123;   &quot;&lt;database_name&gt;.&lt ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/9059.html" title="一键更新 package.json 中的包到最新版本"><img class="post-bg" src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/location_search_bqps.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="一键更新 package.json 中的包到最新版本"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/9059.html" title="一键更新 package.json 中的包到最新版本">一键更新 package.json 中的包到最新版本</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-09-20T14:15:04.000Z" title="发表于 2020-09-20 22:15:04">2020-09-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></span></div><div class="content">安装 npm-check-updates1npm i -g npm-check-updates
+
+检测更新
+ncu 是 npm-check-updates 的缩写命令
+
+1ncu -u
+
+123456789101112Upgrading /Users/shitao/WebstormProjects/blog/package.json[====================] 38/38 100% @babel/preset-env      ^7.11.0  →  ^7.11.5 eslint                  ^7.6.0  →   ^7.9.0 hexo-generator-search   ^2.4.0  →   ^2.4.1 hexo-renderer-marked    ^3.0.0  →   ^3.2.0 hexo-renderer-stylus    ^1.1.0  →   ^2.0.1 terser                  ^5.0.0  →   ^5.3.2 workbox-build           ^5.1.3  →   ^5.1. ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/12507.html" title="Linux 统计文件夹中文件个数以及目录个数"><img class="post-bg" src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/instat_analysis_ajld.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="Linux 统计文件夹中文件个数以及目录个数"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/12507.html" title="Linux 统计文件夹中文件个数以及目录个数">Linux 统计文件夹中文件个数以及目录个数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-09-10T08:29:50.000Z" title="发表于 2020-09-10 16:29:50">2020-09-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Linux/">Linux</a></span></div><div class="content">列出当前文件夹（显示不隐藏的文件与文件夹的详细信息）命令:
+1ls -l
+
+如下结果:
+123456drwxrwsr-x    2 sitoi sitoi  4096 Sep 10 16:32 10271113/drwxrwsr-x    2 sitoi sitoi  4096 Sep 10 16:32 10271114/drwxrwsr-x    2 sitoi sitoi  4096 Sep 10 16:32 10271115/drwxrwsr-x    2 sitoi sitoi  4096 Sep 10 16:32 10271116/drwxrwsr-x    2 sitoi sitoi  4096 Sep 10 16:32 10271117/drwxrwsr-x    2 sitoi sitoi  4096 Sep 10 16:32 10271118/
+
+
+终端输出的结果是一行一行的字符，每一行字符对应一个目录或者是文件
+
+如果是文件的话，该行的字符串信息的第一个字符显示的是 -
+
+如果是目录的话，该行的字符的第一个显示的是 d，意即 directory，找到这两者之间的区别 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/40411.html" title="最新 Navicat Premium 15 破解方法详细教程（Windows）"><img class="post-bg" src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/searching_p5ux.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="最新 Navicat Premium 15 破解方法详细教程（Windows）"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/40411.html" title="最新 Navicat Premium 15 破解方法详细教程（Windows）">最新 Navicat Premium 15 破解方法详细教程（Windows）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-09-01T02:34:24.000Z" title="发表于 2020-09-01 10:34:24">2020-09-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%BD%AF%E4%BB%B6/">软件</a></span></div><div class="content">在破解安装之前，请先卸载电脑中旧版本的所有 Navicat Premium 并重新安装！
+
+在破解安装之前，请先卸载电脑中旧版本的所有 Navicat Premium 并重新安装！
+
+在破解安装之前，请先卸载电脑中旧版本的所有 Navicat Premium 并重新安装！
+
+安装 Navicat Premium 15官网下载地址：https://www.navicat.com.cn/download/navicat-premium
+
+安装完成后请打开一次软件并关闭
+
+激活 Navicat Premium 15下载激活软件 Navicat Keygen Patch下载地址：https://sitoi.lanzous.com/iDXhOg935ng  密码：4wfy
+
+无需断网运行激活软件 Navicat_Keygen_Patch（以管理员身份运行）
+
+点击 Patch 替换 navicat.exe点击 Patch 选择 Navicat Premium 15 安装路劲下的 navicat.exe
+
+
+显示下图，表示成功
+
+生成注册码
+关闭 Navicat Premium 15 并重新打开， ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/34819.html" title="Selenium ChromeDriver 设置代理 和 设置认证代理"><img class="post-bg" src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/connected_8wvi.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="Selenium ChromeDriver 设置代理 和 设置认证代理"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/34819.html" title="Selenium ChromeDriver 设置代理 和 设置认证代理">Selenium ChromeDriver 设置代理 和 设置认证代理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-19T05:27:38.000Z" title="发表于 2020-08-19 13:27:38">2020-08-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></span></div><div class="content">Selenium &amp; ChromeDriver 全平台安装教程（Mac、Windows、Linux）
+
+
+
+Selenium + ChromeDriver 代理使用，无密码或已设置白名单 IP12345678from selenium import webdriverchromeOptions = webdriver.ChromeOptions()chromeOptions.add_argument(&quot;--proxy-server=http://127.0.0.1:7890&quot;)browser = webdriver.Chrome(options=chromeOptions)browser.get(&quot;https://httpbin.org/get?show_env=1&quot;)browser.get_screenshot_as_file(&quot;httpbin.png&quot;)browser.close()
+
+
+注: --proxy-server=http://host:port 等号两边不能有空格
+
+Selenium + ChromeD ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#content-inner">5</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/avatars/avatar.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Sitoi</div><div class="author-info__description">真正的酷都是需要付诸努力的</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">92</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" href="https://github.com/Sitoi"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="/wechat.jpg" target="_blank" title="Wechat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="tencent://message/?uin=133397418" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=133397418" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://github.com/Sitoi/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/39218.html" title="如何在 Elasticsearch 中更新索引的 Mapping"><img src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/mobile_apps_spmp.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="如何在 Elasticsearch 中更新索引的 Mapping"/></a><div class="content"><a class="title" href="/posts/39218.html" title="如何在 Elasticsearch 中更新索引的 Mapping">如何在 Elasticsearch 中更新索引的 Mapping</a><time datetime="2023-10-14T06:26:21.000Z" title="发表于 2023-10-14 14:26:21">2023-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/10054.html" title="简洁登录：在 Linux 终端中去除 'Last login' 信息"><img src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/mathematics_4otb.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="简洁登录：在 Linux 终端中去除 'Last login' 信息"/></a><div class="content"><a class="title" href="/posts/10054.html" title="简洁登录：在 Linux 终端中去除 'Last login' 信息">简洁登录：在 Linux 终端中去除 'Last login' 信息</a><time datetime="2023-07-28T02:25:20.000Z" title="发表于 2023-07-28 10:25:20">2023-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/46937.html" title="高效下载 NGINX 静态网站：利用 wget 进行递归下载"><img src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/landing_page_q6hh.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="高效下载 NGINX 静态网站：利用 wget 进行递归下载"/></a><div class="content"><a class="title" href="/posts/46937.html" title="高效下载 NGINX 静态网站：利用 wget 进行递归下载">高效下载 NGINX 静态网站：利用 wget 进行递归下载</a><time datetime="2023-07-16T01:59:04.000Z" title="发表于 2023-07-16 09:59:04">2023-07-16</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list expandBtn" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Ambari/"><span class="card-category-list-name">Ambari</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Docker/"><span class="card-category-list-name">Docker</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/GitBook/"><span class="card-category-list-name">GitBook</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/GitHub/"><span class="card-category-list-name">GitHub</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Hadoop/"><span class="card-category-list-name">Hadoop</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Hexo/"><span class="card-category-list-name">Hexo</span><span class="card-category-list-count">6</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Mac/"><span class="card-category-list-name">Mac</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/OpenLDAP/"><span class="card-category-list-name">OpenLDAP</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Spark/"><span class="card-category-list-name">Spark</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Sqoop/"><span class="card-category-list-name">Sqoop</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/"><span class="card-category-list-name">前端</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="card-category-list-name">数据库</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item parent"><a class="card-category-list-link" href="/categories/%E7%88%AC%E8%99%AB/"><span class="card-category-list-name">爬虫</span><span class="card-category-list-count">9</span><i class="fas fa-caret-left "></i></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%88%AC%E8%99%AB/Scrapy/"><span class="card-category-list-name">Scrapy</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%88%AC%E8%99%AB/js-%E9%80%86%E5%90%91/"><span class="card-category-list-name">js 逆向</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%88%AC%E8%99%AB/%E4%BB%A3%E7%90%86/"><span class="card-category-list-name">代理</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%A7%84%E8%8C%83/"><span class="card-category-list-name">规范</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6/"><span class="card-category-list-name">软件</span><span class="card-category-list-count">4</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Ambari/" style="font-size: 1.24em; color: rgb(73, 96, 39)">Ambari</a><a href="/tags/ntpd/" style="font-size: 1.15em; color: rgb(87, 88, 37)">ntpd</a><a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 1.15em; color: rgb(78, 168, 75)">教程</a><a href="/tags/Docker/" style="font-size: 1.32em; color: rgb(128, 89, 195)">Docker</a><a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 1.28em; color: rgb(153, 70, 40)">微服务</a><a href="/tags/Docker-Compose/" style="font-size: 1.15em; color: rgb(187, 27, 129)">Docker-Compose</a><a href="/tags/Dockerfile/" style="font-size: 1.15em; color: rgb(170, 5, 139)">Dockerfile</a><a href="/tags/%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3/" style="font-size: 1.41em; color: rgb(159, 109, 27)">安装文档</a><a href="/tags/GitBook/" style="font-size: 1.15em; color: rgb(40, 120, 114)">GitBook</a><a href="/tags/Linux/" style="font-size: 1.36em; color: rgb(156, 159, 70)">Linux</a><a href="/tags/MongoDB/" style="font-size: 1.24em; color: rgb(65, 134, 133)">MongoDB</a><a href="/tags/NoSQL/" style="font-size: 1.24em; color: rgb(70, 173, 73)">NoSQL</a><a href="/tags/GitHub/" style="font-size: 1.45em; color: rgb(11, 190, 139)">GitHub</a><a href="/tags/jsDelivr/" style="font-size: 1.15em; color: rgb(25, 127, 143)">jsDelivr</a><a href="/tags/PicGo/" style="font-size: 1.15em; color: rgb(130, 131, 184)">PicGo</a><a href="/tags/Imagine/" style="font-size: 1.15em; color: rgb(11, 155, 3)">Imagine</a><a href="/tags/Hadoop/" style="font-size: 1.19em; color: rgb(153, 152, 46)">Hadoop</a><a href="/tags/HDFS/" style="font-size: 1.19em; color: rgb(190, 7, 155)">HDFS</a><a href="/tags/%E9%85%8D%E9%A2%9D/" style="font-size: 1.15em; color: rgb(188, 189, 17)">配额</a><a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 1.19em; color: rgb(89, 7, 61)">分布式</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">十月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">七月 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/02/"><span class="card-archive-list-date">二月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/03/"><span class="card-archive-list-date">三月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/11/"><span class="card-archive-list-date">十一月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/09/"><span class="card-archive-list-date">九月 2020</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/08/"><span class="card-archive-list-date">八月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/07/"><span class="card-archive-list-date">七月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/06/"><span class="card-archive-list-date">六月 2020</span><span class="card-archive-list-count">7</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/05/"><span class="card-archive-list-date">五月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/01/"><span class="card-archive-list-date">一月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2019/12/"><span class="card-archive-list-date">十二月 2019</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2019/11/"><span class="card-archive-list-date">十一月 2019</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2019/10/"><span class="card-archive-list-date">十月 2019</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2019/09/"><span class="card-archive-list-date">九月 2019</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2019/04/"><span class="card-archive-list-date">四月 2019</span><span class="card-archive-list-count">7</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2019/03/"><span class="card-archive-list-date">三月 2019</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2019/02/"><span class="card-archive-list-date">二月 2019</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2019/01/"><span class="card-archive-list-date">一月 2019</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/10/"><span class="card-archive-list-date">十月 2018</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/09/"><span class="card-archive-list-date">九月 2018</span><span class="card-archive-list-count">3</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">54</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2018-09-24T00:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">68.3k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-02-26T02:36:32.670Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2024 By Sitoi</div><div class="framework-info"><span>框架 </span><a href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a href="https://beian.miit.gov.cn/"><img class="icp-icon" src="/medias/icp.png"><span>沪ICP备18037784号-1</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>window.typedJSFn = {
+  init: (str) => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: (subtitleType) => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        getScript('https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  }
+}
+</script><script>function subtitleType () {
+  if (true) {
+    typedJSFn.init(["「少即是多」","「Less is More」"])
+  } else {
+    document.getElementById("subtitle").textContent = "「少即是多」"
+  }
+}
+typedJSFn.run(subtitleType)</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><div class="app-refresh" id="app-refresh"> <div class="app-refresh-wrap"> <label>✨ 网站已更新最新版本 👉</label> <a href="javascript:void(0)" onclick="location.reload()">点击刷新</a> </div></div><script>function showNotification(){if(GLOBAL_CONFIG.Snackbar){var t="light"===document.documentElement.getAttribute("data-theme")?GLOBAL_CONFIG.Snackbar.bgLight:GLOBAL_CONFIG.Snackbar.bgDark,e=GLOBAL_CONFIG.Snackbar.position;Snackbar.show({text:"已更新最新版本",backgroundColor:t,duration:5e5,pos:e,actionText:"点击刷新",actionTextColor:"#fff",onActionClick:function(t){location.reload()}})}else{var o=`top: 0; background: ${"light"===document.documentElement.getAttribute("data-theme")?"#49b1f5":"#1f1f1f"};`;document.getElementById("app-refresh").style.cssText=o}}"serviceWorker"in navigator&&(navigator.serviceWorker.controller&&navigator.serviceWorker.addEventListener("controllerchange",function(){showNotification()}),window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")}));</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div><script>"use strict";if("serviceWorker"in navigator){navigator.serviceWorker.register("service-worker.js").then((function(reg){reg.onupdatefound=function(){var installingWorker=reg.installing;installingWorker.onstatechange=function(){switch(installingWorker.state){case"installed":if(navigator.serviceWorker.controller){console.log("New or updated content is available.")}else{console.log("Content is now available offline!")}break;case"redundant":console.error("The installing service worker became redundant.");break}}}}))["catch"]((function(e){console.error("Error during service worker registration:",e)}))}</script></body></html>
