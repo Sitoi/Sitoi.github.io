@@ -1,0 +1,415 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>请不要污名化爬虫！ | Sitoi</title><meta name="author" content="Sitoi"><meta name="copyright" content="Sitoi"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="请不要污名化爬虫！本文转自 NightTeam 原创：Loco NightTeam 文章作者：「夜幕团队 NightTeam」 - Loco 导语最近有一篇名为《只因写了一段爬虫，公司 200 多人被抓！》的文章非常火，相信大家应该都看到了。 这篇文章火起来之后，本来经过了一个多月的时间已经冷静下来了的爬虫圈子又开始人心惶惶了，各种说法层出不穷，大家都害怕自己一不小心就违法、进监狱过年，但是，事情">
+<meta property="og:type" content="article">
+<meta property="og:title" content="请不要污名化爬虫！">
+<meta property="og:url" content="https://sitoi.cn/posts/153.html">
+<meta property="og:site_name" content="Sitoi">
+<meta property="og:description" content="请不要污名化爬虫！本文转自 NightTeam 原创：Loco NightTeam 文章作者：「夜幕团队 NightTeam」 - Loco 导语最近有一篇名为《只因写了一段爬虫，公司 200 多人被抓！》的文章非常火，相信大家应该都看到了。 这篇文章火起来之后，本来经过了一个多月的时间已经冷静下来了的爬虫圈子又开始人心惶惶了，各种说法层出不穷，大家都害怕自己一不小心就违法、进监狱过年，但是，事情">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://opendoodles.s3-us-west-1.amazonaws.com/bikini.svg">
+<meta property="article:published_time" content="2019-10-21T04:25:00.000Z">
+<meta property="article:modified_time" content="2025-11-12T05:28:30.735Z">
+<meta property="article:author" content="Sitoi">
+<meta property="article:tag" content="robots 协议">
+<meta property="article:tag" content="爬虫">
+<meta property="article:tag" content="风险">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://opendoodles.s3-us-west-1.amazonaws.com/bikini.svg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "请不要污名化爬虫！",
+  "url": "https://sitoi.cn/posts/153.html",
+  "image": "https://opendoodles.s3-us-west-1.amazonaws.com/bikini.svg",
+  "datePublished": "2019-10-21T04:25:00.000Z",
+  "dateModified": "2025-11-12T05:28:30.735Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Sitoi",
+      "url": "https://sitoi.cn"
+    }
+  ]
+}</script><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/favicon.ico"><link rel="canonical" href="https://sitoi.cn/posts/153.html"><link rel="preconnect" href="https://npm.elemecdn.com"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/medias/logo_32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/medias/logo_16.png"/><link rel="mask-icon" href="/apple-touch-icon.png" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css?v=5.5.2"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free@latest/css/all.min.css"><link rel="stylesheet" href="https://npm.elemecdn.com/node-snackbar@latest/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/@fancyapps/ui@latest/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?c29e2dcbe60cb0ec619a76c424a71b11";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+btf.addGlobalFn('pjaxComplete', () => {
+  _hmt.push(['_trackPageview',window.location.pathname])
+}, 'baidu_analytics')
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-136865061-1"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'UA-136865061-1')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'UA-136865061-1', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;b618d0d8bcf448af935bd89530ccffcd&quot;}"></script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://npm.elemecdn.com/@egjs/infinitegrid@latest/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '请不要污名化爬虫！',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><script async src="https://umami.sitoi.cn/script.js" data-website-id="b23bdc64-5e23-46d5-9e2c-c862f9413a1f"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/background.css"><meta name="baidu_union_verify" content="8822ba856d99c65163dd207aaffc3510"><style type="text/css">.app-refresh{position:fixed;top:-2.2rem;left:0;right:0;z-index:99999;padding:0 1rem;font-size:15px;height:2.2rem;transition:all .3s ease}.app-refresh-wrap{display:flex;color:#fff;height:100%;align-items:center;justify-content:center}.app-refresh-wrap a{color:#fff;text-decoration:underline;cursor:pointer}</style><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Sitoi" type="application/atom+xml">
+</head><body><div id="web_bg" style="background-color: #efefef;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/avatars/avatar.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">95</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw fas fa-envelope"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友人</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 项目</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://sitoi.github.io/dailycheckin/"><i class="fa-fw fas fa-location-arrow"></i><span> Dailycheckin</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="https://crawlaio.github.io"><i class="fa-fw fas fa-location-arrow"></i><span> 导航</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://opendoodles.s3-us-west-1.amazonaws.com/bikini.svg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Sitoi</span></a><a class="nav-page-title" href="/"><span class="site-name">请不要污名化爬虫！</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw fas fa-envelope"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友人</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 项目</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://sitoi.github.io/dailycheckin/"><i class="fa-fw fas fa-location-arrow"></i><span> Dailycheckin</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="https://crawlaio.github.io"><i class="fa-fw fas fa-location-arrow"></i><span> 导航</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">请不要污名化爬虫！</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2019-10-21T04:25:00.000Z" title="发表于 2019-10-21 12:25:00">2019-10-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-12T05:28:30.735Z" title="更新于 2025-11-12 13:28:30">2025-11-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">4.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>12分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="请不要污名化爬虫！"><a href="#请不要污名化爬虫！" class="headerlink" title="请不要污名化爬虫！"></a>请不要污名化爬虫！</h1><p>本文转自 NightTeam 原创：Loco NightTeam 文章作者：「夜幕团队 NightTeam」 - Loco</p>
+<h2 id="导语"><a href="#导语" class="headerlink" title="导语"></a><center>导语</center></h2><p>最近有一篇名为《只因写了一段爬虫，公司 200 多人被抓！》的文章非常火，相信大家应该都看到了。</p>
+<p>这篇文章火起来之后，本来经过了一个多月的时间已经冷静下来了的爬虫圈子又开始人心惶惶了，各种说法层出不穷，大家都害怕自己一不小心就违法、进监狱过年，但是，事情真的是那样吗？</p>
+<h2 id="辟谣"><a href="#辟谣" class="headerlink" title="辟谣"></a><center>辟谣</center></h2><p>我们先来看几个明显有误，且传播很广的说法吧。</p>
+<blockquote>
+<p>“最近很多做爬虫的被抓了”</p>
+</blockquote>
+<p>那篇文章的故事中提到的，是一家名为「巧达数据」的公司，如果之前有关注过相关新闻的朋友应该不难发现，这个公司实际上在 3 月份的时候就已经被查封了！</p>
+<p>而文章后面提到的天翼征信、新颜科技、魔蝎科技、公信宝、同盾科技相关事件，实际上也都是 9 月初的事情了，到目前为止已经一个多月了，并不是最近才发生的。</p>
+<blockquote>
+<p>“最近一直有做爬虫的公司被抓”</p>
+</blockquote>
+<p>很多人跟我说他看到一直有公司因为做爬虫被抓，但其实都是错觉，说白了，这只是因为你关注的信息来源（微信公众号）或者是你朋友圈内的人关注的信息来源都很集中、搞来搞去都是同一个圈子里的人导致的。</p>
+<p>同一个圈子里的公众号关注得多了之后，会出现一个很神奇的现象：</p>
+<p><font color=#FF5F2E>你会发现你时不时地就看到某一篇文章在换了个标题之后，又出现在了你的消息列表&#x2F;朋友圈&#x2F;看一看中，而这篇文章很可能你已经看到过很多遍了。</font></p>
+<p>这种现象你见得多了之后，很可能就会不再点开文章查看，也自然就不会知道它里面到底写了什么，你只是感觉好像一直有新的被抓的公司，但是实际上那些文章都只是换了个名字的旧文章。</p>
+<blockquote>
+<p>“只要不遵守 robots 协议就会被抓”、“伪造 UA（User-Agent）就会被抓”、“只要绕过、破解反爬虫措施就会被抓”</p>
+</blockquote>
+<p>这几个说法的起源，是「某离职的头条员工做了一个头条的竞品，还爬了头条的数据，结果被告了」的那个案件的相关新闻。</p>
+<p>但将这几个说法再次搬出来并且还传播开了的，是源于某个法律领域的公众号在魔蝎科技等公司被抓后，写的一篇对相关案件和法律的解读（当时是爆文，朋友圈都在刷屏）。</p>
+<p>我们先来说说传播最广的这个法律领域的公众号所说的吧。律师毕竟不是做技术的，对很多技术方面的东西了解的并不多，所以有些内容在做技术的人看来其实是挺搞笑的。</p>
+<p>但由于那位律师的文章当时太火了，很多人直接复制粘贴了他对相关法律的解读，所以这几种说法就被迅速流传了开来。</p>
+<p>那么这几个说法的问题在哪里呢？</p>
+<h4 id="robots-协议"><a href="#robots-协议" class="headerlink" title="robots 协议"></a>robots 协议</h4><p>robots 协议实际上是君子协议，并不是法律明文规定的限制，最早只是针对<font color=#FF5F2E>搜索引擎爬虫</font>而定的东西，<br>但现在做<font color=#FF5F2E>搜索引擎爬虫</font>的并不多，通常我们说的爬虫都是<font color=#FF5F2E>垂直爬虫</font>（意思是针对某一个或多个网站&#x2F;APP 采集数据的爬虫）。</p>
+<p>而这个“不遵守 robots 协议就会被抓”的说法最搞笑的地方就在于，现在几乎所有的网站 robots.txt 文件里都会像这样写：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">User-agent: Baiduspider</span><br><span class="line">Disallow: /balabala</span><br><span class="line"></span><br><span class="line">User-agent: 各种搜索引擎爬虫的UA</span><br><span class="line">Disallow: /balabala</span><br><span class="line"></span><br><span class="line">User-Agent: *</span><br><span class="line">Disallow: /</span><br></pre></td></tr></table></figure>
+
+<p>注意这里的最后一个 <code>User-Agent</code>，这个星号的意思是<font color=#FF5F2E>其他所有的爬虫</font>，而 <code>Disallow</code> 后面跟着的斜杠，意思是<font color=#FF5F2E>禁止访问所有页面</font>。</p>
+<p>好了，如果遵守这个协议的话，除了搜索引擎的爬虫以外，谁都别玩了，要知道现在国内的大环境就是大家都不愿意把数据给开放出来，生怕别人拿了之后直接做一个竞品出来跟自己抢生意，所以根本没有国外网站上很常见的<font color=#FF5F2E>开放平台</font>。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">注：开放平台就是一个官方的、提供数据的地方。</span><br></pre></td></tr></table></figure>
+
+<p>所以如果真的都遵守这个协议的话，各种大数据分析都要凉凉，连数据都拿不到，分析啥呢？</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">注：别扯自家生产数据，没人只分析自家、不分析别人的。</span><br></pre></td></tr></table></figure>
+
+<h4 id="伪造-UA（User-Agent）"><a href="#伪造-UA（User-Agent）" class="headerlink" title="伪造 UA（User-Agent）"></a>伪造 UA（User-Agent）</h4><p>这个比说 robots 协议还搞笑，因为…现在根本没人直接根据 UA 来判断是否是同一个用户，改不改 UA 对人家反爬虫机制的判断一点影响都没有。</p>
+<p>那位律师的这个说法，<font color=#FF5F2E>多半因为看了一些比较水的爬虫文章里说“修改 UA 可以绕过反爬”而理解出来的</font>。</p>
+<p>然后肯定有人要说了：“不管怎么样你都把 UA 改了啊”（有人跟我这么说过类似的话），你知道 UA 是干啥的么？</p>
+<p>UA 就只是一个特征字符串而已，它和 robots 一样，同样算是一个君子协议（不懂的朋友请阅读 RFC 中 HTTP 协议的部分），说白了这玩意就跟软件的名字一样，叫啥都行！</p>
+<p>你看哪个明星很有名，你把自己的名字改得跟他一样，也没人会说你，因为这本来就没有任何问题！</p>
+<h4 id="绕过、破解反爬虫措施"><a href="#绕过、破解反爬虫措施" class="headerlink" title="绕过、破解反爬虫措施"></a>绕过、破解反爬虫措施</h4><p>说个最常见、最初级的解决反爬虫措施的办法：自动化测试工具控制浏览器进行请求。</p>
+<p>请问浏览器请求时，如果没有触发反爬虫措施，算绕过、破解了吗？</p>
+<p>如果你觉得机器操作的算，那请问我找一群人手动打开浏览器进行同样的操作算吗？</p>
+<p>然后肯定还会有人说：“这根本不算破解反爬虫措施，破解是把验证码自动输入了才算”（同样有人这么跟我说过）。</p>
+<p>那么请问，人工输入验证码算破解吗？找一群人人工输入验证码呢？</p>
+<p>然后我们再来回顾一下那个头条的案件吧，那个案件一开始是各种新闻、文章都说是” 使用伪造 device_id 绕过服务器的身份校验，使用伪造 UA 及 IP 绕过服务器的访问频率限制 ”。</p>
+<p>但从后来被爆出来的消息来看，说白了只是因为那人从头条离职了之后，不仅做了个竞品还爬老东家的数据直接放到自己那用而已，他的“tt_spider”所用到的那些操作并不是导致他被告的关键因素。</p>
+<h2 id="怎么避免违法"><a href="#怎么避免违法" class="headerlink" title="怎么避免违法"></a><center>怎么避免违法</center></h2><p>以下内容写于 2019 年 10 月 17 日，是根据本人对目前见到的知名案例的理解而写的，仅供参考，如有疑问建议联系律师协助你对具体情况进行分析。</p>
+<blockquote>
+<p>个人隐私信息不要碰</p>
+</blockquote>
+<p>很明显，今年的净网行动中，被一窝端的那些公司大部分都是做征信、风控、简历检索相关的，它们有个共同的特点，就是都采集了个人隐私信息并对外售卖。</p>
+<p>做征信和风控的基本都是对社保、公积金、账单等信息进行了采集，它们的做法也都很类似：让用户在自己的 APP 中登录各种账号，从而获取到登录 Cookie，接着就能使用 Cookie 随心所欲地监控用户的情况。</p>
+<p>做简历检索的则是在各种招聘平台上注册了大量虚假企业账号，并通过招聘平台提供的功能获取了大量简历，有些做这方面的甚至还会有用虚假招聘的方式骗简历的操作，极其恶劣。</p>
+<p>再次提醒，个人隐私信息千万不要碰！大部分公司根本没有那个权力去碰这些数据，一碰既死！</p>
+<blockquote>
+<p>别人的东西不要拿了之后放到自己家里</p>
+</blockquote>
+<p>在早些时候， 百度与大众点评不正当竞争纠纷案（上海市第一中级人民法院（2016）沪 73 民终 242 号）也挺火的，从案件内容中可以看到，百度采集了大众点评等 APP 上的店铺和评论信息，并直接在百度地图上进行展示。</p>
+<p>这个案件大家应该都能理解得了吧？很简单的一个事情，我没有允许你拿走这个东西，但你直接拿走了，还放在了自己家里炫耀，这当然不行！</p>
+<p>同理，所有不通过官方渠道（开放平台等）爬了其他网站的数据之后直接放到自己网站上的，都有风险，包括但不限于：</p>
+<ul>
+<li>爬了视频、音乐网站后把视频、音乐直接搬到自己网站上，为用户提供播放服务的。</li>
+<li>爬了小说网站后把小说文本直接搬到自己网站上，为用户提供盗版阅读服务的。</li>
+<li>爬了论坛网站后把所有贴子直接搬到自己网站上，改个名字假装自己是另一个论坛的。</li>
+</ul>
+<p>不过，这方面除了盗版问题以外，大部分情况其实没人管，只要你不过分、不出名，搞个小破站出来其实人家也懒得搞你，容易出问题的是有些专门做此类事情的公司。</p>
+<p>再次提醒，如果你正在某个公司做这种事情，建议尽早弃坑！</p>
+<blockquote>
+<p>请求速度不要太过分</p>
+</blockquote>
+<p>很多小白写爬虫的时候，并发毫无限制（可参考携程反爬虫部门某位老哥写的文章），这种做法实际上是会对对方服务器造成一定影响的，在数据量较大的情况下，如果对方的带宽很小，很有可能就会被你的高并发请求直接弄挂，这就相当于 CC 攻击了。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CC攻击是Dos攻击的一种，主要表现是对目标网站发起大量的HTTP请求，使其服务器性能被消耗殆尽，从而达到让对方服务器拒绝服务的效果。</span><br><span class="line"></span><br><span class="line">Dos攻击就是让对方服务器拒绝服务的攻击的总称，而我们常听说的DDoS攻击其实是分布式拒绝服务攻击的意思，只是在Dos的基础上加了个分布式而已。</span><br></pre></td></tr></table></figure>
+
+<p>所以，千万注意控制自己的请求速度，控制在一个合理的范围内，如果你司老板或产品经理给你提了一个像“<font color=#FF5F2E>一天采集一遍淘宝全站</font>”一样的这种需求，建议你直接怼回去。</p>
+<p>这个请求速度，一方面你们这边的成本会非常高，另一方面，你们的法律风险极大，被爬的那一方完全可以以你们的爬虫对他们服务器的资源消耗过高为由（可参考某数据管理办法意见稿），直接将你们告上法庭，至于最后怎么判，完全看你们爬了数据做什么用。</p>
+<blockquote>
+<p>不要碰黑色产业</p>
+</blockquote>
+<p>这方面被抓的个人很多，基本都是接了个外包，然后对方是做黑产的，接外包的这位也不知道或者根本没去了解对方要他做的这个工具是用来干啥的，稀里糊涂地就被抓了。</p>
+<p>举两个例子吧：</p>
+<ol>
+<li><p>有人找你说做一个直播平台的登录、进直播间、刷弹幕、刷免费礼物一条龙服务的程序，但他们实际上是用来造假数据的，这个情况下，如果他们出事被抓了（刷量属于黑色产业，大概率出事），你就是从犯。</p>
+</li>
+<li><p>之前知乎上有个很火的“接外包接进监狱的”回答，那个回答现在已经被删除了，但从内容上来看，与之前被抓的知名打码平台站长——微凉的情况很像，都是做了个验证码识别服务，都是给别人使用了，最后莫名其妙就被抓了。按回答中所说的，被抓的那个公司多半是做了上面那个例子中的事情，而且量非常大，而他提供了打码服务，所以就被连带上了。</p>
+</li>
+</ol>
+<p>所以，如果感觉自己在做的事情不对劲，千万要搞清楚，如果有问题，赶紧弃坑！</p>
+<p>接外包的时候，建议在可以保留聊天记录的 IM 上与对方详细了解一下对方会用这个程序做什么，有问题的千万别接！</p>
+<blockquote>
+<p>不要碰黄赌毒</p>
+</blockquote>
+<p>这个其实就不怎么跟爬虫有关了，因为目前我看到的案例都是说接外包做了个菠菜网站，最后被连带一起抓了的，但与上一条一样，建议搞清楚自己做的东西会被用来干什么，并保留好聊天记录，涉及黄赌毒的千万别接！</p>
+<blockquote>
+<p>不要对别人的软件进行逆向工程后还到处得瑟</p>
+</blockquote>
+<p>很多人以为写对某个网站&#x2F;APP 的逆向文章是没有风险、可以随便写的，但实际情况只是人家懒得弄你而已，因为几乎所有的网站、APP 的用户协议中，都会有类似这样的条款：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">“在使用过程中，您将承担因下述行为而产生的全部法律责任：未经本公司授权，修改、破解、反编译、反汇编、逆向工程本产品，发布本产品的修改版、破解版等。”</span><br></pre></td></tr></table></figure>
+
+<p>有些游戏类的 APP 甚至还会有这样的条款：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">“严禁修改、破译或进行任何影响游戏程序和游戏网络数据传输封包的行为。”</span><br></pre></td></tr></table></figure>
+
+<p>简单地说就是，只要你对他们的网站、APP 进行了逆向，甚至是抓包，他们就有理由告你。</p>
+<p>当然，这就跟遵守 robots 协议一样扯淡，现在做垂直爬虫的基本没有不逆向、不抓包的，而目前见到的案例也就只是对方要求删文而已，还没到抓人的程度。</p>
+<p>但是，如果某篇文章的传播面过广，对对方造成的一定的损失，而且对方想要搞你的话，那你就凉凉了。</p>
+<p>说到这里，我还是再次说明一下我们夜幕团队的做法吧，我们的文章中不会出现直接逆向、破解某个第三方网站、APP 的内容。</p>
+<p>我们只会自己造一个案例，再对这个案例进行逆向，这样做既安全又不会因为对方更新而失效，真正做到授人以渔的作用。</p>
+<blockquote>
+<p>不要影响别人的正常业务</p>
+</blockquote>
+<p>这个应该很好理解吧？抢票、刷单、薅羊毛之类的其实都是属于这一类的，只要你的操作量大了，就会影响到别人的正常业务，而且还很有可能会涉及到其他的利益关系，你说这情况不抓你抓谁？</p>
+<blockquote>
+<p>非公开数据不要乱搞</p>
+</blockquote>
+<p>这个也很简单，别人用来商业化的数据（如天眼查、企查查、启信宝等工商信息查询网站），你通过公开手段爬了之后拿去用，人家当然要告你。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">并非指上面说的三家，指的是其它领域的东西，工商数据这一块目前还没看到相关案例。</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><center>总结</center></h2><p>好了，差不多应该就是这些，这篇文章是想到啥就说啥了，对于一些细节方面的问题建议自行判断，判断不了的建议联系律师帮你分析，不要不知道什么情况还往里冲，这样子进监狱是迟早的事情。</p>
+<p>再引用一下之前转载张凯强的《又一家数据公司被查，爬虫到底做错了什么？》这篇文章时，我提到的一个判断方法：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">有个很简单的方法能判断出一件事情是否有违法风险，如果你不知道做某件事情会不会违法，但你觉得做这件事情似乎不太好，那么这件事情做完以后多半会出事！</span><br></pre></td></tr></table></figure>
+
+<p>最后说一下，技术无罪，但人的做法有罪，最核心的点是你做的事情合不合理、合不合法，希望各位读者能洁身自好，敬畏法律、敬畏人性。</p>
+<p>夜幕团队成立于 2019 年，团队包括崔庆才、周子淇、陈祥安、唐轶飞、冯威、蔡晋、戴煌金、张冶青和韦世东。</p>
+<p>涉猎的编程语言包括但不限于 Python、Rust、C++、Go，领域涵盖爬虫、深度学习、服务研发、对象存储等。团队非正亦非邪，只做认为对的事情，请大家小心。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Sitoi/cdn/img/nightteam.png" alt="识别上图二维码关注公众号"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://sitoi.cn">Sitoi</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://sitoi.cn/posts/153.html">https://sitoi.cn/posts/153.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://sitoi.cn" target="_blank">Sitoi</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%88%AC%E8%99%AB/">爬虫</a><a class="post-meta__tags" href="/tags/%E9%A3%8E%E9%99%A9/">风险</a><a class="post-meta__tags" href="/tags/robots-%E5%8D%8F%E8%AE%AE/">robots 协议</a></div><div class="post-share"><div class="social-share" data-image="https://opendoodles.s3-us-west-1.amazonaws.com/bikini.svg" data-sites="wechat,qq,weibo,twitter,facebook,linkedin"></div><link rel="stylesheet" href="https://npm.elemecdn.com/butterfly-extsrc@latest/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://npm.elemecdn.com/butterfly-extsrc@latest/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/48724.html" title="手把手教你如何利用 HeroKu 免费获取一个 Scrapyd 集群!"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/petting.svg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">手把手教你如何利用 HeroKu 免费获取一个 Scrapyd 集群!</div></div><div class="info-2"><div class="info-item-1">手把手教你如何利用 HeroKu 免费获取一个 Scrapyd 集群准备环境 一个 GitHub 的账号 一个 HeroKu 帐号  操作步骤 利用 GitHub 帐号创建一个代码仓库  登录 HeroKu 创建 App 并进行配置   创建一个代码仓库 PS：想偷懒，直接 fork 我的项目就好了  项目地址：https://github.com/crawlmap/scrapyd-heroku Fork 完 你已经完成本项目的一半工作了，开心吗，激动吗，只剩下半步了。 不 Fork 的自己想办法吧，现成的不要，你非要自己造。 登录 HeroKu 创建 App 并进行配置 登录 https://signup.heroku.com/ 创建一个帐号    刚创建完进入的首页是长这个样子的，点击页面中间的 Create new app 创建我们的第一个项目，点击之后，你会进入到如下界面：    在界面上输入你要的取得项目名称，项目名称决定了之后的 URL 地址。选择区域，默认就好了，最后点击创建 Create app     此时你也已经进入到 APP 页面了，点击 GitHub 按钮...</div></div></div></a><a class="pagination-related" href="/posts/23470.html" title="xpath re bs4 等爬虫解析器的性能比较"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/loving.svg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">xpath re bs4 等爬虫解析器的性能比较</div></div><div class="info-2"><div class="info-item-1">xpath re bs4 等爬虫解析器的性能比较思路测试网站地址：http://baijiahao.baidu.com/s?id=1644707202199076031 根据同一个网站，获取同样的数据，重复 500 次取和后进行对比。 测试例子12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879# -*- coding: utf-8 -*-import reimport timeimport scrapyfrom bs4 import BeautifulSoupclass NewsSpider(scrapy.Spider):    name = &#x27;news&#x27;    allowed_domains = [&#x27;baidu.com&#x27;]    start_urls = [&#x27;http://baijia...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/53752.html" title="Squid for Windows 安装教程"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/dancing.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-09</div><div class="info-item-2">Squid for Windows 安装教程</div></div><div class="info-2"><div class="info-item-1">下载 Squid for Windows下载地址：https://squid.diladele.com/ 安装 squid 服务 双击 squid.msi 安装 squid   点击 Next 进入下一步   勾选 I accept -&gt; 点击 Next 进入下一步   选择安装路径 -&gt; 点击 Next 进入下一步   点击 Install 进行安装   等待安装完成   安装完成   检测 电脑右下方 Squid for Windows 是否启动    安装完成使用浏览器打开 http://127.0.0.1:3128，出现以下页面就表示安装成功。  </div></div></div></a><a class="pagination-related" href="/posts/61836.html" title="Scrapy 小技巧（一）：使用 scrapy 自带的函数（follow &amp; follow_all）优雅的生成下一个请求"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/moshing.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-06</div><div class="info-item-2">Scrapy 小技巧（一）：使用 scrapy 自带的函数（follow &amp; follow_all）优雅的生成下一个请求</div></div><div class="info-2"><div class="info-item-1">前言如何优雅的获取同一个网站上下一次爬取的链接并放到生成一个 Scrapy Response 呢？ 样例1234567891011121314151617181920from urllib import parseimport scrapyclass SitoiSpider(scrapy.Spider):    name = &quot;sitoi&quot;    start_urls = [        &#x27;https://sitoi.cn&#x27;,    ]    def parse(self, response):        href_list = response.xpath(&quot;//div[@class=&#x27;card&#x27;]/a/@href&quot;).extract()        for href in href_list:            url = parse.urljoin(response.url, href)            yield scrapy.Request(url=url, callbac...</div></div></div></a><a class="pagination-related" href="/posts/48724.html" title="手把手教你如何利用 HeroKu 免费获取一个 Scrapyd 集群!"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/petting.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-10-24</div><div class="info-item-2">手把手教你如何利用 HeroKu 免费获取一个 Scrapyd 集群!</div></div><div class="info-2"><div class="info-item-1">手把手教你如何利用 HeroKu 免费获取一个 Scrapyd 集群准备环境 一个 GitHub 的账号 一个 HeroKu 帐号  操作步骤 利用 GitHub 帐号创建一个代码仓库  登录 HeroKu 创建 App 并进行配置   创建一个代码仓库 PS：想偷懒，直接 fork 我的项目就好了  项目地址：https://github.com/crawlmap/scrapyd-heroku Fork 完 你已经完成本项目的一半工作了，开心吗，激动吗，只剩下半步了。 不 Fork 的自己想办法吧，现成的不要，你非要自己造。 登录 HeroKu 创建 App 并进行配置 登录 https://signup.heroku.com/ 创建一个帐号    刚创建完进入的首页是长这个样子的，点击页面中间的 Create new app 创建我们的第一个项目，点击之后，你会进入到如下界面：    在界面上输入你要的取得项目名称，项目名称决定了之后的 URL 地址。选择区域，默认就好了，最后点击创建 Create app     此时你也已经进入到 APP 页面了，点击 GitHub 按钮...</div></div></div></a><a class="pagination-related" href="/posts/23470.html" title="xpath re bs4 等爬虫解析器的性能比较"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/loving.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-09-16</div><div class="info-item-2">xpath re bs4 等爬虫解析器的性能比较</div></div><div class="info-2"><div class="info-item-1">xpath re bs4 等爬虫解析器的性能比较思路测试网站地址：http://baijiahao.baidu.com/s?id=1644707202199076031 根据同一个网站，获取同样的数据，重复 500 次取和后进行对比。 测试例子12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879# -*- coding: utf-8 -*-import reimport timeimport scrapyfrom bs4 import BeautifulSoupclass NewsSpider(scrapy.Spider):    name = &#x27;news&#x27;    allowed_domains = [&#x27;baidu.com&#x27;]    start_urls = [&#x27;http://baijia...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/avatars/avatar.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Sitoi</div><div class="author-info-description">真正的酷都是需要付诸努力的</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">95</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><a id="card-info-btn" href="https://github.com/Sitoi"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="/wechat.jpg" target="_blank" title="Wechat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="tencent://message/?uin=133397418" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=133397418" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://github.com/Sitoi/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%B7%E4%B8%8D%E8%A6%81%E6%B1%A1%E5%90%8D%E5%8C%96%E7%88%AC%E8%99%AB%EF%BC%81"><span class="toc-number">1.</span> <span class="toc-text">请不要污名化爬虫！</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E8%AF%AD"><span class="toc-number">1.1.</span> <span class="toc-text">导语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%9F%E8%B0%A3"><span class="toc-number">1.2.</span> <span class="toc-text">辟谣</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#robots-%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.2.1.</span> <span class="toc-text">robots 协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%AA%E9%80%A0-UA%EF%BC%88User-Agent%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">伪造 UA（User-Agent）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%95%E8%BF%87%E3%80%81%E7%A0%B4%E8%A7%A3%E5%8F%8D%E7%88%AC%E8%99%AB%E6%8E%AA%E6%96%BD"><span class="toc-number">1.2.3.</span> <span class="toc-text">绕过、破解反爬虫措施</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E9%81%BF%E5%85%8D%E8%BF%9D%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">怎么避免违法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/39218.html" title="如何在 Elasticsearch 中更新索引的 Mapping"><img src="https://opendoodles.s3-us-west-1.amazonaws.com/float.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="如何在 Elasticsearch 中更新索引的 Mapping"/></a><div class="content"><a class="title" href="/posts/39218.html" title="如何在 Elasticsearch 中更新索引的 Mapping">如何在 Elasticsearch 中更新索引的 Mapping</a><time datetime="2023-10-14T06:26:21.000Z" title="发表于 2023-10-14 14:26:21">2023-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/10054.html" title="简洁登录：在 Linux 终端中去除 'Last login' 信息"><img src="https://opendoodles.s3-us-west-1.amazonaws.com/sitting.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="简洁登录：在 Linux 终端中去除 'Last login' 信息"/></a><div class="content"><a class="title" href="/posts/10054.html" title="简洁登录：在 Linux 终端中去除 'Last login' 信息">简洁登录：在 Linux 终端中去除 'Last login' 信息</a><time datetime="2023-07-28T02:25:20.000Z" title="发表于 2023-07-28 10:25:20">2023-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/46937.html" title="高效下载 NGINX 静态网站：利用 wget 进行递归下载"><img src="https://opendoodles.s3-us-west-1.amazonaws.com/selfie.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="高效下载 NGINX 静态网站：利用 wget 进行递归下载"/></a><div class="content"><a class="title" href="/posts/46937.html" title="高效下载 NGINX 静态网站：利用 wget 进行递归下载">高效下载 NGINX 静态网站：利用 wget 进行递归下载</a><time datetime="2023-07-16T01:59:04.000Z" title="发表于 2023-07-16 09:59:04">2023-07-16</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://opendoodles.s3-us-west-1.amazonaws.com/bikini.svg);"><div class="footer-flex"><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">项目</div><div class="footer-flex-content"><a href="https://sitoi.github.io/dailycheckin/" target="_blank" title="✏️ Dailycheckin">✏️ Dailycheckin</a><a href="https://crawlaio.com/" target="_blank" title="🕷️ Crawlaio">🕷️ Crawlaio</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">备用</div><div class="footer-flex-content"><a href="https://sitoi.github.io" target="_blank" title="📑 GitHub Pages">📑 GitHub Pages</a><a href="https://www.cnblogs.com/sitoi" target="_blank" title="📑 Cnblog">📑 Cnblog</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">框架</div><div class="footer-flex-content"><a href="https://hexo.io/zh-cn/" target="_blank" title="📦 Hexo">📦 Hexo</a><a href="https://butterfly.js.org/" target="_blank" title="🎨 Butterfly">🎨 Butterfly</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">赞助</div><div class="footer-flex-content"><div><img src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/alipay.jpg' alt='Sitoi' width='100px' height='100px'></div></div></div></div></div><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2018 - 2025 By Sitoi</span><span class="framework-info"><span class="footer-separator">|</span><span>框架 </span><a href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.2</a></span></div><div class="footer_custom_text"><a href="https://beian.miit.gov.cn/"><img class="icp-icon" src="/medias/icp.png"><span>沪ICP备2025115209号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.2"></script><script src="/js/main.js?v=5.5.2"></script><script src="https://npm.elemecdn.com/@fancyapps/ui@latest/dist/fancybox/fancybox.umd.js"></script><script src="https://npm.elemecdn.com/instant.page@latest/instantpage.js" type="module"></script><script src="https://npm.elemecdn.com/node-snackbar@latest/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const config = mermaidSrc.dataset.config ? JSON.parse(mermaidSrc.dataset.config) : {}
+      if (!config.theme) {
+        config.theme = theme
+      }
+      const mermaidThemeConfig = `%%{init: ${JSON.stringify(config)}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://npm.elemecdn.com/mermaid@latest/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  let initFn = window.walineFn || null
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const destroyWaline = ele => ele.destroy()
+
+  const initWaline = (Fn, el = document, path = window.location.pathname) => {
+    const waline = Fn({
+      el: el.querySelector('#waline-wrap'),
+      serverURL: 'https://waline.sitoi.cn/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      comment: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyWaline = () => {
+        destroyWaline(waline)
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const loadWaline = (el, path) => {
+    if (initFn) initWaline(initFn, el, path)
+    else {
+      btf.getCSS('https://npm.elemecdn.com/@waline/client@latest/dist/waline.css')
+        .then(() => import('https://npm.elemecdn.com/@waline/client@latest/dist/waline.js'))
+        .then(({ init }) => {
+          initFn = init || Waline.init
+          initWaline(initFn, el, path)
+          window.walineFn = initFn
+        })
+    }
+  }
+
+  if (isShuoshuo) {
+    'Waline' === 'Waline'
+      ? window.shuoshuoComment = { loadComment: loadWaline } 
+      : window.loadOtherComment = loadWaline
+    return
+  }
+
+  if ('Waline' === 'Waline' || !false) {
+    if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><div class="app-refresh" id="app-refresh"> <div class="app-refresh-wrap"> <label>✨ 网站已更新最新版本 👉</label> <a href="javascript:void(0)" onclick="location.reload()">点击刷新</a> </div></div><script>function showNotification(){if(GLOBAL_CONFIG.Snackbar){var t="light"===document.documentElement.getAttribute("data-theme")?GLOBAL_CONFIG.Snackbar.bgLight:GLOBAL_CONFIG.Snackbar.bgDark,e=GLOBAL_CONFIG.Snackbar.position;Snackbar.show({text:"已更新最新版本",backgroundColor:t,duration:5e5,pos:e,actionText:"点击刷新",actionTextColor:"#fff",onActionClick:function(t){location.reload()}})}else{var o=`top: 0; background: ${"light"===document.documentElement.getAttribute("data-theme")?"#49b1f5":"#1f1f1f"};`;document.getElementById("app-refresh").style.cssText=o}}"serviceWorker"in navigator&&(navigator.serviceWorker.controller&&navigator.serviceWorker.addEventListener("controllerchange",function(){showNotification()}),window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")}));</script><script id="click-heart" src="https://npm.elemecdn.com/butterfly-extsrc@latest/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="/"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.2"></script></div></div></body></html>

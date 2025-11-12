@@ -1,0 +1,363 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Ubuntu 开发环境搭建教程 | Sitoi</title><meta name="author" content="Sitoi"><meta name="copyright" content="Sitoi"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Ubuntu 开发环境搭建教程基本配置更新12sudo apt upgradesudo apt update  生成本机密钥1ssh-keygen -t rsa -C &quot;shitao0418@gamil.com&quot;  默认位置： ~&#x2F;.ssh&#x2F; 安装 vim1sudo apt install vim  免 sudo 密码1echo -e &#x27;Defaults:shitao">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu 开发环境搭建教程">
+<meta property="og:url" content="https://sitoi.cn/posts/18425.html">
+<meta property="og:site_name" content="Sitoi">
+<meta property="og:description" content="Ubuntu 开发环境搭建教程基本配置更新12sudo apt upgradesudo apt update  生成本机密钥1ssh-keygen -t rsa -C &quot;shitao0418@gamil.com&quot;  默认位置： ~&#x2F;.ssh&#x2F; 安装 vim1sudo apt install vim  免 sudo 密码1echo -e &#x27;Defaults:shitao">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://opendoodles.s3-us-west-1.amazonaws.com/ice-cream.svg">
+<meta property="article:published_time" content="2019-03-28T10:46:00.000Z">
+<meta property="article:modified_time" content="2025-11-12T05:28:30.733Z">
+<meta property="article:author" content="Sitoi">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Ubuntu">
+<meta property="article:tag" content="开发环境">
+<meta property="article:tag" content="系统配置">
+<meta property="article:tag" content="终端命令">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://opendoodles.s3-us-west-1.amazonaws.com/ice-cream.svg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Ubuntu 开发环境搭建教程",
+  "url": "https://sitoi.cn/posts/18425.html",
+  "image": "https://opendoodles.s3-us-west-1.amazonaws.com/ice-cream.svg",
+  "datePublished": "2019-03-28T10:46:00.000Z",
+  "dateModified": "2025-11-12T05:28:30.733Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Sitoi",
+      "url": "https://sitoi.cn"
+    }
+  ]
+}</script><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/favicon.ico"><link rel="canonical" href="https://sitoi.cn/posts/18425.html"><link rel="preconnect" href="https://npm.elemecdn.com"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/medias/logo_32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/medias/logo_16.png"/><link rel="mask-icon" href="/apple-touch-icon.png" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css?v=5.5.2"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free@latest/css/all.min.css"><link rel="stylesheet" href="https://npm.elemecdn.com/node-snackbar@latest/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/@fancyapps/ui@latest/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?c29e2dcbe60cb0ec619a76c424a71b11";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+btf.addGlobalFn('pjaxComplete', () => {
+  _hmt.push(['_trackPageview',window.location.pathname])
+}, 'baidu_analytics')
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-136865061-1"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'UA-136865061-1')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'UA-136865061-1', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;b618d0d8bcf448af935bd89530ccffcd&quot;}"></script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://npm.elemecdn.com/@egjs/infinitegrid@latest/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Ubuntu 开发环境搭建教程',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><script async src="https://umami.sitoi.cn/script.js" data-website-id="b23bdc64-5e23-46d5-9e2c-c862f9413a1f"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/background.css"><meta name="baidu_union_verify" content="8822ba856d99c65163dd207aaffc3510"><style type="text/css">.app-refresh{position:fixed;top:-2.2rem;left:0;right:0;z-index:99999;padding:0 1rem;font-size:15px;height:2.2rem;transition:all .3s ease}.app-refresh-wrap{display:flex;color:#fff;height:100%;align-items:center;justify-content:center}.app-refresh-wrap a{color:#fff;text-decoration:underline;cursor:pointer}</style><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Sitoi" type="application/atom+xml">
+</head><body><div id="web_bg" style="background-color: #efefef;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/avatars/avatar.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">95</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw fas fa-envelope"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友人</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 项目</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://sitoi.github.io/dailycheckin/"><i class="fa-fw fas fa-location-arrow"></i><span> Dailycheckin</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="https://crawlaio.github.io"><i class="fa-fw fas fa-location-arrow"></i><span> 导航</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://opendoodles.s3-us-west-1.amazonaws.com/ice-cream.svg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Sitoi</span></a><a class="nav-page-title" href="/"><span class="site-name">Ubuntu 开发环境搭建教程</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw fas fa-envelope"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友人</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 项目</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://sitoi.github.io/dailycheckin/"><i class="fa-fw fas fa-location-arrow"></i><span> Dailycheckin</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="https://crawlaio.github.io"><i class="fa-fw fas fa-location-arrow"></i><span> 导航</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Ubuntu 开发环境搭建教程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2019-03-28T10:46:00.000Z" title="发表于 2019-03-28 18:46:00">2019-03-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-12T05:28:30.733Z" title="更新于 2025-11-12 13:28:30">2025-11-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">开发环境</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/Linux/">Linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">423</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Ubuntu-开发环境搭建教程"><a href="#Ubuntu-开发环境搭建教程" class="headerlink" title="Ubuntu 开发环境搭建教程"></a>Ubuntu 开发环境搭建教程</h1><h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt upgrade</span><br><span class="line"><span class="built_in">sudo</span> apt update</span><br></pre></td></tr></table></figure>
+
+<h3 id="生成本机密钥"><a href="#生成本机密钥" class="headerlink" title="生成本机密钥"></a>生成本机密钥</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;shitao0418@gamil.com&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>默认位置： <code>~/.ssh/</code></p>
+<h3 id="安装-vim"><a href="#安装-vim" class="headerlink" title="安装 vim"></a>安装 vim</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install vim</span><br></pre></td></tr></table></figure>
+
+<h3 id="免-sudo-密码"><a href="#免-sudo-密码" class="headerlink" title="免 sudo 密码"></a>免 sudo 密码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> -e <span class="string">&#x27;Defaults:shitao !requiretty\nshitao ALL = (root) NOPASSWD:ALL&#x27;</span> | <span class="built_in">sudo</span> <span class="built_in">tee</span> /etc/sudoers.d/shitao</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h2><h3 id="htop-可视化系统监测"><a href="#htop-可视化系统监测" class="headerlink" title="htop 可视化系统监测"></a>htop 可视化系统监测</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install htop</span><br></pre></td></tr></table></figure>
+
+<h3 id="ssh-远程链接软件"><a href="#ssh-远程链接软件" class="headerlink" title="ssh 远程链接软件"></a>ssh 远程链接软件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get install openssh-server openssh-client</span><br></pre></td></tr></table></figure>
+
+<h3 id="jdk-java-开发环境"><a href="#jdk-java-开发环境" class="headerlink" title="jdk java 开发环境"></a>jdk java 开发环境</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install openjdk-8-jdk</span><br></pre></td></tr></table></figure>
+
+<h3 id="python-pip-开发工具"><a href="#python-pip-开发工具" class="headerlink" title="python pip 开发工具"></a>python pip 开发工具</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install python3 python3-pip</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>pip 升级</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install --upgrade pip --user</span><br></pre></td></tr></table></figure>
+
+<h3 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install curl</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装网络相关包"><a href="#安装网络相关包" class="headerlink" title="安装网络相关包"></a>安装网络相关包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install net-tools</span><br></pre></td></tr></table></figure>
+
+<h3 id="docker-安装"><a href="#docker-安装" class="headerlink" title="docker 安装"></a>docker 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install docker.io</span><br></pre></td></tr></table></figure>
+
+<h3 id="ibus-pinyin-中文输入法"><a href="#ibus-pinyin-中文输入法" class="headerlink" title="ibus-pinyin 中文输入法"></a>ibus-pinyin 中文输入法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install ibus-pinyin</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>重启系统</p>
+</li>
+<li><p>进入语言设置</p>
+</li>
+<li><p>选择中文输入法 <code>chines</code> 然后找 <code>pinyin</code></p>
+</li>
+</ul>
+<h3 id="chromium-浏览器"><a href="#chromium-浏览器" class="headerlink" title="chromium 浏览器"></a>chromium 浏览器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install chromium-browser</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>全部安装上述全部软件</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install htop openssh-server openssh-client openjdk-8-jdk python3 python3-pip curl net-tools docker.io ibus-pinyin chromium-browser</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装-nvm"><a href="#安装-nvm" class="headerlink" title="安装 nvm"></a>安装 nvm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装-npm"><a href="#安装-npm" class="headerlink" title="安装 npm"></a>安装 npm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install node</span><br></pre></td></tr></table></figure>
+
+<h2 id="更换源"><a href="#更换源" class="headerlink" title="更换源"></a>更换源</h2><h3 id="更换-pipy-源"><a href="#更换-pipy-源" class="headerlink" title="更换 pipy 源"></a>更换 pipy 源</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> ~/.pip</span><br><span class="line">vim ~/.pip/pip.conf</span><br></pre></td></tr></table></figure>
+
+<p>文件样例：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">index-url = https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+
+<h3 id="更换-maven-源"><a href="#更换-maven-源" class="headerlink" title="更换 maven 源"></a>更换 maven 源</h3><blockquote>
+<p>进入 <code>maven</code> 文件夹，在 <code>conf</code> 目录中找到 <code>settings.xml</code> 文件</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vim /usr/share/maven/conf/settings.xml</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>配置 <code>mirrors</code> 的子节点，添加如下 <code>mirror</code></p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>Nexus aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="更换-npm-源"><a href="#更换-npm-源" class="headerlink" title="更换 npm 源"></a>更换 npm 源</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+
+<h3 id="更换-docker-源"><a href="#更换-docker-源" class="headerlink" title="更换 docker 源"></a>更换 docker 源</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vim /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;insecure-registries&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;registry-mirrors&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;https://registry.docker-cn.com&quot;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="更换-gem-源"><a href="#更换-gem-源" class="headerlink" title="更换 gem 源"></a>更换 gem 源</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://sitoi.cn">Sitoi</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://sitoi.cn/posts/18425.html">https://sitoi.cn/posts/18425.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://sitoi.cn" target="_blank">Sitoi</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a><a class="post-meta__tags" href="/tags/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">开发环境</a><a class="post-meta__tags" href="/tags/Ubuntu/">Ubuntu</a><a class="post-meta__tags" href="/tags/%E7%BB%88%E7%AB%AF%E5%91%BD%E4%BB%A4/">终端命令</a><a class="post-meta__tags" href="/tags/%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE/">系统配置</a></div><div class="post-share"><div class="social-share" data-image="https://opendoodles.s3-us-west-1.amazonaws.com/ice-cream.svg" data-sites="wechat,qq,weibo,twitter,facebook,linkedin"></div><link rel="stylesheet" href="https://npm.elemecdn.com/butterfly-extsrc@latest/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://npm.elemecdn.com/butterfly-extsrc@latest/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/40630.html" title="利用 Docker 搭建 IPFS 私有网络"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/reading-side.svg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">利用 Docker 搭建 IPFS 私有网络</div></div><div class="info-2"><div class="info-item-1">利用 Docker 搭建 IPFS 私有网络下载项目  项目地址：https://github.com/Sitoi/Private-Network-IPFS.git  环境两台 Linux 设备，分别配置他们的 ip 地址为 192.168.1.244 和 192.168.1.246 步骤 修改挂载目录 通过 docker 创建 IPFS 容器 确保配置 IPFS API 以允许跨源（CORS）请求 生成并分发一个共享 key 移除默认的 boostrap 节点 添加节点创建网络 重启服务 查看邻居  修改挂载目录 该步骤可跳过，默认挂载目录为 项目目录下的 data 和 staging 文件夹  1234567891011121314version: &quot;3&quot;services:  ipfs_host:    container_name: ipfs_host    image: docker.io/ipfs/go-ipfs:latest    restart: always    volumes:      - ./staging:/export # (可不修...</div></div></div></a><a class="pagination-related" href="/posts/51270.html" title="网站 &amp; APP 安利"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/plant.svg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">网站 & APP 安利</div></div><div class="info-2"><div class="info-item-1">APP影视类影视大院地址：https://www.vfans.fun 描述：没有上架应用商店，需要安装信任企业证书，VIP 资源视频等；多分辨率；支持离线下载 麻花影视地址：https://www.imahua.tv 描述：App Store 搜：麻花播放器，院线热播电影，VIP 资源视频等；多分辨率；支持离线下载 韩剧 TV地址：http://t.cn/ExyOqi1 描述：App Store 搜：韩剧 TV，IOS 上专门看韩剧的 APP；多分辨率；支持离线下载  网站影视类耐卡影视论坛地址：http://mcar.cc/forum.php 描述：美剧、日剧、韩剧、动漫、院线电影等资源论坛（免费）；支持百度网盘 FIX 字幕侠地址：http://www.zimuxia.cn 描述：美剧、日剧、韩剧、德语、法语、欧美电影、综艺&amp;记录；支持百度网盘 追新番地址：http://www.zhuixinfan.com/main.php 描述：日剧、日影；支持百度网盘 Fantopia地址：https://fantopia.club 日剧、美剧、英剧、电影、动画、纪录片；支持百度...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/37161.html" title="Fedora 安装 MongoDB 教程"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/sitting-reading.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-09</div><div class="info-item-2">Fedora 安装 MongoDB 教程</div></div><div class="info-2"><div class="info-item-1">MongoDB 安装安装环境 Fedora 29  安装步骤 安装 mongodb 和 mongodb-server 启动服务  安装 MongoDB 和 MongoDB-Server1sudo dnf install mongodb mongodb-server  启动服务启动 mongod 服务 1sudo systemctl start mongod.service  设置开机自动启动 1sudo systemctl enable mongod.service </div></div></div></a><a class="pagination-related" href="/posts/14489.html" title="Selenium &amp; ChromeDriver 全平台安装教程（Mac、Windows、Linux）"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/ballet.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-08</div><div class="info-item-2">Selenium &amp; ChromeDriver 全平台安装教程（Mac、Windows、Linux）</div></div><div class="info-2"><div class="info-item-1">前言本教程教你如何在 Windows、Mac、Linux 安装 Selenium 并配置对应的 WebDriver，并以 ChromeDriver 为例。 安装 Selenium（全平台通用）使用 Pypi 包管理器安装，运行如下命令： 1pip3 install selenium -i https://pypi.tuna.tsinghua.edu.cn/simple --user  输出如下： 1234567Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simpleCollecting selenium  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/80/d6/4294f0b4bce4de0abf13e17190289f9d0613b0a44e5dd6a7f5ca98459853/selenium-3.141.0-py2.py3-none-any.whl (904kB)    100% |████████████████████████████████...</div></div></div></a><a class="pagination-related" href="/posts/28583.html" title="Mac 制作 Linux 启动 U 盘"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/sleek.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-01</div><div class="info-item-2">Mac 制作 Linux 启动 U 盘</div></div><div class="info-2"><div class="info-item-1">Mac 制作 Linux 启动盘 前期准备   一个 Mac 电脑 一个 U 盘（8GB 以上） 下载好 Linux 系统镜像（iso 文件）   具体步骤   挂载 U 盘 解挂 U 盘 写系统镜像到 U 盘 完成  一、挂载 U 盘首先插入 U 盘，打开终端输入下面的命令查看 U 盘是否已经 mount 到系统，或者在 Finder 下也可以看到 U 盘被识别了，如下图所示： 1diskutil list   二、解挂 U 盘使用 unmount 命令 解除挂载，命令如下： 1diskutil unmountDisk /dev/disk3   这样就有了一个已经插入但是 unmount 的 U 盘了，这时候你在 Finder 下看不到这个 U 盘了，但是用 diskutil list 命令还可以看到。 三、写系统镜像到 U 盘1sudo dd if=/Users/shitao/Downloads/CentOS-7-x86_64-DVD-2003.iso of=/dev/disk3 bs=1m  if= 后面是 Linux ios 文件的的路径 of= 后面的是 U 盘的名称 ...</div></div></div></a><a class="pagination-related" href="/posts/53731.html" title="Fedora 安装 GitBook 教程"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/float.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-09</div><div class="info-item-2">Fedora 安装 GitBook 教程</div></div><div class="info-2"><div class="info-item-1">Fedora 安装 GitBook 教程安装 nvm安装 nvm 1curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash  退出终端 1exit  安装 node1nvm install node  安装 GitBook 更换 npm 源  1npm config set registry https://registry.npm.taobao.org  1npm install -g gitbook-cli  安装 GitBook 依赖安装 svgexport 1npm install -g svgexport --unsafe-perm  安装 calibre 1sudo dnf install calibre </div></div></div></a><a class="pagination-related" href="/posts/13384.html" title="yum localinstall 解决本地 rpm 包的依赖问题"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/petting.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-08</div><div class="info-item-2">yum localinstall 解决本地 rpm 包的依赖问题</div></div><div class="info-2"><div class="info-item-1">yum localinstall 解决本地 rpm 包的依赖问题使用命令： 1sudo rpm -ivh xxx.rpm   这样安装可能会出现很多依赖关系需要解决。为了能使软件安装过程中自动解决依赖关系，我们可以使用命令：  1sudo yum -y localinstall xxx.rpm  在安装的同时自动解决有关依赖关系。 </div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/avatars/avatar.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Sitoi</div><div class="author-info-description">真正的酷都是需要付诸努力的</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">95</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><a id="card-info-btn" href="https://github.com/Sitoi"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="/wechat.jpg" target="_blank" title="Wechat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="tencent://message/?uin=133397418" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=133397418" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://github.com/Sitoi/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ubuntu-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">Ubuntu 开发环境搭建教程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.</span> <span class="toc-text">基本配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0"><span class="toc-number">1.1.1.</span> <span class="toc-text">更新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E6%9C%AC%E6%9C%BA%E5%AF%86%E9%92%A5"><span class="toc-number">1.1.2.</span> <span class="toc-text">生成本机密钥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-vim"><span class="toc-number">1.1.3.</span> <span class="toc-text">安装 vim</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%8D-sudo-%E5%AF%86%E7%A0%81"><span class="toc-number">1.1.4.</span> <span class="toc-text">免 sudo 密码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6"><span class="toc-number">1.2.</span> <span class="toc-text">安装软件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#htop-%E5%8F%AF%E8%A7%86%E5%8C%96%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%B5%8B"><span class="toc-number">1.2.1.</span> <span class="toc-text">htop 可视化系统监测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ssh-%E8%BF%9C%E7%A8%8B%E9%93%BE%E6%8E%A5%E8%BD%AF%E4%BB%B6"><span class="toc-number">1.2.2.</span> <span class="toc-text">ssh 远程链接软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jdk-java-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="toc-number">1.2.3.</span> <span class="toc-text">jdk java 开发环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python-pip-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7"><span class="toc-number">1.2.4.</span> <span class="toc-text">python pip 开发工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#curl"><span class="toc-number">1.2.5.</span> <span class="toc-text">curl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E5%8C%85"><span class="toc-number">1.2.6.</span> <span class="toc-text">安装网络相关包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-%E5%AE%89%E8%A3%85"><span class="toc-number">1.2.7.</span> <span class="toc-text">docker 安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ibus-pinyin-%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95"><span class="toc-number">1.2.8.</span> <span class="toc-text">ibus-pinyin 中文输入法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chromium-%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="toc-number">1.2.9.</span> <span class="toc-text">chromium 浏览器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-nvm"><span class="toc-number">1.2.10.</span> <span class="toc-text">安装 nvm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-npm"><span class="toc-number">1.2.11.</span> <span class="toc-text">安装 npm</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%8D%A2%E6%BA%90"><span class="toc-number">1.3.</span> <span class="toc-text">更换源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%8D%A2-pipy-%E6%BA%90"><span class="toc-number">1.3.1.</span> <span class="toc-text">更换 pipy 源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%8D%A2-maven-%E6%BA%90"><span class="toc-number">1.3.2.</span> <span class="toc-text">更换 maven 源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%8D%A2-npm-%E6%BA%90"><span class="toc-number">1.3.3.</span> <span class="toc-text">更换 npm 源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%8D%A2-docker-%E6%BA%90"><span class="toc-number">1.3.4.</span> <span class="toc-text">更换 docker 源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%8D%A2-gem-%E6%BA%90"><span class="toc-number">1.3.5.</span> <span class="toc-text">更换 gem 源</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/39218.html" title="如何在 Elasticsearch 中更新索引的 Mapping"><img src="https://opendoodles.s3-us-west-1.amazonaws.com/float.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="如何在 Elasticsearch 中更新索引的 Mapping"/></a><div class="content"><a class="title" href="/posts/39218.html" title="如何在 Elasticsearch 中更新索引的 Mapping">如何在 Elasticsearch 中更新索引的 Mapping</a><time datetime="2023-10-14T06:26:21.000Z" title="发表于 2023-10-14 14:26:21">2023-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/10054.html" title="简洁登录：在 Linux 终端中去除 'Last login' 信息"><img src="https://opendoodles.s3-us-west-1.amazonaws.com/sitting.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="简洁登录：在 Linux 终端中去除 'Last login' 信息"/></a><div class="content"><a class="title" href="/posts/10054.html" title="简洁登录：在 Linux 终端中去除 'Last login' 信息">简洁登录：在 Linux 终端中去除 'Last login' 信息</a><time datetime="2023-07-28T02:25:20.000Z" title="发表于 2023-07-28 10:25:20">2023-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/46937.html" title="高效下载 NGINX 静态网站：利用 wget 进行递归下载"><img src="https://opendoodles.s3-us-west-1.amazonaws.com/selfie.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="高效下载 NGINX 静态网站：利用 wget 进行递归下载"/></a><div class="content"><a class="title" href="/posts/46937.html" title="高效下载 NGINX 静态网站：利用 wget 进行递归下载">高效下载 NGINX 静态网站：利用 wget 进行递归下载</a><time datetime="2023-07-16T01:59:04.000Z" title="发表于 2023-07-16 09:59:04">2023-07-16</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://opendoodles.s3-us-west-1.amazonaws.com/ice-cream.svg);"><div class="footer-flex"><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">项目</div><div class="footer-flex-content"><a href="https://sitoi.github.io/dailycheckin/" target="_blank" title="✏️ Dailycheckin">✏️ Dailycheckin</a><a href="https://crawlaio.com/" target="_blank" title="🕷️ Crawlaio">🕷️ Crawlaio</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">备用</div><div class="footer-flex-content"><a href="https://sitoi.github.io" target="_blank" title="📑 GitHub Pages">📑 GitHub Pages</a><a href="https://www.cnblogs.com/sitoi" target="_blank" title="📑 Cnblog">📑 Cnblog</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">框架</div><div class="footer-flex-content"><a href="https://hexo.io/zh-cn/" target="_blank" title="📦 Hexo">📦 Hexo</a><a href="https://butterfly.js.org/" target="_blank" title="🎨 Butterfly">🎨 Butterfly</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">赞助</div><div class="footer-flex-content"><div><img src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/alipay.jpg' alt='Sitoi' width='100px' height='100px'></div></div></div></div></div><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2018 - 2025 By Sitoi</span><span class="framework-info"><span class="footer-separator">|</span><span>框架 </span><a href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.2</a></span></div><div class="footer_custom_text"><a href="https://beian.miit.gov.cn/"><img class="icp-icon" src="/medias/icp.png"><span>沪ICP备2025115209号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.2"></script><script src="/js/main.js?v=5.5.2"></script><script src="https://npm.elemecdn.com/@fancyapps/ui@latest/dist/fancybox/fancybox.umd.js"></script><script src="https://npm.elemecdn.com/instant.page@latest/instantpage.js" type="module"></script><script src="https://npm.elemecdn.com/node-snackbar@latest/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const config = mermaidSrc.dataset.config ? JSON.parse(mermaidSrc.dataset.config) : {}
+      if (!config.theme) {
+        config.theme = theme
+      }
+      const mermaidThemeConfig = `%%{init: ${JSON.stringify(config)}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://npm.elemecdn.com/mermaid@latest/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  let initFn = window.walineFn || null
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const destroyWaline = ele => ele.destroy()
+
+  const initWaline = (Fn, el = document, path = window.location.pathname) => {
+    const waline = Fn({
+      el: el.querySelector('#waline-wrap'),
+      serverURL: 'https://waline.sitoi.cn/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      comment: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyWaline = () => {
+        destroyWaline(waline)
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const loadWaline = (el, path) => {
+    if (initFn) initWaline(initFn, el, path)
+    else {
+      btf.getCSS('https://npm.elemecdn.com/@waline/client@latest/dist/waline.css')
+        .then(() => import('https://npm.elemecdn.com/@waline/client@latest/dist/waline.js'))
+        .then(({ init }) => {
+          initFn = init || Waline.init
+          initWaline(initFn, el, path)
+          window.walineFn = initFn
+        })
+    }
+  }
+
+  if (isShuoshuo) {
+    'Waline' === 'Waline'
+      ? window.shuoshuoComment = { loadComment: loadWaline } 
+      : window.loadOtherComment = loadWaline
+    return
+  }
+
+  if ('Waline' === 'Waline' || !false) {
+    if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><div class="app-refresh" id="app-refresh"> <div class="app-refresh-wrap"> <label>✨ 网站已更新最新版本 👉</label> <a href="javascript:void(0)" onclick="location.reload()">点击刷新</a> </div></div><script>function showNotification(){if(GLOBAL_CONFIG.Snackbar){var t="light"===document.documentElement.getAttribute("data-theme")?GLOBAL_CONFIG.Snackbar.bgLight:GLOBAL_CONFIG.Snackbar.bgDark,e=GLOBAL_CONFIG.Snackbar.position;Snackbar.show({text:"已更新最新版本",backgroundColor:t,duration:5e5,pos:e,actionText:"点击刷新",actionTextColor:"#fff",onActionClick:function(t){location.reload()}})}else{var o=`top: 0; background: ${"light"===document.documentElement.getAttribute("data-theme")?"#49b1f5":"#1f1f1f"};`;document.getElementById("app-refresh").style.cssText=o}}"serviceWorker"in navigator&&(navigator.serviceWorker.controller&&navigator.serviceWorker.addEventListener("controllerchange",function(){showNotification()}),window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")}));</script><script id="click-heart" src="https://npm.elemecdn.com/butterfly-extsrc@latest/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="/"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.2"></script></div></div></body></html>

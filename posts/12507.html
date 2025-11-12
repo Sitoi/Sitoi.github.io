@@ -1,0 +1,350 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Linux 统计文件夹中文件个数以及目录个数 | Sitoi</title><meta name="author" content="Sitoi"><meta name="copyright" content="Sitoi"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="列出当前文件夹（显示不隐藏的文件与文件夹的详细信息）命令: 1ls -l  如下结果: 123456drwxrwsr-x    2 sitoi sitoi  4096 Sep 10 16:32 10271113&#x2F;drwxrwsr-x    2 sitoi sitoi  4096 Sep 10 16:32 10271114&#x2F;drwxrwsr-x    2 sitoi sitoi  4096 Sep">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 统计文件夹中文件个数以及目录个数">
+<meta property="og:url" content="https://sitoi.cn/posts/12507.html">
+<meta property="og:site_name" content="Sitoi">
+<meta property="og:description" content="列出当前文件夹（显示不隐藏的文件与文件夹的详细信息）命令: 1ls -l  如下结果: 123456drwxrwsr-x    2 sitoi sitoi  4096 Sep 10 16:32 10271113&#x2F;drwxrwsr-x    2 sitoi sitoi  4096 Sep 10 16:32 10271114&#x2F;drwxrwsr-x    2 sitoi sitoi  4096 Sep">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://opendoodles.s3-us-west-1.amazonaws.com/selfie.svg">
+<meta property="article:published_time" content="2020-09-10T08:29:50.000Z">
+<meta property="article:modified_time" content="2025-11-12T05:28:30.732Z">
+<meta property="article:author" content="Sitoi">
+<meta property="article:tag" content="shell">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://opendoodles.s3-us-west-1.amazonaws.com/selfie.svg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Linux 统计文件夹中文件个数以及目录个数",
+  "url": "https://sitoi.cn/posts/12507.html",
+  "image": "https://opendoodles.s3-us-west-1.amazonaws.com/selfie.svg",
+  "datePublished": "2020-09-10T08:29:50.000Z",
+  "dateModified": "2025-11-12T05:28:30.732Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Sitoi",
+      "url": "https://sitoi.cn"
+    }
+  ]
+}</script><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/favicon.ico"><link rel="canonical" href="https://sitoi.cn/posts/12507.html"><link rel="preconnect" href="https://npm.elemecdn.com"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/medias/logo_32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/medias/logo_16.png"/><link rel="mask-icon" href="/apple-touch-icon.png" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css?v=5.5.2"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free@latest/css/all.min.css"><link rel="stylesheet" href="https://npm.elemecdn.com/node-snackbar@latest/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/@fancyapps/ui@latest/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?c29e2dcbe60cb0ec619a76c424a71b11";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+btf.addGlobalFn('pjaxComplete', () => {
+  _hmt.push(['_trackPageview',window.location.pathname])
+}, 'baidu_analytics')
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-136865061-1"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'UA-136865061-1')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'UA-136865061-1', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;b618d0d8bcf448af935bd89530ccffcd&quot;}"></script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://npm.elemecdn.com/@egjs/infinitegrid@latest/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Linux 统计文件夹中文件个数以及目录个数',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><script async src="https://umami.sitoi.cn/script.js" data-website-id="b23bdc64-5e23-46d5-9e2c-c862f9413a1f"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/background.css"><meta name="baidu_union_verify" content="8822ba856d99c65163dd207aaffc3510"><style type="text/css">.app-refresh{position:fixed;top:-2.2rem;left:0;right:0;z-index:99999;padding:0 1rem;font-size:15px;height:2.2rem;transition:all .3s ease}.app-refresh-wrap{display:flex;color:#fff;height:100%;align-items:center;justify-content:center}.app-refresh-wrap a{color:#fff;text-decoration:underline;cursor:pointer}</style><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Sitoi" type="application/atom+xml">
+</head><body><div id="web_bg" style="background-color: #efefef;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/avatars/avatar.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">95</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw fas fa-envelope"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友人</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 项目</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://sitoi.github.io/dailycheckin/"><i class="fa-fw fas fa-location-arrow"></i><span> Dailycheckin</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="https://crawlaio.github.io"><i class="fa-fw fas fa-location-arrow"></i><span> 导航</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://opendoodles.s3-us-west-1.amazonaws.com/selfie.svg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Sitoi</span></a><a class="nav-page-title" href="/"><span class="site-name">Linux 统计文件夹中文件个数以及目录个数</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw fas fa-envelope"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友人</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 项目</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://sitoi.github.io/dailycheckin/"><i class="fa-fw fas fa-location-arrow"></i><span> Dailycheckin</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="https://crawlaio.github.io"><i class="fa-fw fas fa-location-arrow"></i><span> 导航</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Linux 统计文件夹中文件个数以及目录个数</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-09-10T08:29:50.000Z" title="发表于 2020-09-10 16:29:50">2020-09-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-12T05:28:30.732Z" title="更新于 2025-11-12 13:28:30">2025-11-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">开发环境</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/Linux/">Linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">466</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="列出当前文件夹（显示不隐藏的文件与文件夹的详细信息）"><a href="#列出当前文件夹（显示不隐藏的文件与文件夹的详细信息）" class="headerlink" title="列出当前文件夹（显示不隐藏的文件与文件夹的详细信息）"></a>列出当前文件夹（显示不隐藏的文件与文件夹的详细信息）</h2><p>命令:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -l</span><br></pre></td></tr></table></figure>
+
+<p>如下结果:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">drwxrwsr-x    2 sitoi sitoi  4096 Sep 10 16:32 10271113/</span><br><span class="line">drwxrwsr-x    2 sitoi sitoi  4096 Sep 10 16:32 10271114/</span><br><span class="line">drwxrwsr-x    2 sitoi sitoi  4096 Sep 10 16:32 10271115/</span><br><span class="line">drwxrwsr-x    2 sitoi sitoi  4096 Sep 10 16:32 10271116/</span><br><span class="line">drwxrwsr-x    2 sitoi sitoi  4096 Sep 10 16:32 10271117/</span><br><span class="line">drwxrwsr-x    2 sitoi sitoi  4096 Sep 10 16:32 10271118/</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>终端输出的结果是一行一行的字符，每一行字符对应一个目录或者是文件</p>
+</li>
+<li><p>如果是文件的话，该行的字符串信息的第一个字符显示的是 <code>-</code></p>
+</li>
+<li><p>如果是目录的话，该行的字符的第一个显示的是 <code>d</code>，意即 <code>directory</code>，找到这两者之间的区别，运行能够判别</p>
+</li>
+</ul>
+<h2 id="显示目录中的文件"><a href="#显示目录中的文件" class="headerlink" title="显示目录中的文件"></a>显示目录中的文件</h2><p>命令:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -l | grep <span class="string">&quot;^-&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>&quot;^-&quot;</code> 表示字符串的第一个字符为 <code>-</code></p>
+<p>如下结果:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-rw-rw-r-- 1 sitoi sitoi  52983 Sep 10 16:31 10272015_1.png</span><br><span class="line">-rw-rw-r-- 1 sitoi sitoi 109263 Sep 10 16:31 10272015_2.png</span><br><span class="line">-rw-rw-r-- 1 sitoi sitoi 121148 Sep 10 16:31 10272015_3.png</span><br><span class="line">-rw-rw-r-- 1 sitoi sitoi 127864 Sep 10 16:31 10272015_4.png</span><br><span class="line">-rw-rw-r-- 1 sitoi sitoi 114144 Sep 10 16:31 10272015_5.png</span><br><span class="line">-rw-rw-r-- 1 sitoi sitoi  99405 Sep 10 16:31 10272015_6.png</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>我们可以用 wc 命令进行统计:</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">wc</span> [-lwm]</span><br></pre></td></tr></table></figure>
+
+<p>参数:</p>
+<ul>
+<li><p><code>-l</code> 仅列出行数</p>
+</li>
+<li><p><code>-w</code> 仅列出多少字(英文单字)</p>
+</li>
+<li><p><code>-m</code> 多少字符</p>
+</li>
+</ul>
+<h2 id="统计文件夹中文件个数"><a href="#统计文件夹中文件个数" class="headerlink" title="统计文件夹中文件个数"></a>统计文件夹中文件个数</h2><p>命令:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -l ./|grep <span class="string">&quot;^-&quot;</span>|<span class="built_in">wc</span> -l</span><br></pre></td></tr></table></figure>
+
+<p>如下结果:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">6</span><br></pre></td></tr></table></figure>
+
+<h2 id="统计文件夹中目录个数"><a href="#统计文件夹中目录个数" class="headerlink" title="统计文件夹中目录个数"></a>统计文件夹中目录个数</h2><p>命令:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -l ./|grep <span class="string">&quot;^d&quot;</span>|<span class="built_in">wc</span> -l</span><br></pre></td></tr></table></figure>
+
+<p>如下结果:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">6</span><br></pre></td></tr></table></figure>
+
+<h2 id="统计文件夹下文件个数，包括子文件"><a href="#统计文件夹下文件个数，包括子文件" class="headerlink" title="统计文件夹下文件个数，包括子文件"></a>统计文件夹下文件个数，包括子文件</h2><p>命令:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -lR | grep <span class="string">&quot;^-&quot;</span>| <span class="built_in">wc</span> -l</span><br></pre></td></tr></table></figure>
+
+<p>如下结果:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">34699</span><br></pre></td></tr></table></figure>
+
+<h2 id="统计文件夹下目录个数，包括子目录"><a href="#统计文件夹下目录个数，包括子目录" class="headerlink" title="统计文件夹下目录个数，包括子目录"></a>统计文件夹下目录个数，包括子目录</h2><p>命令:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -lR | grep <span class="string">&quot;^d&quot;</span>| <span class="built_in">wc</span> -l</span><br></pre></td></tr></table></figure>
+
+<p>如下结果:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2034</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a href="https://blog.csdn.net/sganchang/article/details/91432435">https://blog.csdn.net/sganchang/article/details/91432435</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://sitoi.cn">Sitoi</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://sitoi.cn/posts/12507.html">https://sitoi.cn/posts/12507.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://sitoi.cn" target="_blank">Sitoi</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/shell/">shell</a></div><div class="post-share"><div class="social-share" data-image="https://opendoodles.s3-us-west-1.amazonaws.com/selfie.svg" data-sites="wechat,qq,weibo,twitter,facebook,linkedin"></div><link rel="stylesheet" href="https://npm.elemecdn.com/butterfly-extsrc@latest/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://npm.elemecdn.com/butterfly-extsrc@latest/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/9059.html" title="一键更新 package.json 中的包到最新版本"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/coffee.svg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">一键更新 package.json 中的包到最新版本</div></div><div class="info-2"><div class="info-item-1">安装 npm-check-updates1npm i -g npm-check-updates  检测更新 ncu 是 npm-check-updates 的缩写命令  1ncu -u  123456789101112Upgrading /Users/shitao/WebstormProjects/blog/package.json[====================] 38/38 100% @babel/preset-env      ^7.11.0  →  ^7.11.5 eslint                  ^7.6.0  →   ^7.9.0 hexo-generator-search   ^2.4.0  →   ^2.4.1 hexo-renderer-marked    ^3.0.0  →   ^3.2.0 hexo-renderer-stylus    ^1.1.0  →   ^2.0.1 terser                  ^5.0.0  →   ^5.3.2 workbox-build           ^5.1.3  →   ^5...</div></div></div></a><a class="pagination-related" href="/posts/40411.html" title="最新 Navicat Premium 15 破解方法详细教程（Windows）"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/zombieing.svg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">最新 Navicat Premium 15 破解方法详细教程（Windows）</div></div><div class="info-2"><div class="info-item-1">在破解安装之前，请先卸载电脑中旧版本的所有 Navicat Premium 并重新安装！  在破解安装之前，请先卸载电脑中旧版本的所有 Navicat Premium 并重新安装！  在破解安装之前，请先卸载电脑中旧版本的所有 Navicat Premium 并重新安装！   安装 Navicat Premium 15官网下载地址：https://www.navicat.com.cn/download/navicat-premium  安装完成后请打开一次软件并关闭  激活 Navicat Premium 15下载激活软件 Navicat Keygen Patch下载地址：https://sitoi.lanzous.com/iDXhOg935ng 密码：4wfy  无需断网运行激活软件 Navicat_Keygen_Patch（以管理员身份运行）  点击 Patch 替换 navicat.exe点击 Patch 选择 Navicat Premium 15 安装路劲下的 navicat.exe   显示下图，表示成功  生成注册码 关闭 Navicat Premium 15 并重新...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/avatars/avatar.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Sitoi</div><div class="author-info-description">真正的酷都是需要付诸努力的</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">95</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><a id="card-info-btn" href="https://github.com/Sitoi"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="/wechat.jpg" target="_blank" title="Wechat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="tencent://message/?uin=133397418" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=133397418" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://github.com/Sitoi/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E5%87%BA%E5%BD%93%E5%89%8D%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%88%E6%98%BE%E7%A4%BA%E4%B8%8D%E9%9A%90%E8%97%8F%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8E%E6%96%87%E4%BB%B6%E5%A4%B9%E7%9A%84%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">列出当前文件夹（显示不隐藏的文件与文件夹的详细信息）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E7%9B%AE%E5%BD%95%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">显示目录中的文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%AD%E6%96%87%E4%BB%B6%E4%B8%AA%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">统计文件夹中文件个数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%AD%E7%9B%AE%E5%BD%95%E4%B8%AA%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">统计文件夹中目录个数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E6%96%87%E4%BB%B6%E4%B8%AA%E6%95%B0%EF%BC%8C%E5%8C%85%E6%8B%AC%E5%AD%90%E6%96%87%E4%BB%B6"><span class="toc-number">5.</span> <span class="toc-text">统计文件夹下文件个数，包括子文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E7%9B%AE%E5%BD%95%E4%B8%AA%E6%95%B0%EF%BC%8C%E5%8C%85%E6%8B%AC%E5%AD%90%E7%9B%AE%E5%BD%95"><span class="toc-number">6.</span> <span class="toc-text">统计文件夹下目录个数，包括子目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">7.</span> <span class="toc-text">参考链接</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/39218.html" title="如何在 Elasticsearch 中更新索引的 Mapping"><img src="https://opendoodles.s3-us-west-1.amazonaws.com/float.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="如何在 Elasticsearch 中更新索引的 Mapping"/></a><div class="content"><a class="title" href="/posts/39218.html" title="如何在 Elasticsearch 中更新索引的 Mapping">如何在 Elasticsearch 中更新索引的 Mapping</a><time datetime="2023-10-14T06:26:21.000Z" title="发表于 2023-10-14 14:26:21">2023-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/10054.html" title="简洁登录：在 Linux 终端中去除 'Last login' 信息"><img src="https://opendoodles.s3-us-west-1.amazonaws.com/sitting.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="简洁登录：在 Linux 终端中去除 'Last login' 信息"/></a><div class="content"><a class="title" href="/posts/10054.html" title="简洁登录：在 Linux 终端中去除 'Last login' 信息">简洁登录：在 Linux 终端中去除 'Last login' 信息</a><time datetime="2023-07-28T02:25:20.000Z" title="发表于 2023-07-28 10:25:20">2023-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/46937.html" title="高效下载 NGINX 静态网站：利用 wget 进行递归下载"><img src="https://opendoodles.s3-us-west-1.amazonaws.com/selfie.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="高效下载 NGINX 静态网站：利用 wget 进行递归下载"/></a><div class="content"><a class="title" href="/posts/46937.html" title="高效下载 NGINX 静态网站：利用 wget 进行递归下载">高效下载 NGINX 静态网站：利用 wget 进行递归下载</a><time datetime="2023-07-16T01:59:04.000Z" title="发表于 2023-07-16 09:59:04">2023-07-16</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://opendoodles.s3-us-west-1.amazonaws.com/selfie.svg);"><div class="footer-flex"><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">项目</div><div class="footer-flex-content"><a href="https://sitoi.github.io/dailycheckin/" target="_blank" title="✏️ Dailycheckin">✏️ Dailycheckin</a><a href="https://crawlaio.com/" target="_blank" title="🕷️ Crawlaio">🕷️ Crawlaio</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">备用</div><div class="footer-flex-content"><a href="https://sitoi.github.io" target="_blank" title="📑 GitHub Pages">📑 GitHub Pages</a><a href="https://www.cnblogs.com/sitoi" target="_blank" title="📑 Cnblog">📑 Cnblog</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">框架</div><div class="footer-flex-content"><a href="https://hexo.io/zh-cn/" target="_blank" title="📦 Hexo">📦 Hexo</a><a href="https://butterfly.js.org/" target="_blank" title="🎨 Butterfly">🎨 Butterfly</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">赞助</div><div class="footer-flex-content"><div><img src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/alipay.jpg' alt='Sitoi' width='100px' height='100px'></div></div></div></div></div><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2018 - 2025 By Sitoi</span><span class="framework-info"><span class="footer-separator">|</span><span>框架 </span><a href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.2</a></span></div><div class="footer_custom_text"><a href="https://beian.miit.gov.cn/"><img class="icp-icon" src="/medias/icp.png"><span>沪ICP备2025115209号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.2"></script><script src="/js/main.js?v=5.5.2"></script><script src="https://npm.elemecdn.com/@fancyapps/ui@latest/dist/fancybox/fancybox.umd.js"></script><script src="https://npm.elemecdn.com/instant.page@latest/instantpage.js" type="module"></script><script src="https://npm.elemecdn.com/node-snackbar@latest/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const config = mermaidSrc.dataset.config ? JSON.parse(mermaidSrc.dataset.config) : {}
+      if (!config.theme) {
+        config.theme = theme
+      }
+      const mermaidThemeConfig = `%%{init: ${JSON.stringify(config)}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://npm.elemecdn.com/mermaid@latest/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  let initFn = window.walineFn || null
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const destroyWaline = ele => ele.destroy()
+
+  const initWaline = (Fn, el = document, path = window.location.pathname) => {
+    const waline = Fn({
+      el: el.querySelector('#waline-wrap'),
+      serverURL: 'https://waline.sitoi.cn/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      comment: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyWaline = () => {
+        destroyWaline(waline)
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const loadWaline = (el, path) => {
+    if (initFn) initWaline(initFn, el, path)
+    else {
+      btf.getCSS('https://npm.elemecdn.com/@waline/client@latest/dist/waline.css')
+        .then(() => import('https://npm.elemecdn.com/@waline/client@latest/dist/waline.js'))
+        .then(({ init }) => {
+          initFn = init || Waline.init
+          initWaline(initFn, el, path)
+          window.walineFn = initFn
+        })
+    }
+  }
+
+  if (isShuoshuo) {
+    'Waline' === 'Waline'
+      ? window.shuoshuoComment = { loadComment: loadWaline } 
+      : window.loadOtherComment = loadWaline
+    return
+  }
+
+  if ('Waline' === 'Waline' || !false) {
+    if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><div class="app-refresh" id="app-refresh"> <div class="app-refresh-wrap"> <label>✨ 网站已更新最新版本 👉</label> <a href="javascript:void(0)" onclick="location.reload()">点击刷新</a> </div></div><script>function showNotification(){if(GLOBAL_CONFIG.Snackbar){var t="light"===document.documentElement.getAttribute("data-theme")?GLOBAL_CONFIG.Snackbar.bgLight:GLOBAL_CONFIG.Snackbar.bgDark,e=GLOBAL_CONFIG.Snackbar.position;Snackbar.show({text:"已更新最新版本",backgroundColor:t,duration:5e5,pos:e,actionText:"点击刷新",actionTextColor:"#fff",onActionClick:function(t){location.reload()}})}else{var o=`top: 0; background: ${"light"===document.documentElement.getAttribute("data-theme")?"#49b1f5":"#1f1f1f"};`;document.getElementById("app-refresh").style.cssText=o}}"serviceWorker"in navigator&&(navigator.serviceWorker.controller&&navigator.serviceWorker.addEventListener("controllerchange",function(){showNotification()}),window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")}));</script><script id="click-heart" src="https://npm.elemecdn.com/butterfly-extsrc@latest/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="/"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.2"></script></div></div></body></html>

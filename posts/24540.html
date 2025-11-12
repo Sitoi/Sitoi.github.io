@@ -1,0 +1,391 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Hadoop 单机安装教程 | Sitoi</title><meta name="author" content="Sitoi"><meta name="copyright" content="Sitoi"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Hadoop 单机安装步骤安装环境 Fedora 29 openjdk version “1.8.0_191”  安装步骤 创建 Hadoop 帐号 下载 Hadoop 安装包 解压 Hadoop 安装包 配置环境变量 配置 Hadoop 文件 启动集群 查看状态  创建 Hadoop 帐号为 Hadoop 创建一个专门的账号12sudo adduser hadoopsudo passwd had">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop 单机安装教程">
+<meta property="og:url" content="https://sitoi.cn/posts/24540.html">
+<meta property="og:site_name" content="Sitoi">
+<meta property="og:description" content="Hadoop 单机安装步骤安装环境 Fedora 29 openjdk version “1.8.0_191”  安装步骤 创建 Hadoop 帐号 下载 Hadoop 安装包 解压 Hadoop 安装包 配置环境变量 配置 Hadoop 文件 启动集群 查看状态  创建 Hadoop 帐号为 Hadoop 创建一个专门的账号12sudo adduser hadoopsudo passwd had">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://opendoodles.s3-us-west-1.amazonaws.com/unboxing.svg">
+<meta property="article:published_time" content="2019-01-07T14:36:00.000Z">
+<meta property="article:modified_time" content="2025-11-12T05:28:30.732Z">
+<meta property="article:author" content="Sitoi">
+<meta property="article:tag" content="HDFS">
+<meta property="article:tag" content="Hadoop">
+<meta property="article:tag" content="分布式">
+<meta property="article:tag" content="安装文档">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://opendoodles.s3-us-west-1.amazonaws.com/unboxing.svg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Hadoop 单机安装教程",
+  "url": "https://sitoi.cn/posts/24540.html",
+  "image": "https://opendoodles.s3-us-west-1.amazonaws.com/unboxing.svg",
+  "datePublished": "2019-01-07T14:36:00.000Z",
+  "dateModified": "2025-11-12T05:28:30.732Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Sitoi",
+      "url": "https://sitoi.cn"
+    }
+  ]
+}</script><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/favicon.ico"><link rel="canonical" href="https://sitoi.cn/posts/24540.html"><link rel="preconnect" href="https://npm.elemecdn.com"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/medias/logo_32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/medias/logo_16.png"/><link rel="mask-icon" href="/apple-touch-icon.png" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css?v=5.5.2"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free@latest/css/all.min.css"><link rel="stylesheet" href="https://npm.elemecdn.com/node-snackbar@latest/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/@fancyapps/ui@latest/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?c29e2dcbe60cb0ec619a76c424a71b11";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+btf.addGlobalFn('pjaxComplete', () => {
+  _hmt.push(['_trackPageview',window.location.pathname])
+}, 'baidu_analytics')
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-136865061-1"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'UA-136865061-1')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'UA-136865061-1', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;b618d0d8bcf448af935bd89530ccffcd&quot;}"></script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://npm.elemecdn.com/@egjs/infinitegrid@latest/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Hadoop 单机安装教程',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><script async src="https://umami.sitoi.cn/script.js" data-website-id="b23bdc64-5e23-46d5-9e2c-c862f9413a1f"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/background.css"><meta name="baidu_union_verify" content="8822ba856d99c65163dd207aaffc3510"><style type="text/css">.app-refresh{position:fixed;top:-2.2rem;left:0;right:0;z-index:99999;padding:0 1rem;font-size:15px;height:2.2rem;transition:all .3s ease}.app-refresh-wrap{display:flex;color:#fff;height:100%;align-items:center;justify-content:center}.app-refresh-wrap a{color:#fff;text-decoration:underline;cursor:pointer}</style><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Sitoi" type="application/atom+xml">
+</head><body><div id="web_bg" style="background-color: #efefef;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/avatars/avatar.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">95</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw fas fa-envelope"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友人</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 项目</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://sitoi.github.io/dailycheckin/"><i class="fa-fw fas fa-location-arrow"></i><span> Dailycheckin</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="https://crawlaio.github.io"><i class="fa-fw fas fa-location-arrow"></i><span> 导航</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://opendoodles.s3-us-west-1.amazonaws.com/unboxing.svg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Sitoi</span></a><a class="nav-page-title" href="/"><span class="site-name">Hadoop 单机安装教程</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw fas fa-envelope"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友人</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 项目</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://sitoi.github.io/dailycheckin/"><i class="fa-fw fas fa-location-arrow"></i><span> Dailycheckin</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="https://crawlaio.github.io"><i class="fa-fw fas fa-location-arrow"></i><span> 导航</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Hadoop 单机安装教程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2019-01-07T14:36:00.000Z" title="发表于 2019-01-07 22:36:00">2019-01-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-12T05:28:30.732Z" title="更新于 2025-11-12 13:28:30">2025-11-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/Hadoop/">Hadoop</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">762</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Hadoop-单机安装步骤"><a href="#Hadoop-单机安装步骤" class="headerlink" title="Hadoop 单机安装步骤"></a>Hadoop 单机安装步骤</h1><h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><ul>
+<li>Fedora 29</li>
+<li>openjdk version “1.8.0_191”</li>
+</ul>
+<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><ul>
+<li>创建 <code>Hadoop</code> 帐号</li>
+<li>下载 <code>Hadoop</code> 安装包</li>
+<li>解压 <code>Hadoop</code> 安装包</li>
+<li>配置环境变量</li>
+<li>配置 <code>Hadoop</code> 文件</li>
+<li>启动集群</li>
+<li>查看状态</li>
+</ul>
+<h3 id="创建-Hadoop-帐号"><a href="#创建-Hadoop-帐号" class="headerlink" title="创建 Hadoop 帐号"></a>创建 Hadoop 帐号</h3><h5 id="为-Hadoop-创建一个专门的账号"><a href="#为-Hadoop-创建一个专门的账号" class="headerlink" title="为 Hadoop 创建一个专门的账号"></a>为 Hadoop 创建一个专门的账号</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> adduser hadoop</span><br><span class="line"><span class="built_in">sudo</span> passwd hadoop</span><br></pre></td></tr></table></figure>
+
+<h5 id="授予-Hadoop-root-权限"><a href="#授予-Hadoop-root-权限" class="headerlink" title="授予 Hadoop root 权限"></a>授予 Hadoop root 权限</h5><blockquote>
+<p>为了测试，图方便，这里给 Hadoop root 权限，生产环境不建议这样做。</p>
+</blockquote>
+<p>使用 root 权限编辑&#x2F;etc&#x2F;sudoers:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vim /etc/sudoers</span><br></pre></td></tr></table></figure>
+
+<p>末尾添加一行：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop  ALL=(ALL) ALL</span><br></pre></td></tr></table></figure>
+
+<p>切换到 Hadoop 账号：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su hadoop</span><br></pre></td></tr></table></figure>
+
+<h5 id="配置-SSH-无密码登录"><a href="#配置-SSH-无密码登录" class="headerlink" title="配置 SSH 无密码登录"></a>配置 SSH 无密码登录</h5><p><strong>首先生成公私密钥对</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>指定 <code>key pair</code> 的存放位置<br>回车默认存放于&#x2F;home&#x2F;hadoop&#x2F;.ssh&#x2F;id_rsa 输入 passphrase，这里直接回车，为空，确保无密码可登陆。</p>
+</blockquote>
+<p><strong>拷贝生成的公钥到授权 key 文件（authorized_keys)</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+
+<p><strong>改变 key 权限为拥有者可读可写（0600）</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> 0600 ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+
+<p>chomod 命令参考：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">chmod 600 file – owner can read and write</span><br><span class="line">chmod 700 file – owner can read, write and execute</span><br><span class="line">chmod 666 file – all can read and write</span><br><span class="line">chmod 777 file – all can read, write and execute</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试是否成功</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh localhost</span><br></pre></td></tr></table></figure>
+
+<h3 id="下载-Hadoop-安装包"><a href="#下载-Hadoop-安装包" class="headerlink" title="下载 Hadoop 安装包"></a>下载 Hadoop 安装包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">wget http://192.168.1.60/apache/hadoop/common/hadoop-3.0.1/hadoop-3.0.1.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="解压-Hadoop-安装包"><a href="#解压-Hadoop-安装包" class="headerlink" title="解压 Hadoop 安装包"></a>解压 Hadoop 安装包</h3><blockquote>
+<p>最好做个关联 <code>ln -s hadoop-3.0.1 hadoop</code></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf hadoop-3.0.1.tar.gz</span><br><span class="line"><span class="built_in">mv</span> hadoop-3.0.1 hadoop</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h3><p>编辑 <code>~/.bashrc</code> 文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<p>添加以下环境变量</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64</span><br><span class="line">export HADOOP_HOME=/home/hadoop/hadoop</span><br><span class="line">export HADOOP_INSTALL=$HADOOP_HOME</span><br><span class="line">export HADOOP_MAPRED_HOME=$HADOOP_HOME</span><br><span class="line">export HADOOP_COMMON_HOME=$HADOOP_HOME</span><br><span class="line">export HADOOP_HDFS_HOME=$HADOOP_HOME</span><br><span class="line">export YARN_HOME=$HADOOP_HOME</span><br><span class="line">export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native</span><br><span class="line">export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin</span><br><span class="line">export JAVA_LIBRARY_PATH=$HADOOP_HOME/lib/native</span><br></pre></td></tr></table></figure>
+
+<p>使配置文件生效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置-Hadoop-文件"><a href="#配置-Hadoop-文件" class="headerlink" title="配置 Hadoop 文件"></a>配置 Hadoop 文件</h3><p>修改 <code>hadoop/core-site.xml</code> 配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim <span class="variable">$HADOOP_HOME</span>/etc/hadoop/core-site.xml</span><br></pre></td></tr></table></figure>
+
+<p>修改以下内容：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.default.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://localhost:9000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>修改 <code>hadoop/hdfs-site.xml</code> 配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim <span class="variable">$HADOOP_HOME</span>/etc/hadoop/hdfs-site.xml</span><br></pre></td></tr></table></figure>
+
+<p>修改以下内容：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.name.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:///home/hadoop/hadoopdata/hdfs/namenode<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.data.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:///home/hadoop/hadoopdata/hdfs/datanode<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>修改 <code>hadoop/mapred-site.xml</code> 配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim <span class="variable">$HADOOP_HOME</span>/etc/hadoop/mapred-site.xml</span><br></pre></td></tr></table></figure>
+
+<p>修改以下内容：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.framework.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">value</span>&gt;</span>yarn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>修改 <code>hadoop/yarn-site.xml</code> 配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim <span class="variable">$HADOOP_HOME</span>/etc/hadoop/yarn-site.xml</span><br></pre></td></tr></table></figure>
+
+<p>修改以下内容：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-services<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>mapreduce_shuffle<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="启动集群"><a href="#启动集群" class="headerlink" title="启动集群"></a>启动集群</h3><h5 id="格式化-Hadoop-文件系统"><a href="#格式化-Hadoop-文件系统" class="headerlink" title="格式化 Hadoop 文件系统"></a>格式化 Hadoop 文件系统</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs namenode -format</span><br></pre></td></tr></table></figure>
+
+<h5 id="启动-HDFS"><a href="#启动-HDFS" class="headerlink" title="启动 HDFS"></a>启动 HDFS</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$HADOOP_HOME/sbin/start-dfs.sh</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注：若是 <code>JAVA_HOME</code> 没设置错误</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim $HADOOP_HOME/etc/hadoop/hadoop-env.sh</span><br></pre></td></tr></table></figure>
+
+<p>在末尾加上：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64</span><br></pre></td></tr></table></figure>
+
+<h5 id="启动-YARN"><a href="#启动-YARN" class="headerlink" title="启动 YARN"></a>启动 YARN</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$HADOOP_HOME</span>/sbin/start-yarn.sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h3><p>查看 <code>HDFS</code> 状态，浏览器访问： <code>http://localhost:9870</code></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://sitoi.cn">Sitoi</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://sitoi.cn/posts/24540.html">https://sitoi.cn/posts/24540.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://sitoi.cn" target="_blank">Sitoi</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Hadoop/">Hadoop</a><a class="post-meta__tags" href="/tags/HDFS/">HDFS</a><a class="post-meta__tags" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a><a class="post-meta__tags" href="/tags/%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3/">安装文档</a></div><div class="post-share"><div class="social-share" data-image="https://opendoodles.s3-us-west-1.amazonaws.com/unboxing.svg" data-sites="wechat,qq,weibo,twitter,facebook,linkedin"></div><link rel="stylesheet" href="https://npm.elemecdn.com/butterfly-extsrc@latest/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://npm.elemecdn.com/butterfly-extsrc@latest/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/12544.html" title="HDFS 配额教程"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/dancing.svg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">HDFS 配额教程</div></div><div class="info-2"><div class="info-item-1">名称配额（Name Quota）名称配额是在对应的目录下所有文件和目录名称的数量上的限制。当超过这个配额的时候，文件或目录就会创建失败，重命名后名称配额仍然有效。 名称配额步骤 创建一个测试目录 设置创建的目录的名称配额 查看目录的配额信息 put 文件进行名称配额测试 清除配额限制 再次 put 一个文件  创建一个测试目录1hdfs dfs -mkdir /shitao/test_quota1  设置创建的目录的名称配额1hdfs dfsadmin -setQuota 2 /shitao/test_quota1  查看目录的配额信息1hdfs dfs -count -q /shitao/test_quota1   状态信息     状态 文件数限额 可用文件数 空间限额大小（字节） 可用空间大小（字节） 目录数 文件数 总大小 文件&#x2F;目录名    设置前 none inf none inf 1 0 0 &#x2F;shitao&#x2F;test_quota   设置后 2 1 none inf 1 0 0 &#x2F;shitao&#x2F;test_quota ...</div></div></div></a><a class="pagination-related" href="/posts/16143.html" title="Livy 安装教程"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/sitting.svg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Livy 安装教程</div></div><div class="info-2"><div class="info-item-1">Livy 安装安装环境 Fedora 29 Spark PySpark  安装步骤 下载 Livy 安装包 解压 Livy 安装包到 /opt/livy/ 目录 修改配置 启动 Livy  下载 Livy 安装包下载地址：http://livy.incubator.apache.org/get-started/ 解压 Livy 安装包到 &#x2F;opt&#x2F;livy&#x2F; 目录创建 &#x2F;opt&#x2F;livy 目录1sudo mkdir -p /opt/livy  解压到 &#x2F;opt&#x2F;livy 目录12sudo unzip livy-0.5.0-incubating-bin.zip  -d /opt/sudo mv /opt/livy-0.5.0-incubating-bin /opt/livy  修改配置将配置模板 livy.conf.template 复制并命名成 livy.conf1sudo cp /opt/livy/conf/livy.conf.template /opt/livy/conf/livy.conf  更改配置文件...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/12544.html" title="HDFS 配额教程"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/dancing.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-01-08</div><div class="info-item-2">HDFS 配额教程</div></div><div class="info-2"><div class="info-item-1">名称配额（Name Quota）名称配额是在对应的目录下所有文件和目录名称的数量上的限制。当超过这个配额的时候，文件或目录就会创建失败，重命名后名称配额仍然有效。 名称配额步骤 创建一个测试目录 设置创建的目录的名称配额 查看目录的配额信息 put 文件进行名称配额测试 清除配额限制 再次 put 一个文件  创建一个测试目录1hdfs dfs -mkdir /shitao/test_quota1  设置创建的目录的名称配额1hdfs dfsadmin -setQuota 2 /shitao/test_quota1  查看目录的配额信息1hdfs dfs -count -q /shitao/test_quota1   状态信息     状态 文件数限额 可用文件数 空间限额大小（字节） 可用空间大小（字节） 目录数 文件数 总大小 文件&#x2F;目录名    设置前 none inf none inf 1 0 0 &#x2F;shitao&#x2F;test_quota   设置后 2 1 none inf 1 0 0 &#x2F;shitao&#x2F;test_quota ...</div></div></div></a><a class="pagination-related" href="/posts/37161.html" title="Fedora 安装 MongoDB 教程"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/sitting-reading.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-09</div><div class="info-item-2">Fedora 安装 MongoDB 教程</div></div><div class="info-2"><div class="info-item-1">MongoDB 安装安装环境 Fedora 29  安装步骤 安装 mongodb 和 mongodb-server 启动服务  安装 MongoDB 和 MongoDB-Server1sudo dnf install mongodb mongodb-server  启动服务启动 mongod 服务 1sudo systemctl start mongod.service  设置开机自动启动 1sudo systemctl enable mongod.service </div></div></div></a><a class="pagination-related" href="/posts/64483.html" title="HDP 3.1.0 集成 Sqoop2"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/ice-cream.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-18</div><div class="info-item-2">HDP 3.1.0 集成 Sqoop2</div></div><div class="info-2"><div class="info-item-1">HDP 3.1.0 集成 Sqoop2环境 由三台主机组成的 HDP 3.1.0 集群 配置好时间同步  步骤 下载 Sqoop2 的安装包 解压安装包到 /usr/lib 目录下 修改 sqoop.sh 环境变量 修改 sqoop.properties 配置 导入第三方 jar 包 配置第三方 jar 包引用路径 修改 Ambari 上组件配置 验证配置是否正确 开启服务器  下载 Sqoop2 的安装包下载地址：http://mirror.bit.edu.cn/apache/sqoop/1.99.7/ 下载命令 12cd ~wget http://mirror.bit.edu.cn/apache/sqoop/1.99.7/sqoop-1.99.7-bin-hadoop200.tar.gz  解压安装包到 /usr/lib 目录下解压 Sqoop2 压缩包 1tar -xvf sqoop-&lt;version&gt;-bin-hadoop&lt;hadoop-version&gt;.tar.gz  移动到 /usr/lib/sqoop 目录 1mv sqoop-&lt;ver...</div></div></div></a><a class="pagination-related" href="/posts/53731.html" title="Fedora 安装 GitBook 教程"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/float.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-09</div><div class="info-item-2">Fedora 安装 GitBook 教程</div></div><div class="info-2"><div class="info-item-1">Fedora 安装 GitBook 教程安装 nvm安装 nvm 1curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash  退出终端 1exit  安装 node1nvm install node  安装 GitBook 更换 npm 源  1npm config set registry https://registry.npm.taobao.org  1npm install -g gitbook-cli  安装 GitBook 依赖安装 svgexport 1npm install -g svgexport --unsafe-perm  安装 calibre 1sudo dnf install calibre </div></div></div></a><a class="pagination-related" href="/posts/16143.html" title="Livy 安装教程"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/sitting.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-01-06</div><div class="info-item-2">Livy 安装教程</div></div><div class="info-2"><div class="info-item-1">Livy 安装安装环境 Fedora 29 Spark PySpark  安装步骤 下载 Livy 安装包 解压 Livy 安装包到 /opt/livy/ 目录 修改配置 启动 Livy  下载 Livy 安装包下载地址：http://livy.incubator.apache.org/get-started/ 解压 Livy 安装包到 &#x2F;opt&#x2F;livy&#x2F; 目录创建 &#x2F;opt&#x2F;livy 目录1sudo mkdir -p /opt/livy  解压到 &#x2F;opt&#x2F;livy 目录12sudo unzip livy-0.5.0-incubating-bin.zip  -d /opt/sudo mv /opt/livy-0.5.0-incubating-bin /opt/livy  修改配置将配置模板 livy.conf.template 复制并命名成 livy.conf1sudo cp /opt/livy/conf/livy.conf.template /opt/livy/conf/livy.conf  更改配置文件...</div></div></div></a><a class="pagination-related" href="/posts/45358.html" title="Spark 安装教程"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/sprinting.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-01-03</div><div class="info-item-2">Spark 安装教程</div></div><div class="info-2"><div class="info-item-1">Spark 安装安装环境 Fedora 29 openjdk version “1.8.0_191”  安装步骤 下载 Spark 安装包 解压 Spark 安装包 /opt/spark 目录 修改 Spark 配置 修改 PySpark 配置  下载 Spark 安装包下载地址：http://spark.apache.org/downloads.html 解压 Spark 安装包 &#x2F;opt&#x2F;spark 目录创建 &#x2F;opt&#x2F;spark 目录1sudo mkdir -p /opt/spark  解压到 &#x2F;opt&#x2F;spark 目录123cd /optsudo tar -zxvf ~/Downloads/spark-2.3.0-bin-hadoop2.7.tgzsudo mv /opt/spark-2.3.0-bin-hadoop2.7 /opt/spark  修改 Spark 配置修改 Spark 环境变量1sudo vim ~/.bashrc   修改内容  123export JAVA_HOME=/usr/lib/jvm...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/avatars/avatar.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Sitoi</div><div class="author-info-description">真正的酷都是需要付诸努力的</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">95</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><a id="card-info-btn" href="https://github.com/Sitoi"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="/wechat.jpg" target="_blank" title="Wechat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="tencent://message/?uin=133397418" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=133397418" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://github.com/Sitoi/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hadoop-%E5%8D%95%E6%9C%BA%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.</span> <span class="toc-text">Hadoop 单机安装步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%8E%AF%E5%A2%83"><span class="toc-number">1.1.</span> <span class="toc-text">安装环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.2.</span> <span class="toc-text">安装步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-Hadoop-%E5%B8%90%E5%8F%B7"><span class="toc-number">1.2.1.</span> <span class="toc-text">创建 Hadoop 帐号</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%BA-Hadoop-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%93%E9%97%A8%E7%9A%84%E8%B4%A6%E5%8F%B7"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">为 Hadoop 创建一个专门的账号</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8E%88%E4%BA%88-Hadoop-root-%E6%9D%83%E9%99%90"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">授予 Hadoop root 权限</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-SSH-%E6%97%A0%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">配置 SSH 无密码登录</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD-Hadoop-%E5%AE%89%E8%A3%85%E5%8C%85"><span class="toc-number">1.2.2.</span> <span class="toc-text">下载 Hadoop 安装包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%8E%8B-Hadoop-%E5%AE%89%E8%A3%85%E5%8C%85"><span class="toc-number">1.2.3.</span> <span class="toc-text">解压 Hadoop 安装包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">1.2.4.</span> <span class="toc-text">配置环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-Hadoop-%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.5.</span> <span class="toc-text">配置 Hadoop 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E9%9B%86%E7%BE%A4"><span class="toc-number">1.2.6.</span> <span class="toc-text">启动集群</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96-Hadoop-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.2.6.1.</span> <span class="toc-text">格式化 Hadoop 文件系统</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8-HDFS"><span class="toc-number">1.2.6.2.</span> <span class="toc-text">启动 HDFS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8-YARN"><span class="toc-number">1.2.6.3.</span> <span class="toc-text">启动 YARN</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%8A%B6%E6%80%81"><span class="toc-number">1.2.7.</span> <span class="toc-text">查看状态</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/39218.html" title="如何在 Elasticsearch 中更新索引的 Mapping"><img src="https://opendoodles.s3-us-west-1.amazonaws.com/float.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="如何在 Elasticsearch 中更新索引的 Mapping"/></a><div class="content"><a class="title" href="/posts/39218.html" title="如何在 Elasticsearch 中更新索引的 Mapping">如何在 Elasticsearch 中更新索引的 Mapping</a><time datetime="2023-10-14T06:26:21.000Z" title="发表于 2023-10-14 14:26:21">2023-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/10054.html" title="简洁登录：在 Linux 终端中去除 'Last login' 信息"><img src="https://opendoodles.s3-us-west-1.amazonaws.com/sitting.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="简洁登录：在 Linux 终端中去除 'Last login' 信息"/></a><div class="content"><a class="title" href="/posts/10054.html" title="简洁登录：在 Linux 终端中去除 'Last login' 信息">简洁登录：在 Linux 终端中去除 'Last login' 信息</a><time datetime="2023-07-28T02:25:20.000Z" title="发表于 2023-07-28 10:25:20">2023-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/46937.html" title="高效下载 NGINX 静态网站：利用 wget 进行递归下载"><img src="https://opendoodles.s3-us-west-1.amazonaws.com/selfie.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="高效下载 NGINX 静态网站：利用 wget 进行递归下载"/></a><div class="content"><a class="title" href="/posts/46937.html" title="高效下载 NGINX 静态网站：利用 wget 进行递归下载">高效下载 NGINX 静态网站：利用 wget 进行递归下载</a><time datetime="2023-07-16T01:59:04.000Z" title="发表于 2023-07-16 09:59:04">2023-07-16</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://opendoodles.s3-us-west-1.amazonaws.com/unboxing.svg);"><div class="footer-flex"><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">项目</div><div class="footer-flex-content"><a href="https://sitoi.github.io/dailycheckin/" target="_blank" title="✏️ Dailycheckin">✏️ Dailycheckin</a><a href="https://crawlaio.com/" target="_blank" title="🕷️ Crawlaio">🕷️ Crawlaio</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">备用</div><div class="footer-flex-content"><a href="https://sitoi.github.io" target="_blank" title="📑 GitHub Pages">📑 GitHub Pages</a><a href="https://www.cnblogs.com/sitoi" target="_blank" title="📑 Cnblog">📑 Cnblog</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">框架</div><div class="footer-flex-content"><a href="https://hexo.io/zh-cn/" target="_blank" title="📦 Hexo">📦 Hexo</a><a href="https://butterfly.js.org/" target="_blank" title="🎨 Butterfly">🎨 Butterfly</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">赞助</div><div class="footer-flex-content"><div><img src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/alipay.jpg' alt='Sitoi' width='100px' height='100px'></div></div></div></div></div><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2018 - 2025 By Sitoi</span><span class="framework-info"><span class="footer-separator">|</span><span>框架 </span><a href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.2</a></span></div><div class="footer_custom_text"><a href="https://beian.miit.gov.cn/"><img class="icp-icon" src="/medias/icp.png"><span>沪ICP备2025115209号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.2"></script><script src="/js/main.js?v=5.5.2"></script><script src="https://npm.elemecdn.com/@fancyapps/ui@latest/dist/fancybox/fancybox.umd.js"></script><script src="https://npm.elemecdn.com/instant.page@latest/instantpage.js" type="module"></script><script src="https://npm.elemecdn.com/node-snackbar@latest/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const config = mermaidSrc.dataset.config ? JSON.parse(mermaidSrc.dataset.config) : {}
+      if (!config.theme) {
+        config.theme = theme
+      }
+      const mermaidThemeConfig = `%%{init: ${JSON.stringify(config)}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://npm.elemecdn.com/mermaid@latest/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  let initFn = window.walineFn || null
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const destroyWaline = ele => ele.destroy()
+
+  const initWaline = (Fn, el = document, path = window.location.pathname) => {
+    const waline = Fn({
+      el: el.querySelector('#waline-wrap'),
+      serverURL: 'https://waline.sitoi.cn/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      comment: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyWaline = () => {
+        destroyWaline(waline)
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const loadWaline = (el, path) => {
+    if (initFn) initWaline(initFn, el, path)
+    else {
+      btf.getCSS('https://npm.elemecdn.com/@waline/client@latest/dist/waline.css')
+        .then(() => import('https://npm.elemecdn.com/@waline/client@latest/dist/waline.js'))
+        .then(({ init }) => {
+          initFn = init || Waline.init
+          initWaline(initFn, el, path)
+          window.walineFn = initFn
+        })
+    }
+  }
+
+  if (isShuoshuo) {
+    'Waline' === 'Waline'
+      ? window.shuoshuoComment = { loadComment: loadWaline } 
+      : window.loadOtherComment = loadWaline
+    return
+  }
+
+  if ('Waline' === 'Waline' || !false) {
+    if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><div class="app-refresh" id="app-refresh"> <div class="app-refresh-wrap"> <label>✨ 网站已更新最新版本 👉</label> <a href="javascript:void(0)" onclick="location.reload()">点击刷新</a> </div></div><script>function showNotification(){if(GLOBAL_CONFIG.Snackbar){var t="light"===document.documentElement.getAttribute("data-theme")?GLOBAL_CONFIG.Snackbar.bgLight:GLOBAL_CONFIG.Snackbar.bgDark,e=GLOBAL_CONFIG.Snackbar.position;Snackbar.show({text:"已更新最新版本",backgroundColor:t,duration:5e5,pos:e,actionText:"点击刷新",actionTextColor:"#fff",onActionClick:function(t){location.reload()}})}else{var o=`top: 0; background: ${"light"===document.documentElement.getAttribute("data-theme")?"#49b1f5":"#1f1f1f"};`;document.getElementById("app-refresh").style.cssText=o}}"serviceWorker"in navigator&&(navigator.serviceWorker.controller&&navigator.serviceWorker.addEventListener("controllerchange",function(){showNotification()}),window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")}));</script><script id="click-heart" src="https://npm.elemecdn.com/butterfly-extsrc@latest/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="/"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.2"></script></div></div></body></html>

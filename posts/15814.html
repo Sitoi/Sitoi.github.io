@@ -1,0 +1,725 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Markdown 代码规范 （GFM） | Sitoi</title><meta name="author" content="Sitoi"><meta name="copyright" content="Sitoi"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="GFM该文件用来测试和展示书写 README 的各种 markdown 语法。GitHub 的 markdown 语法在标准的 markdown 语法基础上做了扩充，称之为 GitHub Flavored Markdown。简称 GFM，GFM 在 GitHub 上有广泛应用，除了 README 文件外，issues 和 wiki 均支持 markdown 语法。 目录 横线  标题  文本  普">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Markdown 代码规范 （GFM）">
+<meta property="og:url" content="https://sitoi.cn/posts/15814.html">
+<meta property="og:site_name" content="Sitoi">
+<meta property="og:description" content="GFM该文件用来测试和展示书写 README 的各种 markdown 语法。GitHub 的 markdown 语法在标准的 markdown 语法基础上做了扩充，称之为 GitHub Flavored Markdown。简称 GFM，GFM 在 GitHub 上有广泛应用，除了 README 文件外，issues 和 wiki 均支持 markdown 语法。 目录 横线  标题  文本  普">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://opendoodles.s3-us-west-1.amazonaws.com/sitting.svg">
+<meta property="article:published_time" content="2018-09-22T10:17:00.000Z">
+<meta property="article:modified_time" content="2025-11-12T05:28:30.732Z">
+<meta property="article:author" content="Sitoi">
+<meta property="article:tag" content="GitHub">
+<meta property="article:tag" content="MarkDown">
+<meta property="article:tag" content="规范">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://opendoodles.s3-us-west-1.amazonaws.com/sitting.svg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Markdown 代码规范 （GFM）",
+  "url": "https://sitoi.cn/posts/15814.html",
+  "image": "https://opendoodles.s3-us-west-1.amazonaws.com/sitting.svg",
+  "datePublished": "2018-09-22T10:17:00.000Z",
+  "dateModified": "2025-11-12T05:28:30.732Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Sitoi",
+      "url": "https://sitoi.cn"
+    }
+  ]
+}</script><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/favicon.ico"><link rel="canonical" href="https://sitoi.cn/posts/15814.html"><link rel="preconnect" href="https://npm.elemecdn.com"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/medias/logo_32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/medias/logo_16.png"/><link rel="mask-icon" href="/apple-touch-icon.png" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css?v=5.5.2"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free@latest/css/all.min.css"><link rel="stylesheet" href="https://npm.elemecdn.com/node-snackbar@latest/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/@fancyapps/ui@latest/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?c29e2dcbe60cb0ec619a76c424a71b11";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+btf.addGlobalFn('pjaxComplete', () => {
+  _hmt.push(['_trackPageview',window.location.pathname])
+}, 'baidu_analytics')
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-136865061-1"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'UA-136865061-1')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'UA-136865061-1', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;b618d0d8bcf448af935bd89530ccffcd&quot;}"></script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://npm.elemecdn.com/@egjs/infinitegrid@latest/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Markdown 代码规范 （GFM）',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><script async src="https://umami.sitoi.cn/script.js" data-website-id="b23bdc64-5e23-46d5-9e2c-c862f9413a1f"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/background.css"><meta name="baidu_union_verify" content="8822ba856d99c65163dd207aaffc3510"><style type="text/css">.app-refresh{position:fixed;top:-2.2rem;left:0;right:0;z-index:99999;padding:0 1rem;font-size:15px;height:2.2rem;transition:all .3s ease}.app-refresh-wrap{display:flex;color:#fff;height:100%;align-items:center;justify-content:center}.app-refresh-wrap a{color:#fff;text-decoration:underline;cursor:pointer}</style><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Sitoi" type="application/atom+xml">
+</head><body><div id="web_bg" style="background-color: #efefef;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/avatars/avatar.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">95</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw fas fa-envelope"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友人</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 项目</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://sitoi.github.io/dailycheckin/"><i class="fa-fw fas fa-location-arrow"></i><span> Dailycheckin</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="https://crawlaio.github.io"><i class="fa-fw fas fa-location-arrow"></i><span> 导航</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://opendoodles.s3-us-west-1.amazonaws.com/sitting.svg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Sitoi</span></a><a class="nav-page-title" href="/"><span class="site-name">Markdown 代码规范 （GFM）</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw fas fa-envelope"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友人</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 项目</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://sitoi.github.io/dailycheckin/"><i class="fa-fw fas fa-location-arrow"></i><span> Dailycheckin</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="https://crawlaio.github.io"><i class="fa-fw fas fa-location-arrow"></i><span> 导航</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Markdown 代码规范 （GFM）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2018-09-22T10:17:00.000Z" title="发表于 2018-09-22 18:17:00">2018-09-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-12T05:28:30.732Z" title="更新于 2025-11-12 13:28:30">2025-11-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%A7%84%E8%8C%83/">规范</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="GFM"><a href="#GFM" class="headerlink" title="GFM"></a>GFM</h1><p>该文件用来测试和展示书写 <code>README</code> 的各种 <code>markdown</code> 语法。<br><code>GitHub</code> 的 <code>markdown</code> 语法在标准的 <code>markdown</code> 语法基础上做了扩充，称之为 <code>GitHub Flavored Markdown</code>。<br>简称 <code>GFM</code>，<code>GFM</code> 在 <code>GitHub</code> 上有广泛应用，除了 <code>README</code> 文件外，<code>issues</code> 和 <code>wiki</code> 均支持 <code>markdown</code> 语法。</p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li><p><a href="#%E6%A8%AA%E7%BA%BF">横线</a></p>
+</li>
+<li><p><a href="#%E6%A0%87%E9%A2%98">标题</a></p>
+</li>
+<li><p><a href="#%E6%96%87%E6%9C%AC">文本</a></p>
+<ul>
+<li>普通文本</li>
+<li>单行文本</li>
+<li>多行文本</li>
+<li>文字高亮</li>
+<li>换行</li>
+<li>斜体</li>
+<li>粗体</li>
+<li>删除线</li>
+</ul>
+</li>
+<li><p><a href="#%E5%9B%BE%E7%89%87">图片</a></p>
+<ul>
+<li><p>来源于网络的图片</p>
+</li>
+<li><p>GitHub 仓库中的图片</p>
+</li>
+</ul>
+</li>
+<li><p><a href="#%E9%93%BE%E6%8E%A5">链接</a></p>
+<ul>
+<li><p>文字超链接</p>
+<ul>
+<li><p>链接外部 URL</p>
+</li>
+<li><p>链接本仓库里的 URL</p>
+</li>
+</ul>
+</li>
+<li><p>锚点</p>
+</li>
+<li><p><a href="#%E5%9B%BE%E7%89%87%E9%93%BE%E6%8E%A5">图片链接</a></p>
+</li>
+</ul>
+</li>
+<li><p><a href="#%E5%88%97%E8%A1%A8">列表</a></p>
+<ul>
+<li><p>无序列表</p>
+</li>
+<li><p>有序列表</p>
+</li>
+<li><p>复选框列表</p>
+</li>
+</ul>
+</li>
+<li><p><a href="#%E5%9D%97%E5%BC%95%E7%94%A8">块引用</a></p>
+</li>
+<li><p><a href="#%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE">代码高亮</a></p>
+</li>
+<li><p><a href="#%E8%A1%A8%E6%A0%BC">表格</a></p>
+</li>
+<li><p><a href="#%E8%A1%A8%E6%83%85">表情</a></p>
+</li>
+</ul>
+<h2 id="横线"><a href="#横线" class="headerlink" title="横线"></a>横线</h2><p>***、—、___可以显示横线效果</p>
+<hr>
+<hr>
+<hr>
+<h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><h2 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h2><h3 id="普通文本"><a href="#普通文本" class="headerlink" title="普通文本"></a>普通文本</h3><p>这是一段普通的文本</p>
+<h3 id="单行文本"><a href="#单行文本" class="headerlink" title="单行文本"></a>单行文本</h3><pre><code>Hello,大家好，我是 Sitoi。
+</code></pre>
+<p>在一行开头加入 1 个 Tab 或者 4 个空格。</p>
+<h3 id="文本块"><a href="#文本块" class="headerlink" title="文本块"></a>文本块</h3><h4 id="语法-1"><a href="#语法-1" class="headerlink" title="语法 1"></a>语法 1</h4><p>在连续几行的文本开头加入 1 个 Tab 或者 4 个空格。</p>
+<pre><code>欢迎到访
+很高兴见到您
+</code></pre>
+<h4 id="语法-2"><a href="#语法-2" class="headerlink" title="语法 2"></a>语法 2</h4><p>使用一对各三个的反引号：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">欢迎到访</span><br><span class="line">很高兴见到您</span><br></pre></td></tr></table></figure>
+
+<p>该语法也可以实现代码高亮，见<a href="#%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE">代码高亮</a></p>
+<h3 id="文字高亮"><a href="#文字高亮" class="headerlink" title="文字高亮"></a>文字高亮</h3><p>文字高亮功能能使行内部分文字高亮，使用一对反引号。</p>
+<p>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`linux` `网络编程` `socket` `epoll`</span><br></pre></td></tr></table></figure>
+
+<p>效果：<code>linux</code> <code>网络编程</code> <code>socket</code> <code>epoll</code></p>
+<p>也适合做一篇文章的 tag</p>
+<h4 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h4><p>直接回车不能换行，可以在上一行文本后面补两个空格，这样下一行的文本就换行了。</p>
+<p>或者就是在两行文本直接加一个空行。</p>
+<p>也能实现换行效果，不过这个行间距有点大。</p>
+<h4 id="斜体、粗体、删除线"><a href="#斜体、粗体、删除线" class="headerlink" title="斜体、粗体、删除线"></a>斜体、粗体、删除线</h4><table>
+<thead>
+<tr>
+<th align="center">语法</th>
+<th align="center">效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>*斜体1*</code></td>
+<td align="center"><em>斜体 1</em></td>
+</tr>
+<tr>
+<td align="center"><code>_斜体2_</code></td>
+<td align="center"><em>斜体 2</em></td>
+</tr>
+<tr>
+<td align="center"><code>**粗体1**</code></td>
+<td align="center"><strong>粗体 1</strong></td>
+</tr>
+<tr>
+<td align="center"><code>__粗体2__</code></td>
+<td align="center"><strong>粗体 2</strong></td>
+</tr>
+<tr>
+<td align="center"><code>这是一个 ~~删除线~~</code></td>
+<td align="center">这是一个 <del>删除线</del></td>
+</tr>
+<tr>
+<td align="center"><code>***斜粗体1***</code></td>
+<td align="center"><strong><em>斜粗体 1</em></strong></td>
+</tr>
+<tr>
+<td align="center"><code>___斜粗体2___</code></td>
+<td align="center"><strong><em>斜粗体 2</em></strong></td>
+</tr>
+<tr>
+<td align="center"><code>***~~斜粗体删除线1~~***</code></td>
+<td align="center"><strong><em><del>斜粗体删除线 1</del></em></strong></td>
+</tr>
+<tr>
+<td align="center"><code>~~***斜粗体删除线2***~~</code></td>
+<td align="center"><del><strong><em>斜粗体删除线 2</em></strong></del></td>
+</tr>
+</tbody></table>
+<p>斜体、粗体、删除线可混合使用</p>
+<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p>基本格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![alt](URL title)</span><br></pre></td></tr></table></figure>
+
+<p><code>alt</code> 和 <code>title</code> 即对应 <code>HTML</code> 中的 <code>alt</code> 和 <code>title</code> 属性（都可省略）：</p>
+<ul>
+<li><code>alt</code> 表示图片显示失败时的替换文本</li>
+<li><code>title</code> 表示鼠标悬停在图片时的显示文本（注意这里要加引号）</li>
+</ul>
+<p><code>URL</code> 即图片的 <code>url</code> 地址，如果引用本仓库中的图片，直接使用<strong>相对路径</strong>就可了，如果引用其他 <code>github</code> 仓库中的图片要注意格式，即：<code>仓库地址/raw/分支名/图片路径</code>，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/guodongxiaren/ImageCache/raw/master/Logo/foryou.gif</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">#</th>
+<th align="center">语法</th>
+<th align="center">效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center"><code>![baidu](http://www.baidu.com/img/bdlogo.gif &quot;百度logo&quot;)</code></td>
+<td align="center"><img src="http://www.baidu.com/img/bdlogo.gif" alt="baidu" title="百度logo"></td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center"><code>![][Github]</code></td>
+<td align="center"><img src="https://raw.githubusercontent.com/Sitoi/Sitoi.github.io/master/img/avatar-ny.jpg"></td>
+</tr>
+</tbody></table>
+<p>注意 <code>例2</code> 的写法使用了<strong>URL 标识符</strong>的形式，在<a href="#%E9%93%BE%E6%8E%A5">链接</a>一节有介绍。</p>
+<blockquote>
+<p>在文末有 <code>Github</code> 的定义：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Github]:https://raw.githubusercontent.com/Sitoi/Sitoi.github.io/master/img/avatar-ny.jpg</span><br></pre></td></tr></table></figure>
+
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><h3 id="链接外部-URL"><a href="#链接外部-URL" class="headerlink" title="链接外部 URL"></a>链接外部 URL</h3><table>
+<thead>
+<tr>
+<th align="center">#</th>
+<th align="center">语法</th>
+<th align="center">效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center"><code>[我的博客](http://sitoi.cn &quot;悬停显示&quot;)</code></td>
+<td align="center"><a href="http://sitoi.cn/" title="悬停显示">我的博客</a></td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center"><code>[我的知乎][zhihu] </code></td>
+<td align="center"><a href="https://www.zhihu.com/people/Sitoi" title="我的知乎，欢迎关注">我的知乎</a></td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center"><code>[zhihu](https://www.zhihu.com/people/Sitoi &quot;我的知乎，欢迎关注&quot;)</code></td>
+<td align="center"><a href="https://www.zhihu.com/people/Sitoi" title="我的知乎，欢迎关注">zhihu</a></td>
+</tr>
+</tbody></table>
+<p>语法 2 由两部分组成：</p>
+<ul>
+<li>第一部分使用两个中括号，[ ]里的标识符（本例中 <code>zhihu</code>），可以是数字，字母等的组合，标识符上下对应就行了（<strong>姑且称之为 URL 标识符</strong>）</li>
+<li>第二部分标记实际 <code>URL</code>。</li>
+</ul>
+<blockquote>
+<p>使用 <code>URL</code> 标识符能达到复用的目的，一般把全文所有的 URL 标识符统一放在文章末尾，这样看起来比较干净。</p>
+<blockquote>
+<p><code>URL</code>标识符是我起的名字，不知道是否准确。囧。。</p>
+</blockquote>
+</blockquote>
+<h3 id="链接本仓库里的-URL"><a href="#链接本仓库里的-URL" class="headerlink" title="链接本仓库里的 URL"></a>链接本仓库里的 URL</h3><p>|    语法     |          效果          |<br>| :———: | :——————–: | ——————————- |<br>| <code>[我的简介] | (/example/profile.md)</code> | <a href="/example/profile.md">我的简介</a> |<br>|   <code>[Book]   |       (./Book)</code>        | <a href="/Book">Book</a>                   |</p>
+<h3 id="图片链接"><a href="#图片链接" class="headerlink" title="图片链接"></a>图片链接</h3><p>给图片加链接的本质是混合图片显示语法和普通的链接语法。<br>普通的链接中 <code>[ ]</code> 内部是链接要显示的文本，而图片链接 <code>[ ]</code> 里面则是要显示的图片。<br>直接混合两种语法当然可以，但是十分啰嗦，为此我们可以使用 <code>URL</code> 标识符的形式。</p>
+<table>
+<thead>
+<tr>
+<th align="center">#</th>
+<th align="center">语法</th>
+<th align="center">效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center"><code>[![zhihu-logo]](https://www.zhihu.com/people/Sitoi)</code></td>
+<td align="center"><a href="https://www.zhihu.com/people/Sitoi"><img src="/img/zhihu.jpg" alt="zhihu-logo" title="点击图片进入我的知乎"></a></td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center"><code>[![](/img/zhihu.jpg &quot;我的知乎，欢迎关注&quot;)][zhihu]</code></td>
+<td align="center"><a href="https://www.zhihu.com/people/Sitoi" title="我的知乎，欢迎关注"><img src="/img/zhihu.jpg" title="我的知乎，欢迎关注"></a></td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center"><code>[![zhihu-logo]][zhihu]</code></td>
+<td align="center"><a href="https://www.zhihu.com/people/Sitoi" title="我的知乎，欢迎关注"><img src="/img/zhihu.jpg" alt="zhihu-logo" title="点击图片进入我的知乎"></a></td>
+</tr>
+</tbody></table>
+<p>因为图片本身和链接本身都支持 <code>URL</code> 标识符的形式，所以图片链接也可以很简洁（见例 3）。</p>
+<p>注意，此时鼠标悬停时显示的文字是图片的 <code>title</code>，而非链接本身的 <code>title</code> 了。</p>
+<blockquote>
+<p>本文 <code>URL</code> 标识符都放置于文末</p>
+</blockquote>
+<h3 id="锚点"><a href="#锚点" class="headerlink" title="锚点"></a>锚点</h3><p>其实呢，每一个标题都是一个锚点，和 HTML 的锚点（<code>#</code>）类似，比如我们</p>
+<table>
+<thead>
+<tr>
+<th align="center">语法</th>
+<th align="center">效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>[回到顶部](#gfm)</code></td>
+<td align="center"><a href="#gfm">回到顶部</a></td>
+</tr>
+</tbody></table>
+<p>不过要注意，标题中的英文字母都被转化为<strong>小写字母</strong>了。</p>
+<blockquote>
+<p>以前 <code>GitHub</code> 对中文支持的不好，所以中文标题不能正确识别为锚点，但是现在已经没问题啦！</p>
+</blockquote>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><ul>
+<li>昵称：Sitoi</li>
+</ul>
+<ul>
+<li>别名：Sitoi</li>
+</ul>
+<ul>
+<li>英文名：Sitoi</li>
+</ul>
+<h3 id="多级无序列表"><a href="#多级无序列表" class="headerlink" title="多级无序列表"></a>多级无序列表</h3><ul>
+<li>编程语言<ul>
+<li>脚本语言<ul>
+<li>Python</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><h4 id="一般效果"><a href="#一般效果" class="headerlink" title="一般效果"></a>一般效果</h4><p>就是在数字后面加一个点，再加一个空格。不过看起来起来可能不够明显。<br>面向对象的三个基本特征：</p>
+<ol>
+<li>封装</li>
+<li>继承</li>
+<li>多态</li>
+</ol>
+<h4 id="有序列表自动排序"><a href="#有序列表自动排序" class="headerlink" title="有序列表自动排序"></a>有序列表自动排序</h4><p>也可以在第一行指定<code>1. </code>，而接下来的几行用星号<code>*</code>（或者继续用数字 1. ）就可以了，它会自动显示成 2、3、4……。<br>面向对象的七大原则：</p>
+<ol>
+<li>开闭原则</li>
+</ol>
+<ul>
+<li>里氏转换原则</li>
+<li>依赖倒转原则</li>
+<li>接口隔离原则</li>
+<li>组合&#x2F;聚合复用原则</li>
+<li>“迪米特”法则</li>
+<li>单一职责原则</li>
+</ul>
+<h4 id="多级有序列表"><a href="#多级有序列表" class="headerlink" title="多级有序列表"></a>多级有序列表</h4><p>和无序列表一样，有序列表也有多级结构：</p>
+<ol>
+<li>这是一级的有序列表，数字 1 还是 1<ol>
+<li>这是二级的有序列表，阿拉伯数字在显示的时候变成了罗马数字<ol>
+<li>这是三级的有序列表，数字在显示的时候变成了英文字母</li>
+<li>四级的有序列表显示效果，就不再变化了，依旧是英文字母</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="复选框列表"><a href="#复选框列表" class="headerlink" title="复选框列表"></a>复选框列表</h3><ul>
+<li><input checked="" disabled="" type="checkbox"> 需求分析</li>
+<li><input checked="" disabled="" type="checkbox"> 系统设计</li>
+<li><input checked="" disabled="" type="checkbox"> 详细设计</li>
+<li><input disabled="" type="checkbox"> 编码</li>
+<li><input disabled="" type="checkbox"> 测试</li>
+<li><input disabled="" type="checkbox"> 交付</li>
+</ul>
+<p>您可以使用这个功能来标注某个项目各项任务的完成情况。</p>
+<blockquote>
+<p>Tip:</p>
+<blockquote>
+<p>在 <code>GitHub</code> 的<strong>issue</strong>中使用该语法是可以实时点击复选框来勾选或解除勾选的，而无需修改 <code>issue</code> 原文。</p>
+</blockquote>
+</blockquote>
+<h2 id="块引用"><a href="#块引用" class="headerlink" title="块引用"></a>块引用</h2><h3 id="常用于引用文本"><a href="#常用于引用文本" class="headerlink" title="常用于引用文本"></a>常用于引用文本</h3><h4 id="文本摘自《深入理解计算机系统》P27"><a href="#文本摘自《深入理解计算机系统》P27" class="headerlink" title="文本摘自《深入理解计算机系统》P27"></a>文本摘自《深入理解计算机系统》P27</h4><p>令人吃惊的是，在哪种字节顺序是合适的这个问题上，人们表现得非常情绪化。<br>实际上术语“little endian”（小端）和“big endian”（大端）出自 Jonathan Swift 的《格利佛游记》一书，<br>其中交战的两个派别无法就应该从哪一端打开一个半熟的鸡蛋达成一致。因此，争论沦为关于社会政治的争论。<br>只要选择了一种规则并且始终如一的坚持，其实对于哪种字节排序的选择都是任意的。</p>
+<blockquote>
+<p><strong>“端”（endian）的起源</strong></p>
+</blockquote>
+<p>以下是 Jonathan Swift 在 1726 年关于大小端之争历史的描述：</p>
+<p>“……下面我要告诉你的是，Lilliput 和 Blefuscu 这两大强国在过去 36 个月里一直在苦战。战争开始是由于以下的原因：我们大家都认为，吃鸡蛋前，原始的方法是打破鸡蛋较大的一端，可是当今的皇帝的祖父小时候吃鸡蛋，一次按古法打鸡蛋时碰巧将一个手指弄破了，因此他的父亲，当时的皇帝，就下了一道敕令，命令全体臣民吃鸡蛋时打破较小的一端，违令者重罚。”</p>
+<h3 id="块引用有多级结构"><a href="#块引用有多级结构" class="headerlink" title="块引用有多级结构"></a>块引用有多级结构</h3><blockquote>
+<p>数据结构</p>
+<blockquote>
+<p>树</p>
+<blockquote>
+<p>二叉树</p>
+<blockquote>
+<p>平衡二叉树</p>
+<blockquote>
+<p>满二叉树</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<h2 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h2><p>在三个反引号后面加上编程语言的名字，另起一行开始写代码，最后一行再加上三个反引号。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[]args)</span>&#123;&#125; <span class="comment">//Java</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> <span class="comment">//C</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;hello GitHub&quot;</span> <span class="comment">#Bash</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;myH1&quot;</span>).<span class="property">innerHTML</span> = <span class="string">&quot;Welcome to my Homepage&quot;</span>; <span class="comment">//javascipt</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string &amp;<span class="keyword">operator</span>+(<span class="type">const</span> string&amp; A,<span class="type">const</span> string&amp; B) <span class="comment">//cpp</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><table>
+<thead>
+<tr>
+<th>表头 1</th>
+<th>表头 2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>表格单元</td>
+<td>表格单元</td>
+</tr>
+<tr>
+<td>表格单元</td>
+<td>表格单元</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>表头 1</th>
+<th>表头 2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>表格单元</td>
+<td>表格单元</td>
+</tr>
+<tr>
+<td>表格单元</td>
+<td>表格单元</td>
+</tr>
+</tbody></table>
+<h3 id="对齐"><a href="#对齐" class="headerlink" title="对齐"></a>对齐</h3><p>表格可以指定对齐方式</p>
+<table>
+<thead>
+<tr>
+<th align="left">左对齐</th>
+<th align="center">居中</th>
+<th align="right">右对齐</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">col 3 is</td>
+<td align="center">some wordy text</td>
+<td align="right">$1600</td>
+</tr>
+<tr>
+<td align="left">col 2 is</td>
+<td align="center">centered</td>
+<td align="right">$12</td>
+</tr>
+<tr>
+<td align="left">zebra stripes</td>
+<td align="center">are neat</td>
+<td align="right">$1</td>
+</tr>
+</tbody></table>
+<h3 id="混合其他语法"><a href="#混合其他语法" class="headerlink" title="混合其他语法"></a>混合其他语法</h3><p>表格单元中的内容可以和其他大多数 GFM 语法配合使用，如：</p>
+<h4 id="使用普通文本的删除线，斜体等效果"><a href="#使用普通文本的删除线，斜体等效果" class="headerlink" title="使用普通文本的删除线，斜体等效果"></a>使用普通文本的删除线，斜体等效果</h4><table>
+<thead>
+<tr>
+<th>名字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Help</td>
+<td><del>Display the</del> help window.</td>
+</tr>
+<tr>
+<td>Close</td>
+<td><em>Closes</em> a window</td>
+</tr>
+</tbody></table>
+<h4 id="表格中嵌入图片（链接）"><a href="#表格中嵌入图片（链接）" class="headerlink" title="表格中嵌入图片（链接）"></a>表格中嵌入图片（链接）</h4><p>其实前面介绍图片显示、图片链接的时候为了清晰就是放在在表格中显示的。</p>
+<table>
+<thead>
+<tr>
+<th>图片</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://www.baidu.com/img/bdlogo.gif" alt="baidu" title="百度 logo"></td>
+<td>百度</td>
+</tr>
+</tbody></table>
+<h2 id="表情"><a href="#表情" class="headerlink" title="表情"></a>表情</h2><p><code>Github</code> 的 <code>Markdown</code> 语法支持添加 <code>emoji</code> 表情，输入不同的符号码（两个冒号包围的字符）可以显示出不同的表情。</p>
+<p>比如 <code>:blush:</code>，可以显示 :blush:。</p>
+<p>具体每一个表情的符号码，可以查询 <code>GitHub</code> 的官方网页<a href="http://www.emoji-cheat-sheet.com/">http://www.emoji-cheat-sheet.com</a>。</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://sitoi.cn">Sitoi</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://sitoi.cn/posts/15814.html">https://sitoi.cn/posts/15814.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://sitoi.cn" target="_blank">Sitoi</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/GitHub/">GitHub</a><a class="post-meta__tags" href="/tags/%E8%A7%84%E8%8C%83/">规范</a><a class="post-meta__tags" href="/tags/MarkDown/">MarkDown</a></div><div class="post-share"><div class="social-share" data-image="https://opendoodles.s3-us-west-1.amazonaws.com/sitting.svg" data-sites="wechat,qq,weibo,twitter,facebook,linkedin"></div><link rel="stylesheet" href="https://npm.elemecdn.com/butterfly-extsrc@latest/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://npm.elemecdn.com/butterfly-extsrc@latest/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/posts/48217.html" title="OpenLDAP 安装教程"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/ballet.svg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">OpenLDAP 安装教程</div></div><div class="info-2"><div class="info-item-1">OpenLDAP 安装教程在 centos7 上安装 OpenLDAP 环境准备两台虚拟机 node01 IP：192.168.1.143 server 端 node02 IP：192.168.1.146 client 端 均关闭 iptables 和 selinux 和 firewall Service 端步骤：  安装包 拷贝 DB_CONFIG 文件 设置目录权限 创建 LDAP 管理员密码 修改配置文件(三个) 启动并设置开机启动 slapd 服务 导入基本 Schema 导入 base.ldif 文件 配置 migrationtools 导入系统用户和组 重启服务  安装包1yum install openldap-servers openldap-clients migrationtools  拷贝 DB_CONFIG 文件1cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG  设置目录权限1chown -R ldap. /var/lib/ldap/  创建 LDAP 管理员...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/23395.html" title="国内加速访问 GitHub"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/clumsy.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-10-29</div><div class="info-item-2">国内加速访问 GitHub</div></div><div class="info-2"><div class="info-item-1">国内加速访问 GitHub中国访问 GitHub 的速度不忍直视，那就叫一个慢！ 12Q: 为什么访问速度会很慢？A: GitHub 在国内访问速度慢的问题原因有很多，但最直接和最主要的原因是 GitHub 的分发加速网络的域名遭到 dns 污染。  12Q: 如何解决 DNS 污染？A: 通过修改 hosts 解决污染问题。  解决方法 不需要科（）学（）上网，也不需要开代理加速器。  一、查询网址对应的 IP 地址查询地址：https://www.ipaddress.com/ 点击下面 域名（domain）自动跳转到 ipaddress.com 查询结果页面：  github.com  assets-cdn.github.com  github.global.ssl.fastly.net      二、修改本地系统 hosts 文件 hosts 文件路径：C:\Windows\System32\drivers\etc\hosts   以管理员身份打开 CMD 终端，并输入 notepad ，会打开一个记事本。    打开文件，输入 hosts 文件路径，选择所有文件，最后点击...</div></div></div></a><a class="pagination-related" href="/posts/15908.html" title="基于 Hexo GitHub 从零开始搭建个人博客（五）：自动部署篇"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/swinging.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-30</div><div class="info-item-2">基于 Hexo GitHub 从零开始搭建个人博客（五）：自动部署篇</div></div><div class="info-2"><div class="info-item-1">遇到任何问题，优先在本页面搜索，看看是否已经有该配置教程；不懂得可以百度或者 Google；还有弄不明白的可以在本站点留言，或添加站长 Wechat、QQ 等   文档目录 环境准备搭建基础主题配置主题优化 - 添加 PWA自动部署   前言本文教程教你实现，如何将你的 Hexo 博客自动部署到多个平台  GitHub GitLab Coding Gitee  优点：  编写文章，推送到 GitHub 即可实现自动部署 利用 GitHub 的私有仓库将博客源码直接保存在 GitHub 上  准备 Hexo 博客源码的仓库，在 GitHub 上。 ssh 密钥，参考文章：Windows 下利用 Git 生成 SSH KEY 并配置到 GitHub  步骤 为需要部署的平台添加密钥 修改 _config.yml 中的 deploy 配置 在 GitHub 上设置 Secrets 创建 GitHub Action  为需要部署的平台添加密钥按照之前的教程，只要你之前成功将 Hexo 的博客部署到 GitHub 上，那你电脑在 ~/.ssh 目录下一定有以下三个文件：  id_rsa：私...</div></div></div></a><a class="pagination-related" href="/posts/49115.html" title="基于 Hexo GitHub 从零开始搭建个人博客（四）：让你的博客完美支持 PWA"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/moshing.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-29</div><div class="info-item-2">基于 Hexo GitHub 从零开始搭建个人博客（四）：让你的博客完美支持 PWA</div></div><div class="info-2"><div class="info-item-1">遇到任何问题，优先在本页面搜索，看看是否已经有该配置教程；不懂得可以百度或者 Google；还有弄不明白的可以在本站点留言，或添加站长 Wechat、QQ 等   文档目录 环境准备搭建基础主题配置主题优化 - 添加 PWA自动部署   前言 Q：为什么让你的博客支持 PWA？   可以支持离线观看 可被识别成一个应用程序 响应式 适合任何形式的设备  前提 全站支持 HTTPS  安装 hexo-pwa运行如下命令，安装 hexo-pwa 1npm i hexo-pwa --save   hexo@4.2.0 目前赞不兼容 hexo-pwa,使用 hexo@4.2.0 版本的用户推荐降级到 hexo@4.1.1  查询版本 1hexo --version  安装 Hexo 指定版本 1npm i hexo@4.1.1 --save  修改配置文件 _config.yml12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455pwa: ...</div></div></div></a><a class="pagination-related" href="/posts/63466.html" title="基于 Hexo GitHub 从零开始搭建个人博客（三）：Matery 主题（DIY 版）详细配置教程，附博客源码"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/reading-side.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-28</div><div class="info-item-2">基于 Hexo GitHub 从零开始搭建个人博客（三）：Matery 主题（DIY 版）详细配置教程，附博客源码</div></div><div class="info-2"><div class="info-item-1">遇到任何问题，优先在本页面搜索，看看是否已经有该配置教程；不懂得可以百度或者 Google；还有弄不明白的可以在本站点留言，或添加站长 Wechat、QQ 等   文档目录 环境准备搭建基础主题配置主题优化 - 添加 PWA自动部署   这是一个采用 Material Design 和响应式设计的 Hexo 博客主题。   前言阅读本篇前，请确保你已经能够自己在 GitHub Pages 上搭建一个属于自己的初始化博客了。  基于 Hexo GitHub 从零开始搭建个人博客（一）：环境准备篇 基于 Hexo GitHub 从零开始搭建个人博客（二）：搭建基础篇  本篇是关于 matery 主题的一个介绍和配置教程！Demo:https://crawlmkt.github.io/ 阅读完本篇，你的博客基本上已经完全可以使用了。如果有不清楚的地方，也可以阅读本系列后面的文章，或者留言提问，也可以加我微信或 QQ。 效果截图     博客特性 简单漂亮，文章内容美观易读 Material Design 设计 响应式设计，博客在桌面端、平板、手机等设备上均能很好的展现 首页轮播文章及每...</div></div></div></a><a class="pagination-related" href="/posts/27801.html" title="基于 Hexo GitHub 从零开始搭建个人博客（二）：搭建基础篇"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/zombieing.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-27</div><div class="info-item-2">基于 Hexo GitHub 从零开始搭建个人博客（二）：搭建基础篇</div></div><div class="info-2"><div class="info-item-1">遇到任何问题，优先在本页面搜索，看看是否已经有该配置教程；不懂得可以百度或者 Google；还有弄不明白的可以在本站点留言，或添加站长 Wechat、QQ 等   文档目录 环境准备搭建基础主题配置主题优化 - 添加 PWA自动部署   前言阅读本篇前，请确保你的电脑配置好相应的环境，参考教程请看基于 Hexo GitHub 从零开始搭建个人博客（一）：环境准备篇   在本篇教程你，你将获得一个初始的个人博客，使用 hexo 命令，创建一个属于你自己的初始化博客。并将其在本地运行起来，最后部署到 GitHub Pages 上，让你的博客在有网的地方就可以被访问。 初始化 Hexo 项目选择一个目录，鼠标右击，选择 Git Bash here  在 Git Bash 输入如下命令初始化一个 Hexo 项目 crawlmkt.github.io 表示项目的名称，即文件夹的名字，建议使用 GitHub 项目对应的名称如：crawlmkt.github.io 1hexo init crawlmkt.github.io   这样 crawlmkt.github.io 文件夹下就会出现 He...</div></div></div></a><a class="pagination-related" href="/posts/6666.html" title="基于 Hexo GitHub 从零开始搭建个人博客（一）：环境准备篇"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/sprinting.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-26</div><div class="info-item-2">基于 Hexo GitHub 从零开始搭建个人博客（一）：环境准备篇</div></div><div class="info-2"><div class="info-item-1">遇到任何问题，优先在本页面搜索，看看是否已经有该配置教程；不懂得可以百度或者 Google；还有弄不明白的可以在本站点留言，或添加站长 Wechat、QQ 等   文档目录 环境准备搭建基础主题配置主题优化 - 添加 PWA自动部署   前言      Q: 为什么要搭建一个属于自己的个人博客呢？   高度自由化 用自己喜欢的域名，选择自己喜欢的主题，布局，特效等都可以自己编写代码完成  成就感 当网站被搜索引擎收录，输入相应关键字即可，可以小小的炫耀一番  拓展交流圈 如果你对某类感兴趣的话，你可以通过个人博客找到一些志同道合的朋友。  学会坚持刚开始搭建好属于自己的博客，那真的是三分钟热度，但是真的坚持下来的人很少  最好的个人简历当我们苦于该如何写一份个人简历时，当你拿出一个你坚持 3 年、5 年的个人博客时，或许你的机会就比别人大一点。  自己的空间 在这个地方，你可以写一些自己的东西（没有朋友看）  写作水平的提高 坚持写作，你的写作水平会得到很到的提高，对你今后的人生会有很大的帮助  赚取一点钱 当你的博客足够好，你可以开始尝试赚钱，当然啦，和坚持是离不开的。    ...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/avatars/avatar.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Sitoi</div><div class="author-info-description">真正的酷都是需要付诸努力的</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">95</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><a id="card-info-btn" href="https://github.com/Sitoi"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="/wechat.jpg" target="_blank" title="Wechat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="tencent://message/?uin=133397418" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=133397418" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://github.com/Sitoi/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#GFM"><span class="toc-number">1.</span> <span class="toc-text">GFM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95"><span class="toc-number">1.1.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%AA%E7%BA%BF"><span class="toc-number">1.2.</span> <span class="toc-text">横线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E9%A2%98"><span class="toc-number">1.3.</span> <span class="toc-text">标题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">一级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-number">2.1.</span> <span class="toc-text">二级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-number">2.1.1.</span> <span class="toc-text">三级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-number">2.1.1.1.</span> <span class="toc-text">四级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%94%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-number">2.1.1.1.1.</span> <span class="toc-text">五级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%85%AD%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-number">2.1.1.1.1.1.</span> <span class="toc-text">六级标题</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC"><span class="toc-number">2.2.</span> <span class="toc-text">文本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%99%AE%E9%80%9A%E6%96%87%E6%9C%AC"><span class="toc-number">2.2.1.</span> <span class="toc-text">普通文本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E8%A1%8C%E6%96%87%E6%9C%AC"><span class="toc-number">2.2.2.</span> <span class="toc-text">单行文本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E5%9D%97"><span class="toc-number">2.2.3.</span> <span class="toc-text">文本块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95-1"><span class="toc-number">2.2.3.1.</span> <span class="toc-text">语法 1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95-2"><span class="toc-number">2.2.3.2.</span> <span class="toc-text">语法 2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E5%AD%97%E9%AB%98%E4%BA%AE"><span class="toc-number">2.2.4.</span> <span class="toc-text">文字高亮</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8D%A2%E8%A1%8C"><span class="toc-number">2.2.4.1.</span> <span class="toc-text">换行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%9C%E4%BD%93%E3%80%81%E7%B2%97%E4%BD%93%E3%80%81%E5%88%A0%E9%99%A4%E7%BA%BF"><span class="toc-number">2.2.4.2.</span> <span class="toc-text">斜体、粗体、删除线</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E7%89%87"><span class="toc-number">2.3.</span> <span class="toc-text">图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5"><span class="toc-number">2.4.</span> <span class="toc-text">链接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E5%A4%96%E9%83%A8-URL"><span class="toc-number">2.4.1.</span> <span class="toc-text">链接外部 URL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E6%9C%AC%E4%BB%93%E5%BA%93%E9%87%8C%E7%9A%84-URL"><span class="toc-number">2.4.2.</span> <span class="toc-text">链接本仓库里的 URL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E9%93%BE%E6%8E%A5"><span class="toc-number">2.4.3.</span> <span class="toc-text">图片链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%9A%E7%82%B9"><span class="toc-number">2.4.4.</span> <span class="toc-text">锚点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E8%A1%A8"><span class="toc-number">2.5.</span> <span class="toc-text">列表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8"><span class="toc-number">2.5.1.</span> <span class="toc-text">无序列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E7%BA%A7%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8"><span class="toc-number">2.5.2.</span> <span class="toc-text">多级无序列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8"><span class="toc-number">2.5.3.</span> <span class="toc-text">有序列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E6%95%88%E6%9E%9C"><span class="toc-number">2.5.3.1.</span> <span class="toc-text">一般效果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8%E8%87%AA%E5%8A%A8%E6%8E%92%E5%BA%8F"><span class="toc-number">2.5.3.2.</span> <span class="toc-text">有序列表自动排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E7%BA%A7%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8"><span class="toc-number">2.5.3.3.</span> <span class="toc-text">多级有序列表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E9%80%89%E6%A1%86%E5%88%97%E8%A1%A8"><span class="toc-number">2.5.4.</span> <span class="toc-text">复选框列表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%97%E5%BC%95%E7%94%A8"><span class="toc-number">2.6.</span> <span class="toc-text">块引用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E4%BA%8E%E5%BC%95%E7%94%A8%E6%96%87%E6%9C%AC"><span class="toc-number">2.6.1.</span> <span class="toc-text">常用于引用文本</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E6%91%98%E8%87%AA%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E3%80%8BP27"><span class="toc-number">2.6.1.1.</span> <span class="toc-text">文本摘自《深入理解计算机系统》P27</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%97%E5%BC%95%E7%94%A8%E6%9C%89%E5%A4%9A%E7%BA%A7%E7%BB%93%E6%9E%84"><span class="toc-number">2.6.2.</span> <span class="toc-text">块引用有多级结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE"><span class="toc-number">2.7.</span> <span class="toc-text">代码高亮</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC"><span class="toc-number">2.8.</span> <span class="toc-text">表格</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E9%BD%90"><span class="toc-number">2.8.1.</span> <span class="toc-text">对齐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%B7%E5%90%88%E5%85%B6%E4%BB%96%E8%AF%AD%E6%B3%95"><span class="toc-number">2.8.2.</span> <span class="toc-text">混合其他语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%99%AE%E9%80%9A%E6%96%87%E6%9C%AC%E7%9A%84%E5%88%A0%E9%99%A4%E7%BA%BF%EF%BC%8C%E6%96%9C%E4%BD%93%E7%AD%89%E6%95%88%E6%9E%9C"><span class="toc-number">2.8.2.1.</span> <span class="toc-text">使用普通文本的删除线，斜体等效果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E4%B8%AD%E5%B5%8C%E5%85%A5%E5%9B%BE%E7%89%87%EF%BC%88%E9%93%BE%E6%8E%A5%EF%BC%89"><span class="toc-number">2.8.2.2.</span> <span class="toc-text">表格中嵌入图片（链接）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E6%83%85"><span class="toc-number">2.9.</span> <span class="toc-text">表情</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/39218.html" title="如何在 Elasticsearch 中更新索引的 Mapping"><img src="https://opendoodles.s3-us-west-1.amazonaws.com/float.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="如何在 Elasticsearch 中更新索引的 Mapping"/></a><div class="content"><a class="title" href="/posts/39218.html" title="如何在 Elasticsearch 中更新索引的 Mapping">如何在 Elasticsearch 中更新索引的 Mapping</a><time datetime="2023-10-14T06:26:21.000Z" title="发表于 2023-10-14 14:26:21">2023-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/10054.html" title="简洁登录：在 Linux 终端中去除 'Last login' 信息"><img src="https://opendoodles.s3-us-west-1.amazonaws.com/sitting.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="简洁登录：在 Linux 终端中去除 'Last login' 信息"/></a><div class="content"><a class="title" href="/posts/10054.html" title="简洁登录：在 Linux 终端中去除 'Last login' 信息">简洁登录：在 Linux 终端中去除 'Last login' 信息</a><time datetime="2023-07-28T02:25:20.000Z" title="发表于 2023-07-28 10:25:20">2023-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/46937.html" title="高效下载 NGINX 静态网站：利用 wget 进行递归下载"><img src="https://opendoodles.s3-us-west-1.amazonaws.com/selfie.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="高效下载 NGINX 静态网站：利用 wget 进行递归下载"/></a><div class="content"><a class="title" href="/posts/46937.html" title="高效下载 NGINX 静态网站：利用 wget 进行递归下载">高效下载 NGINX 静态网站：利用 wget 进行递归下载</a><time datetime="2023-07-16T01:59:04.000Z" title="发表于 2023-07-16 09:59:04">2023-07-16</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://opendoodles.s3-us-west-1.amazonaws.com/sitting.svg);"><div class="footer-flex"><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">项目</div><div class="footer-flex-content"><a href="https://sitoi.github.io/dailycheckin/" target="_blank" title="✏️ Dailycheckin">✏️ Dailycheckin</a><a href="https://crawlaio.com/" target="_blank" title="🕷️ Crawlaio">🕷️ Crawlaio</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">备用</div><div class="footer-flex-content"><a href="https://sitoi.github.io" target="_blank" title="📑 GitHub Pages">📑 GitHub Pages</a><a href="https://www.cnblogs.com/sitoi" target="_blank" title="📑 Cnblog">📑 Cnblog</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">框架</div><div class="footer-flex-content"><a href="https://hexo.io/zh-cn/" target="_blank" title="📦 Hexo">📦 Hexo</a><a href="https://butterfly.js.org/" target="_blank" title="🎨 Butterfly">🎨 Butterfly</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">赞助</div><div class="footer-flex-content"><div><img src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/alipay.jpg' alt='Sitoi' width='100px' height='100px'></div></div></div></div></div><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2018 - 2025 By Sitoi</span><span class="framework-info"><span class="footer-separator">|</span><span>框架 </span><a href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.2</a></span></div><div class="footer_custom_text"><a href="https://beian.miit.gov.cn/"><img class="icp-icon" src="/medias/icp.png"><span>沪ICP备2025115209号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.2"></script><script src="/js/main.js?v=5.5.2"></script><script src="https://npm.elemecdn.com/@fancyapps/ui@latest/dist/fancybox/fancybox.umd.js"></script><script src="https://npm.elemecdn.com/instant.page@latest/instantpage.js" type="module"></script><script src="https://npm.elemecdn.com/node-snackbar@latest/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const config = mermaidSrc.dataset.config ? JSON.parse(mermaidSrc.dataset.config) : {}
+      if (!config.theme) {
+        config.theme = theme
+      }
+      const mermaidThemeConfig = `%%{init: ${JSON.stringify(config)}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://npm.elemecdn.com/mermaid@latest/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  let initFn = window.walineFn || null
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const destroyWaline = ele => ele.destroy()
+
+  const initWaline = (Fn, el = document, path = window.location.pathname) => {
+    const waline = Fn({
+      el: el.querySelector('#waline-wrap'),
+      serverURL: 'https://waline.sitoi.cn/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      comment: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyWaline = () => {
+        destroyWaline(waline)
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const loadWaline = (el, path) => {
+    if (initFn) initWaline(initFn, el, path)
+    else {
+      btf.getCSS('https://npm.elemecdn.com/@waline/client@latest/dist/waline.css')
+        .then(() => import('https://npm.elemecdn.com/@waline/client@latest/dist/waline.js'))
+        .then(({ init }) => {
+          initFn = init || Waline.init
+          initWaline(initFn, el, path)
+          window.walineFn = initFn
+        })
+    }
+  }
+
+  if (isShuoshuo) {
+    'Waline' === 'Waline'
+      ? window.shuoshuoComment = { loadComment: loadWaline } 
+      : window.loadOtherComment = loadWaline
+    return
+  }
+
+  if ('Waline' === 'Waline' || !false) {
+    if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><div class="app-refresh" id="app-refresh"> <div class="app-refresh-wrap"> <label>✨ 网站已更新最新版本 👉</label> <a href="javascript:void(0)" onclick="location.reload()">点击刷新</a> </div></div><script>function showNotification(){if(GLOBAL_CONFIG.Snackbar){var t="light"===document.documentElement.getAttribute("data-theme")?GLOBAL_CONFIG.Snackbar.bgLight:GLOBAL_CONFIG.Snackbar.bgDark,e=GLOBAL_CONFIG.Snackbar.position;Snackbar.show({text:"已更新最新版本",backgroundColor:t,duration:5e5,pos:e,actionText:"点击刷新",actionTextColor:"#fff",onActionClick:function(t){location.reload()}})}else{var o=`top: 0; background: ${"light"===document.documentElement.getAttribute("data-theme")?"#49b1f5":"#1f1f1f"};`;document.getElementById("app-refresh").style.cssText=o}}"serviceWorker"in navigator&&(navigator.serviceWorker.controller&&navigator.serviceWorker.addEventListener("controllerchange",function(){showNotification()}),window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")}));</script><script id="click-heart" src="https://npm.elemecdn.com/butterfly-extsrc@latest/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="/"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.2"></script></div></div></body></html>

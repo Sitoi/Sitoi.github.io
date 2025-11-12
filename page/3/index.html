@@ -1,0 +1,468 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Sitoi</title><meta name="author" content="Sitoi"><meta name="copyright" content="Sitoi"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="真正的酷都是需要付诸努力的">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sitoi">
+<meta property="og:url" content="https://sitoi.cn/page/3/index.html">
+<meta property="og:site_name" content="Sitoi">
+<meta property="og:description" content="真正的酷都是需要付诸努力的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/avatars/avatar.jpg">
+<meta property="article:author" content="Sitoi">
+<meta property="article:tag" content="Sitoi,Blog,博客,Python,爬虫,Scrapy,Spider,Crawl,工程师,程序员,IT,教程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/avatars/avatar.jpg"><script type="application/ld+json"></script><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/favicon.ico"><link rel="canonical" href="https://sitoi.cn/page/3/index.html"><link rel="preconnect" href="https://npm.elemecdn.com"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/medias/logo_32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/medias/logo_16.png"/><link rel="mask-icon" href="/apple-touch-icon.png" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css?v=5.5.2"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free@latest/css/all.min.css"><link rel="stylesheet" href="https://npm.elemecdn.com/node-snackbar@latest/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/@fancyapps/ui@latest/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?c29e2dcbe60cb0ec619a76c424a71b11";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+btf.addGlobalFn('pjaxComplete', () => {
+  _hmt.push(['_trackPageview',window.location.pathname])
+}, 'baidu_analytics')
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-136865061-1"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'UA-136865061-1')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'UA-136865061-1', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;b618d0d8bcf448af935bd89530ccffcd&quot;}"></script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://npm.elemecdn.com/@egjs/infinitegrid@latest/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Sitoi',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><script async src="https://umami.sitoi.cn/script.js" data-website-id="b23bdc64-5e23-46d5-9e2c-c862f9413a1f"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/background.css"><meta name="baidu_union_verify" content="8822ba856d99c65163dd207aaffc3510"><style type="text/css">.app-refresh{position:fixed;top:-2.2rem;left:0;right:0;z-index:99999;padding:0 1rem;font-size:15px;height:2.2rem;transition:all .3s ease}.app-refresh-wrap{display:flex;color:#fff;height:100%;align-items:center;justify-content:center}.app-refresh-wrap a{color:#fff;text-decoration:underline;cursor:pointer}</style><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Sitoi" type="application/atom+xml">
+</head><body><div id="web_bg" style="background-color: #efefef;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/avatars/avatar.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">95</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw fas fa-envelope"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友人</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 项目</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://sitoi.github.io/dailycheckin/"><i class="fa-fw fas fa-location-arrow"></i><span> Dailycheckin</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="https://crawlaio.github.io"><i class="fa-fw fas fa-location-arrow"></i><span> 导航</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/banner/13.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Sitoi</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw fas fa-envelope"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友人</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 项目</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://sitoi.github.io/dailycheckin/"><i class="fa-fw fas fa-location-arrow"></i><span> Dailycheckin</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="https://crawlaio.github.io"><i class="fa-fw fas fa-location-arrow"></i><span> 导航</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">Sitoi</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="/wechat.jpg" target="_blank" title="Wechat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="tencent://message/?uin=133397418" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=133397418" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://github.com/Sitoi/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover left"><a href="/posts/63466.html" title="基于 Hexo GitHub 从零开始搭建个人博客（三）：Matery 主题（DIY 版）详细配置教程，附博客源码"><img class="post-bg" src="https://opendoodles.s3-us-west-1.amazonaws.com/reading-side.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="基于 Hexo GitHub 从零开始搭建个人博客（三）：Matery 主题（DIY 版）详细配置教程，附博客源码"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/63466.html" title="基于 Hexo GitHub 从零开始搭建个人博客（三）：Matery 主题（DIY 版）详细配置教程，附博客源码">基于 Hexo GitHub 从零开始搭建个人博客（三）：Matery 主题（DIY 版）详细配置教程，附博客源码</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-12-28T08:52:30.000Z" title="发表于 2019-12-28 16:52:30">2019-12-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF/Hexo/">Hexo</a></span></div><div class="content">遇到任何问题，优先在本页面搜索，看看是否已经有该配置教程；不懂得可以百度或者 Google；还有弄不明白的可以在本站点留言，或添加站长 Wechat、QQ 等   文档目录 环境准备搭建基础主题配置主题优化 - 添加 PWA自动部署   这是一个采用 Material Design 和响应式设计的 Hexo 博客主题。   前言阅读本篇前，请确保你已经能够自己在 GitHub Pages 上搭建一个属于自己的初始化博客了。  基于 Hexo GitHub 从零开始搭建个人博客（一）：环境准备篇 基于 Hexo GitHub 从零开始搭建个人博客（二）：搭建基础篇  本篇是关于 matery 主题的一个介绍和配置教程！Demo:https://crawlmkt.github.io/ 阅读完本篇，你的博客基本上已经完全可以使用了。如果有不清楚的地方，也可以阅读本系列后面的文章，或者留言提问，也可以加我微信或 QQ。 效果截图     博客特性 简单漂亮，文章内容美观易读 Material Design 设计 响应式设计，博客在桌面端、平板、手机等设备上均能很好的展现 首页轮播文章及每...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/27801.html" title="基于 Hexo GitHub 从零开始搭建个人博客（二）：搭建基础篇"><img class="post-bg" src="https://opendoodles.s3-us-west-1.amazonaws.com/zombieing.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="基于 Hexo GitHub 从零开始搭建个人博客（二）：搭建基础篇"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/27801.html" title="基于 Hexo GitHub 从零开始搭建个人博客（二）：搭建基础篇">基于 Hexo GitHub 从零开始搭建个人博客（二）：搭建基础篇</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-12-27T06:46:41.000Z" title="发表于 2019-12-27 14:46:41">2019-12-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF/Hexo/">Hexo</a></span></div><div class="content">遇到任何问题，优先在本页面搜索，看看是否已经有该配置教程；不懂得可以百度或者 Google；还有弄不明白的可以在本站点留言，或添加站长 Wechat、QQ 等   文档目录 环境准备搭建基础主题配置主题优化 - 添加 PWA自动部署   前言阅读本篇前，请确保你的电脑配置好相应的环境，参考教程请看基于 Hexo GitHub 从零开始搭建个人博客（一）：环境准备篇   在本篇教程你，你将获得一个初始的个人博客，使用 hexo 命令，创建一个属于你自己的初始化博客。并将其在本地运行起来，最后部署到 GitHub Pages 上，让你的博客在有网的地方就可以被访问。 初始化 Hexo 项目选择一个目录，鼠标右击，选择 Git Bash here  在 Git Bash 输入如下命令初始化一个 Hexo 项目 crawlmkt.github.io 表示项目的名称，即文件夹的名字，建议使用 GitHub 项目对应的名称如：crawlmkt.github.io 1hexo init crawlmkt.github.io   这样 crawlmkt.github.io 文件夹下就会出现 He...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/6666.html" title="基于 Hexo GitHub 从零开始搭建个人博客（一）：环境准备篇"><img class="post-bg" src="https://opendoodles.s3-us-west-1.amazonaws.com/sprinting.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="基于 Hexo GitHub 从零开始搭建个人博客（一）：环境准备篇"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/6666.html" title="基于 Hexo GitHub 从零开始搭建个人博客（一）：环境准备篇">基于 Hexo GitHub 从零开始搭建个人博客（一）：环境准备篇</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-12-26T12:02:34.000Z" title="发表于 2019-12-26 20:02:34">2019-12-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF/Hexo/">Hexo</a></span></div><div class="content">遇到任何问题，优先在本页面搜索，看看是否已经有该配置教程；不懂得可以百度或者 Google；还有弄不明白的可以在本站点留言，或添加站长 Wechat、QQ 等   文档目录 环境准备搭建基础主题配置主题优化 - 添加 PWA自动部署   前言      Q: 为什么要搭建一个属于自己的个人博客呢？   高度自由化 用自己喜欢的域名，选择自己喜欢的主题，布局，特效等都可以自己编写代码完成  成就感 当网站被搜索引擎收录，输入相应关键字即可，可以小小的炫耀一番  拓展交流圈 如果你对某类感兴趣的话，你可以通过个人博客找到一些志同道合的朋友。  学会坚持刚开始搭建好属于自己的博客，那真的是三分钟热度，但是真的坚持下来的人很少  最好的个人简历当我们苦于该如何写一份个人简历时，当你拿出一个你坚持 3 年、5 年的个人博客时，或许你的机会就比别人大一点。  自己的空间 在这个地方，你可以写一些自己的东西（没有朋友看）  写作水平的提高 坚持写作，你的写作水平会得到很到的提高，对你今后的人生会有很大的帮助  赚取一点钱 当你的博客足够好，你可以开始尝试赚钱，当然啦，和坚持是离不开的。    ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/43508.html" title="Windows 下利用 Git 生成 SSH KEY 并配置到 GitHub"><img class="post-bg" src="https://opendoodles.s3-us-west-1.amazonaws.com/coffee.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="Windows 下利用 Git 生成 SSH KEY 并配置到 GitHub"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/43508.html" title="Windows 下利用 Git 生成 SSH KEY 并配置到 GitHub">Windows 下利用 Git 生成 SSH KEY 并配置到 GitHub</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-12-25T04:47:35.000Z" title="发表于 2019-12-25 12:47:35">2019-12-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">开发环境</a></span></div><div class="content">基本环境 Windows 操作系统 本地安装了 Git 一个 GitHub 帐号  生成 SSH KEY打开 Git Bash在 Windows 桌面上，鼠标右击，选择 Git Bash here，打开 Git Bash   输入命令email@email.com 填入一个你自己的邮箱，可以是注册 GitHub 的邮箱 输入以下命令，一直按回车： 1ssh-keygen -t rsa -C &quot;email@email.com&quot;   查看 SSH KEY输入以下命令查看 SSH KEY： 1cat ~/.ssh/id_rsa.pub   将 SSH KEY 添加到 GitHub 点击头像，选择 Settings 选择 SHH and GPG keys 点击 New SSH key    填入 SSH KEY 点击 Add SSH key   测试连接打开 Git Bash，输入以下命令： 1ssh -T git@github.com   </div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/39161.html" title="GitHub + jsDelivr + PicGo + Imagine 打造稳定快速、高效免费图床"><img class="post-bg" src="https://opendoodles.s3-us-west-1.amazonaws.com/strolling.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="GitHub + jsDelivr + PicGo + Imagine 打造稳定快速、高效免费图床"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/39161.html" title="GitHub + jsDelivr + PicGo + Imagine 打造稳定快速、高效免费图床">GitHub + jsDelivr + PicGo + Imagine 打造稳定快速、高效免费图床</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-11-12T15:09:14.000Z" title="发表于 2019-11-12 23:09:14">2019-11-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF/Hexo/">Hexo</a></span></div><div class="content">GitHub + jsDelivr + PicGo + Imagine 打造稳定快速、高效免费图床前言 为什么要使用图床呢？  因为在不同平台发布同一篇文章的时候，最一个痛苦的点就是，图片存储问题，各个平台的文件存储方式各不相同，无法直接 Ctrl + C 的方式一键搞定，为了解决这个问题，使用 MarkDown + 图床 的方式进行文章的写作，将图片放到一个统一的地方，在文章中引入图片外链。所谓图床，就是将图片储存到第三方静态资源库中，其返回给你一个 URL 进行获取图片。MarkDown 支持使用 URL 的方式显示图片，我想这也是程序员为什么对其偏爱的原因之一。作为程序员，你会发现，现在很多论坛和社区都开始支持使用 MarkDown，如果你没使用图床的情况下，你分享同一篇文章，你要在不同的平台，各自重新编辑排版一遍和上传图片一次。有了图床，情况就不一样了，Ctrl + C 的方式就搞定了，根本不用再 Check 文章内容一遍。  图床的选择？   微博图床：以前用的人比较多，从 2019 年 4 月开始开启了防盗链，凉凉 SM.MS：运营四年多了，也变得越来越慢了，到了晚上...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/46278.html" title="Windows 程序包管理器 Chocolatey：一条命令装软件"><img class="post-bg" src="https://opendoodles.s3-us-west-1.amazonaws.com/swinging.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="Windows 程序包管理器 Chocolatey：一条命令装软件"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/46278.html" title="Windows 程序包管理器 Chocolatey：一条命令装软件">Windows 程序包管理器 Chocolatey：一条命令装软件</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-10-29T13:46:06.000Z" title="发表于 2019-10-29 21:46:06">2019-10-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BD%91%E7%AB%99%E4%B8%8E%E5%BA%94%E7%94%A8/">网站与应用</a></span></div><div class="content">Windows 程序包管理器 Chocolatey：一条命令装软件介绍Chocolatey 是一种软件管理解决方案，与您在 Windows 上经历过的任何其他事情都不一样。它着重于简单性，安全性和可伸缩性。您可以在 PowerShell 中为任何软件（不仅仅是安装程序）编写一次软件部署，然后可以使用任何可以管理系统（配置管理，端点管理等）并跟踪和管理该软件更新的解决方案，将其部署到 Windows 所在的任何位置。随着时间的推移。使用 Chocolatey 在本地，“云”中或 Docker 容器中管理软件。  简而言之呢：就是类似 Liunx 下的 apt、yum、dnf 等程序包管理器。  另外需要说明的是，Chocolatey 只是把官方下载路径封装到了 Chocolatey 中，所以下载源都是其官方路径，所以下载的一定是合法的，但是如果原软件是需要 Licence 注册的话，那么 Chocolatey 下载安装好的软件还是需要你去购买注册。不过 Chocolatey 一般还是会选用免费 Licence 可用的软件。 安装要求 Windows 7+ &#x2F; Window...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/48724.html" title="手把手教你如何利用 HeroKu 免费获取一个 Scrapyd 集群!"><img class="post-bg" src="https://opendoodles.s3-us-west-1.amazonaws.com/petting.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="手把手教你如何利用 HeroKu 免费获取一个 Scrapyd 集群!"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/48724.html" title="手把手教你如何利用 HeroKu 免费获取一个 Scrapyd 集群!">手把手教你如何利用 HeroKu 免费获取一个 Scrapyd 集群!</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-10-24T15:40:00.000Z" title="发表于 2019-10-24 23:40:00">2019-10-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%88%AC%E8%99%AB/Scrapy/">Scrapy</a></span></div><div class="content">手把手教你如何利用 HeroKu 免费获取一个 Scrapyd 集群准备环境 一个 GitHub 的账号 一个 HeroKu 帐号  操作步骤 利用 GitHub 帐号创建一个代码仓库  登录 HeroKu 创建 App 并进行配置   创建一个代码仓库 PS：想偷懒，直接 fork 我的项目就好了  项目地址：https://github.com/crawlmap/scrapyd-heroku Fork 完 你已经完成本项目的一半工作了，开心吗，激动吗，只剩下半步了。 不 Fork 的自己想办法吧，现成的不要，你非要自己造。 登录 HeroKu 创建 App 并进行配置 登录 https://signup.heroku.com/ 创建一个帐号    刚创建完进入的首页是长这个样子的，点击页面中间的 Create new app 创建我们的第一个项目，点击之后，你会进入到如下界面：    在界面上输入你要的取得项目名称，项目名称决定了之后的 URL 地址。选择区域，默认就好了，最后点击创建 Create app     此时你也已经进入到 APP 页面了，点击 GitHub 按钮...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/153.html" title="请不要污名化爬虫！"><img class="post-bg" src="https://opendoodles.s3-us-west-1.amazonaws.com/bikini.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="请不要污名化爬虫！"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/153.html" title="请不要污名化爬虫！">请不要污名化爬虫！</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-10-21T04:25:00.000Z" title="发表于 2019-10-21 12:25:00">2019-10-21</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></span></div><div class="content">请不要污名化爬虫！本文转自 NightTeam 原创：Loco NightTeam 文章作者：「夜幕团队 NightTeam」 - Loco 导语最近有一篇名为《只因写了一段爬虫，公司 200 多人被抓！》的文章非常火，相信大家应该都看到了。 这篇文章火起来之后，本来经过了一个多月的时间已经冷静下来了的爬虫圈子又开始人心惶惶了，各种说法层出不穷，大家都害怕自己一不小心就违法、进监狱过年，但是，事情真的是那样吗？ 辟谣我们先来看几个明显有误，且传播很广的说法吧。  “最近很多做爬虫的被抓了”  那篇文章的故事中提到的，是一家名为「巧达数据」的公司，如果之前有关注过相关新闻的朋友应该不难发现，这个公司实际上在 3 月份的时候就已经被查封了！ 而文章后面提到的天翼征信、新颜科技、魔蝎科技、公信宝、同盾科技相关事件，实际上也都是 9 月初的事情了，到目前为止已经一个多月了，并不是最近才发生的。  “最近一直有做爬虫的公司被抓”  很多人跟我说他看到一直有公司因为做爬虫被抓，但其实都是错觉，说白了，这只是因为你关注的信息来源（微信公众号）或者是你朋友圈内的人关注的信息来源都很集中、搞来搞去...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/23470.html" title="xpath re bs4 等爬虫解析器的性能比较"><img class="post-bg" src="https://opendoodles.s3-us-west-1.amazonaws.com/loving.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="xpath re bs4 等爬虫解析器的性能比较"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/23470.html" title="xpath re bs4 等爬虫解析器的性能比较">xpath re bs4 等爬虫解析器的性能比较</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-09-16T15:54:00.000Z" title="发表于 2019-09-16 23:54:00">2019-09-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></span></div><div class="content">xpath re bs4 等爬虫解析器的性能比较思路测试网站地址：http://baijiahao.baidu.com/s?id=1644707202199076031 根据同一个网站，获取同样的数据，重复 500 次取和后进行对比。 测试例子12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879# -*- coding: utf-8 -*-import reimport timeimport scrapyfrom bs4 import BeautifulSoupclass NewsSpider(scrapy.Spider):    name = &#x27;news&#x27;    allowed_domains = [&#x27;baidu.com&#x27;]    start_urls = [&#x27;http://baijia...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/65261.html" title="HDP 3.1.0 集成 Sqoop2 踩坑问题记录"><img class="post-bg" src="https://opendoodles.s3-us-west-1.amazonaws.com/coffee.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="HDP 3.1.0 集成 Sqoop2 踩坑问题记录"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/65261.html" title="HDP 3.1.0 集成 Sqoop2 踩坑问题记录">HDP 3.1.0 集成 Sqoop2 踩坑问题记录</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-04-23T11:20:00.000Z" title="发表于 2019-04-23 19:20:00">2019-04-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/Sqoop/">Sqoop</a></span></div><div class="content">HDP 3.1.0 集成 Sqoop2 踩坑问题记录问题一12345678$ sqoop:000&gt; start job -n mysql2hdfs2019-04-18 03:29:10 UTC: FAILURE_ON_SUBMITException: java.lang.IllegalArgumentException: Unable to parse &#x27;/hdp/apps/$&#123;hdp.version&#125;/mapreduce/mapreduce.tar.gz#mr-framework&#x27; as a URI, check the setting for mapreduce.application.framework.pathStack trace: java.lang.IllegalArgumentException: Unable to parse &#x27;/hdp/apps/$&#123;hdp.version&#125;/mapreduce/mapreduce.tar.gz#mr-framework&#x27; as a URI,...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/27560.html" title="Ambari 集群时间同步配置教程"><img class="post-bg" src="https://opendoodles.s3-us-west-1.amazonaws.com/dog-jump.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="Ambari 集群时间同步配置教程"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/27560.html" title="Ambari 集群时间同步配置教程">Ambari 集群时间同步配置教程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-04-22T13:20:00.000Z" title="发表于 2019-04-22 21:20:00">2019-04-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/Ambari/">Ambari</a></span></div><div class="content">Ambari 集群时间同步配置教程步骤 在时间同步主节点创建 ntp.conf 文件 在时间同步从节点上创建 ntp.conf 文件 修改所有节点时区 重启主节点 ntpd 服务 将所有从节点时间与主节点时间同步 检测时间是否同步 重启从节点 ntpd 服务  在时间同步主节点创建 ntp.conf 文件选择一台设备当时间同步主节点，运行以下命令，编写文件 ntp.conf 1sudo vim /etc/ntp.conf  写入如下内容： 1234567891011121314151617driftfile /var/lib/ntp/driftrestrict default nomodify notrap nopeer noqueryrestrict 127.0.0.1restrict ::1# restrict 网段 mask 子网掩码restrict 192.168.1.0 mask 255.255.255.0    # 修改这行server 127.127.1.0includefile /etc/ntp/crypto/pwkeys /etc/ntp/keysdisable...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/64483.html" title="HDP 3.1.0 集成 Sqoop2"><img class="post-bg" src="https://opendoodles.s3-us-west-1.amazonaws.com/ice-cream.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="HDP 3.1.0 集成 Sqoop2"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/64483.html" title="HDP 3.1.0 集成 Sqoop2">HDP 3.1.0 集成 Sqoop2</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-04-18T12:04:00.000Z" title="发表于 2019-04-18 20:04:00">2019-04-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/Sqoop/">Sqoop</a></span></div><div class="content">HDP 3.1.0 集成 Sqoop2环境 由三台主机组成的 HDP 3.1.0 集群 配置好时间同步  步骤 下载 Sqoop2 的安装包 解压安装包到 /usr/lib 目录下 修改 sqoop.sh 环境变量 修改 sqoop.properties 配置 导入第三方 jar 包 配置第三方 jar 包引用路径 修改 Ambari 上组件配置 验证配置是否正确 开启服务器  下载 Sqoop2 的安装包下载地址：http://mirror.bit.edu.cn/apache/sqoop/1.99.7/ 下载命令 12cd ~wget http://mirror.bit.edu.cn/apache/sqoop/1.99.7/sqoop-1.99.7-bin-hadoop200.tar.gz  解压安装包到 /usr/lib 目录下解压 Sqoop2 压缩包 1tar -xvf sqoop-&lt;version&gt;-bin-hadoop&lt;hadoop-version&gt;.tar.gz  移动到 /usr/lib/sqoop 目录 1mv sqoop-&lt;ver...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#content-inner">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#content-inner">4</a><a class="page-number" href="/page/5/#content-inner">5</a><a class="extend next" rel="next" href="/page/4/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/avatars/avatar.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Sitoi</div><div class="author-info-description">真正的酷都是需要付诸努力的</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">95</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><a id="card-info-btn" href="https://github.com/Sitoi"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="/wechat.jpg" target="_blank" title="Wechat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="tencent://message/?uin=133397418" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=133397418" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://github.com/Sitoi/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/39218.html" title="如何在 Elasticsearch 中更新索引的 Mapping"><img src="https://opendoodles.s3-us-west-1.amazonaws.com/float.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="如何在 Elasticsearch 中更新索引的 Mapping"/></a><div class="content"><a class="title" href="/posts/39218.html" title="如何在 Elasticsearch 中更新索引的 Mapping">如何在 Elasticsearch 中更新索引的 Mapping</a><time datetime="2023-10-14T06:26:21.000Z" title="发表于 2023-10-14 14:26:21">2023-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/10054.html" title="简洁登录：在 Linux 终端中去除 'Last login' 信息"><img src="https://opendoodles.s3-us-west-1.amazonaws.com/sitting.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="简洁登录：在 Linux 终端中去除 'Last login' 信息"/></a><div class="content"><a class="title" href="/posts/10054.html" title="简洁登录：在 Linux 终端中去除 'Last login' 信息">简洁登录：在 Linux 终端中去除 'Last login' 信息</a><time datetime="2023-07-28T02:25:20.000Z" title="发表于 2023-07-28 10:25:20">2023-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/46937.html" title="高效下载 NGINX 静态网站：利用 wget 进行递归下载"><img src="https://opendoodles.s3-us-west-1.amazonaws.com/selfie.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="高效下载 NGINX 静态网站：利用 wget 进行递归下载"/></a><div class="content"><a class="title" href="/posts/46937.html" title="高效下载 NGINX 静态网站：利用 wget 进行递归下载">高效下载 NGINX 静态网站：利用 wget 进行递归下载</a><time datetime="2023-07-16T01:59:04.000Z" title="发表于 2023-07-16 09:59:04">2023-07-16</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list expandBtn" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Docker/"><span class="card-category-list-name">Docker</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Git/"><span class="card-category-list-name">Git</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item parent"><a class="card-category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/"><span class="card-category-list-name">前端</span><span class="card-category-list-count">7</span><i class="fas fa-caret-left "></i></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/Hexo/"><span class="card-category-list-name">Hexo</span><span class="card-category-list-count">6</span></a></li></ul></li><li class="card-category-list-item parent"><a class="card-category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"><span class="card-category-list-name">大数据</span><span class="card-category-list-count">9</span><i class="fas fa-caret-left "></i></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/Ambari/"><span class="card-category-list-name">Ambari</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/Hadoop/"><span class="card-category-list-name">Hadoop</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/Spark/"><span class="card-category-list-name">Spark</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/Sqoop/"><span class="card-category-list-name">Sqoop</span><span class="card-category-list-count">2</span></a></li></ul></li><li class="card-category-list-item parent"><a class="card-category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"><span class="card-category-list-name">开发环境</span><span class="card-category-list-count">6</span><i class="fas fa-caret-left "></i></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/Mac/"><span class="card-category-list-name">Mac</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item parent"><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="card-category-list-name">数据库</span><span class="card-category-list-count">5</span><i class="fas fa-caret-left "></i></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Elasticsearch/"><span class="card-category-list-name">Elasticsearch</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/"><span class="card-category-list-name">MongoDB</span><span class="card-category-list-count">4</span></a></li></ul></li><li class="card-category-list-item parent"><a class="card-category-list-link" href="/categories/%E6%9D%83%E9%99%90%E9%AA%8C%E8%AF%81/"><span class="card-category-list-name">权限验证</span><span class="card-category-list-count">2</span><i class="fas fa-caret-left "></i></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%9D%83%E9%99%90%E9%AA%8C%E8%AF%81/OpenLDAP/"><span class="card-category-list-name">OpenLDAP</span><span class="card-category-list-count">2</span></a></li></ul></li><li class="card-category-list-item parent"><a class="card-category-list-link" href="/categories/%E7%88%AC%E8%99%AB/"><span class="card-category-list-name">爬虫</span><span class="card-category-list-count">10</span><i class="fas fa-caret-left "></i></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%88%AC%E8%99%AB/Scrapy/"><span class="card-category-list-name">Scrapy</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%88%AC%E8%99%AB/Selenium/"><span class="card-category-list-name">Selenium</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%88%AC%E8%99%AB/Squid/"><span class="card-category-list-name">Squid</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%88%AC%E8%99%AB/js-%E9%80%86%E5%90%91/"><span class="card-category-list-name">js 逆向</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BD%91%E7%AB%99%E4%B8%8E%E5%BA%94%E7%94%A8/"><span class="card-category-list-name">网站与应用</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/"><span class="card-category-list-name">网络</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%A7%84%E8%8C%83/"><span class="card-category-list-name">规范</span><span class="card-category-list-count">3</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Ambari/" style="font-size: 1.25em; color: rgb(140, 120, 83);">Ambari</a><a href="/tags/ntpd/" style="font-size: 1.15em; color: rgb(91, 50, 99);">ntpd</a><a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 1.15em; color: rgb(117, 74, 194);">教程</a><a href="/tags/Docker/" style="font-size: 1.35em; color: rgb(50, 64, 77);">Docker</a><a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 1.3em; color: rgb(182, 52, 107);">微服务</a><a href="/tags/Docker-Compose/" style="font-size: 1.15em; color: rgb(50, 190, 50);">Docker-Compose</a><a href="/tags/GitHub/" style="font-size: 1.45em; color: rgb(50, 145, 50);">GitHub</a><a href="/tags/jsDelivr/" style="font-size: 1.15em; color: rgb(125, 130, 111);">jsDelivr</a><a href="/tags/PicGo/" style="font-size: 1.15em; color: rgb(115, 58, 112);">PicGo</a><a href="/tags/Imagine/" style="font-size: 1.15em; color: rgb(115, 131, 166);">Imagine</a><a href="/tags/Hadoop/" style="font-size: 1.2em; color: rgb(138, 149, 50);">Hadoop</a><a href="/tags/HDFS/" style="font-size: 1.2em; color: rgb(50, 50, 50);">HDFS</a><a href="/tags/%E9%85%8D%E9%A2%9D/" style="font-size: 1.15em; color: rgb(69, 50, 199);">配额</a><a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 1.2em; color: rgb(89, 132, 194);">分布式</a><a href="/tags/HDP/" style="font-size: 1.2em; color: rgb(119, 172, 104);">HDP</a><a href="/tags/Sqoop2/" style="font-size: 1.2em; color: rgb(51, 154, 115);">Sqoop2</a><a href="/tags/%E9%97%AE%E9%A2%98/" style="font-size: 1.15em; color: rgb(50, 105, 126);">问题</a><a href="/tags/%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3/" style="font-size: 1.4em; color: rgb(50, 50, 78);">安装文档</a><a href="/tags/shell/" style="font-size: 1.15em; color: rgb(186, 52, 66);">shell</a><a href="/tags/Livy/" style="font-size: 1.15em; color: rgb(151, 50, 135);">Livy</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/10/">
+            <span class="card-archive-list-date">
+              十月 2023
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/07/">
+            <span class="card-archive-list-date">
+              七月 2023
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2022/02/">
+            <span class="card-archive-list-date">
+              二月 2022
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2021/03/">
+            <span class="card-archive-list-date">
+              三月 2021
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2020/11/">
+            <span class="card-archive-list-date">
+              十一月 2020
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2020/09/">
+            <span class="card-archive-list-date">
+              九月 2020
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2020/08/">
+            <span class="card-archive-list-date">
+              八月 2020
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2020/07/">
+            <span class="card-archive-list-date">
+              七月 2020
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2020/06/">
+            <span class="card-archive-list-date">
+              六月 2020
+            </span>
+            <span class="card-archive-list-count">7</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2020/05/">
+            <span class="card-archive-list-date">
+              五月 2020
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2020/01/">
+            <span class="card-archive-list-date">
+              一月 2020
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2019/12/">
+            <span class="card-archive-list-date">
+              十二月 2019
+            </span>
+            <span class="card-archive-list-count">6</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2019/11/">
+            <span class="card-archive-list-date">
+              十一月 2019
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2019/10/">
+            <span class="card-archive-list-date">
+              十月 2019
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2019/09/">
+            <span class="card-archive-list-date">
+              九月 2019
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2019/04/">
+            <span class="card-archive-list-date">
+              四月 2019
+            </span>
+            <span class="card-archive-list-count">7</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2019/03/">
+            <span class="card-archive-list-date">
+              三月 2019
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2019/02/">
+            <span class="card-archive-list-date">
+              二月 2019
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2019/01/">
+            <span class="card-archive-list-date">
+              一月 2019
+            </span>
+            <span class="card-archive-list-count">5</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2018/10/">
+            <span class="card-archive-list-date">
+              十月 2018
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2018/09/">
+            <span class="card-archive-list-date">
+              九月 2018
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">54</div></div><div class="webinfo-item"><div class="item-name">运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2018-09-24T00:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">68.2k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-11-12T05:29:48.109Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/banner/13.jpg);"><div class="footer-flex"><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">项目</div><div class="footer-flex-content"><a href="https://sitoi.github.io/dailycheckin/" target="_blank" title="✏️ Dailycheckin">✏️ Dailycheckin</a><a href="https://crawlaio.com/" target="_blank" title="🕷️ Crawlaio">🕷️ Crawlaio</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">备用</div><div class="footer-flex-content"><a href="https://sitoi.github.io" target="_blank" title="📑 GitHub Pages">📑 GitHub Pages</a><a href="https://www.cnblogs.com/sitoi" target="_blank" title="📑 Cnblog">📑 Cnblog</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">框架</div><div class="footer-flex-content"><a href="https://hexo.io/zh-cn/" target="_blank" title="📦 Hexo">📦 Hexo</a><a href="https://butterfly.js.org/" target="_blank" title="🎨 Butterfly">🎨 Butterfly</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">赞助</div><div class="footer-flex-content"><div><img src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/alipay.jpg' alt='Sitoi' width='100px' height='100px'></div></div></div></div></div><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2018 - 2025 By Sitoi</span><span class="framework-info"><span class="footer-separator">|</span><span>框架 </span><a href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.2</a></span></div><div class="footer_custom_text"><a href="https://beian.miit.gov.cn/"><img class="icp-icon" src="/medias/icp.png"><span>沪ICP备2025115209号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.2"></script><script src="/js/main.js?v=5.5.2"></script><script src="https://npm.elemecdn.com/@fancyapps/ui@latest/dist/fancybox/fancybox.umd.js"></script><script src="https://npm.elemecdn.com/instant.page@latest/instantpage.js" type="module"></script><script src="https://npm.elemecdn.com/node-snackbar@latest/dist/snackbar.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://npm.elemecdn.com/typed.js@latest/dist/typed.umd.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  },
+  processSubtitle: (content, extraContents = []) => {
+    if (true) {
+      const sub = ["「少即是多」","「Less is More」"].slice()
+
+      if (extraContents.length > 0) {
+        sub.unshift(...extraContents)
+      }
+
+      if (typeof content === 'string') {
+        sub.unshift(content)
+      } else if (Array.isArray(content)) {
+        sub.unshift(...content)
+      }
+
+      sub.length > 0 && typedJSFn.init(sub)
+    } else {
+      document.getElementById('subtitle').textContent = typeof content === 'string' ? content :
+        (Array.isArray(content) && content.length > 0 ? content[0] : '')
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  typedJSFn.processSubtitle(["「少即是多」","「Less is More」"])
+}
+typedJSFn.run(subtitleType)</script><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const config = mermaidSrc.dataset.config ? JSON.parse(mermaidSrc.dataset.config) : {}
+      if (!config.theme) {
+        config.theme = theme
+      }
+      const mermaidThemeConfig = `%%{init: ${JSON.stringify(config)}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://npm.elemecdn.com/mermaid@latest/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><div class="app-refresh" id="app-refresh"> <div class="app-refresh-wrap"> <label>✨ 网站已更新最新版本 👉</label> <a href="javascript:void(0)" onclick="location.reload()">点击刷新</a> </div></div><script>function showNotification(){if(GLOBAL_CONFIG.Snackbar){var t="light"===document.documentElement.getAttribute("data-theme")?GLOBAL_CONFIG.Snackbar.bgLight:GLOBAL_CONFIG.Snackbar.bgDark,e=GLOBAL_CONFIG.Snackbar.position;Snackbar.show({text:"已更新最新版本",backgroundColor:t,duration:5e5,pos:e,actionText:"点击刷新",actionTextColor:"#fff",onActionClick:function(t){location.reload()}})}else{var o=`top: 0; background: ${"light"===document.documentElement.getAttribute("data-theme")?"#49b1f5":"#1f1f1f"};`;document.getElementById("app-refresh").style.cssText=o}}"serviceWorker"in navigator&&(navigator.serviceWorker.controller&&navigator.serviceWorker.addEventListener("controllerchange",function(){showNotification()}),window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")}));</script><script id="click-heart" src="https://npm.elemecdn.com/butterfly-extsrc@latest/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="/"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.2"></script></div></div></body></html>

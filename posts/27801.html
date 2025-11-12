@@ -1,0 +1,355 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>基于 Hexo GitHub 从零开始搭建个人博客（二）：搭建基础篇 | Sitoi</title><meta name="author" content="Sitoi"><meta name="copyright" content="Sitoi"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="遇到任何问题，优先在本页面搜索，看看是否已经有该配置教程；不懂得可以百度或者 Google；还有弄不明白的可以在本站点留言，或添加站长 Wechat、QQ 等   文档目录 环境准备搭建基础主题配置主题优化 - 添加 PWA自动部署   前言阅读本篇前，请确保你的电脑配置好相应的环境，参考教程请看基于 Hexo GitHub 从零开始搭建个人博客（一）：环境准备篇   在本篇教程你，你将获得一个初">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于 Hexo GitHub 从零开始搭建个人博客（二）：搭建基础篇">
+<meta property="og:url" content="https://sitoi.cn/posts/27801.html">
+<meta property="og:site_name" content="Sitoi">
+<meta property="og:description" content="遇到任何问题，优先在本页面搜索，看看是否已经有该配置教程；不懂得可以百度或者 Google；还有弄不明白的可以在本站点留言，或添加站长 Wechat、QQ 等   文档目录 环境准备搭建基础主题配置主题优化 - 添加 PWA自动部署   前言阅读本篇前，请确保你的电脑配置好相应的环境，参考教程请看基于 Hexo GitHub 从零开始搭建个人博客（一）：环境准备篇   在本篇教程你，你将获得一个初">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://opendoodles.s3-us-west-1.amazonaws.com/zombieing.svg">
+<meta property="article:published_time" content="2019-12-27T06:46:41.000Z">
+<meta property="article:modified_time" content="2025-11-12T05:28:30.734Z">
+<meta property="article:author" content="Sitoi">
+<meta property="article:tag" content="GitHub">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://opendoodles.s3-us-west-1.amazonaws.com/zombieing.svg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "基于 Hexo GitHub 从零开始搭建个人博客（二）：搭建基础篇",
+  "url": "https://sitoi.cn/posts/27801.html",
+  "image": "https://opendoodles.s3-us-west-1.amazonaws.com/zombieing.svg",
+  "datePublished": "2019-12-27T06:46:41.000Z",
+  "dateModified": "2025-11-12T05:28:30.734Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Sitoi",
+      "url": "https://sitoi.cn"
+    }
+  ]
+}</script><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/favicon.ico"><link rel="canonical" href="https://sitoi.cn/posts/27801.html"><link rel="preconnect" href="https://npm.elemecdn.com"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/medias/logo_32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/medias/logo_16.png"/><link rel="mask-icon" href="/apple-touch-icon.png" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css?v=5.5.2"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free@latest/css/all.min.css"><link rel="stylesheet" href="https://npm.elemecdn.com/node-snackbar@latest/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/@fancyapps/ui@latest/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?c29e2dcbe60cb0ec619a76c424a71b11";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+btf.addGlobalFn('pjaxComplete', () => {
+  _hmt.push(['_trackPageview',window.location.pathname])
+}, 'baidu_analytics')
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-136865061-1"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'UA-136865061-1')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'UA-136865061-1', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;b618d0d8bcf448af935bd89530ccffcd&quot;}"></script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://npm.elemecdn.com/@egjs/infinitegrid@latest/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '基于 Hexo GitHub 从零开始搭建个人博客（二）：搭建基础篇',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><script async src="https://umami.sitoi.cn/script.js" data-website-id="b23bdc64-5e23-46d5-9e2c-c862f9413a1f"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/background.css"><meta name="baidu_union_verify" content="8822ba856d99c65163dd207aaffc3510"><style type="text/css">.app-refresh{position:fixed;top:-2.2rem;left:0;right:0;z-index:99999;padding:0 1rem;font-size:15px;height:2.2rem;transition:all .3s ease}.app-refresh-wrap{display:flex;color:#fff;height:100%;align-items:center;justify-content:center}.app-refresh-wrap a{color:#fff;text-decoration:underline;cursor:pointer}</style><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Sitoi" type="application/atom+xml">
+</head><body><div id="web_bg" style="background-color: #efefef;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/avatars/avatar.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">95</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw fas fa-envelope"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友人</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 项目</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://sitoi.github.io/dailycheckin/"><i class="fa-fw fas fa-location-arrow"></i><span> Dailycheckin</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="https://crawlaio.github.io"><i class="fa-fw fas fa-location-arrow"></i><span> 导航</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://opendoodles.s3-us-west-1.amazonaws.com/zombieing.svg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Sitoi</span></a><a class="nav-page-title" href="/"><span class="site-name">基于 Hexo GitHub 从零开始搭建个人博客（二）：搭建基础篇</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw fas fa-envelope"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友人</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 项目</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://sitoi.github.io/dailycheckin/"><i class="fa-fw fas fa-location-arrow"></i><span> Dailycheckin</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="https://crawlaio.github.io"><i class="fa-fw fas fa-location-arrow"></i><span> 导航</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">基于 Hexo GitHub 从零开始搭建个人博客（二）：搭建基础篇</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2019-12-27T06:46:41.000Z" title="发表于 2019-12-27 14:46:41">2019-12-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-12T05:28:30.734Z" title="更新于 2025-11-12 13:28:30">2025-11-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF/Hexo/">Hexo</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">818</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div class="note danger flat"><p>遇到任何问题，优先在本页面搜索，看看是否已经有该配置教程；<br>不懂得可以百度或者 Google；<br>还有弄不明白的可以在本站点留言，或添加站长 Wechat、QQ 等</p>
+</div>
+
+<div class="note info flat"><p>文档目录</p>
+<p><a href="https://sitoi.cn/posts/6666.html">环境准备</a><br><a href="https://sitoi.cn/posts/27801.html">搭建基础</a><br><a href="https://sitoi.cn/posts/63466.html">主题配置</a><br><a href="https://sitoi.cn/posts/49115.html">主题优化 - 添加 PWA</a><br><a href="https://sitoi.cn/posts/15908.html">自动部署</a></p>
+</div>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><div class="note primary no-icon flat"><p>阅读本篇前，请确保你的电脑配置好相应的环境，参考教程请看<a href="https://sitoi.cn/posts/6666.html">基于 Hexo GitHub 从零开始搭建个人博客（一）：环境准备篇</a></p>
+</div>
+
+<p>在本篇教程你，你将获得一个初始的个人博客，使用 hexo 命令，创建一个属于你自己的初始化博客。并将其在本地运行起来，最后部署到 GitHub Pages 上，让你的博客在有网的地方就可以被访问。</p>
+<h2 id="初始化-Hexo-项目"><a href="#初始化-Hexo-项目" class="headerlink" title="初始化 Hexo 项目"></a>初始化 Hexo 项目</h2><p>选择一个目录，鼠标右击，选择 <code>Git Bash here</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Sitoi/cdn/img/create_hexo_blog.png" alt="Open Git Bash"></p>
+<p>在 Git Bash 输入如下命令初始化一个 Hexo 项目</p>
+<p><code>crawlmkt.github.io</code> 表示项目的名称，即文件夹的名字，建议使用 GitHub 项目对应的名称如：crawlmkt.github.io</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init crawlmkt.github.io</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Sitoi/cdn/img/gen_hexo_blog.png" alt="HEXO INIT"></p>
+<p>这样 <code>crawlmkt.github.io</code> 文件夹下就会出现 <code>Hexo</code> 的初始化文件，包括 <code>themes</code>、<code>scaffolds</code>、<code>source</code> 等文件夹，这些内容暂且先不用管是做什么的，我们先知道有什么，然后一步步走下去看看都发生了什么变化。</p>
+<h3 id="安装依赖包"><a href="#安装依赖包" class="headerlink" title="安装依赖包"></a>安装依赖包</h3><p>切换到 博客 项目目录</p>
+<p>运行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span>  crawlmkt.github.io</span><br></pre></td></tr></table></figure>
+
+<p>安装 npm 包</p>
+<p>运行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Sitoi/cdn/img/hexo_npm_install_cmd.png" alt="npm i"></p>
+<h2 id="启动-hexo-博客"><a href="#启动-hexo-博客" class="headerlink" title="启动 hexo 博客"></a>启动 hexo 博客</h2><p>运行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>输出如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看博客"><a href="#查看博客" class="headerlink" title="查看博客"></a>查看博客</h2><p>打开浏览器，输入地址：<a href="http://localhost:4000/">http://localhost:4000/</a> 看到下面的效果，说明的你博客已经构建成功了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Sitoi/cdn/img/blog_init.png" alt="BLOG"></p>
+<h2 id="本地博客发布到-GitHub-Pages"><a href="#本地博客发布到-GitHub-Pages" class="headerlink" title="本地博客发布到 GitHub Pages"></a>本地博客发布到 GitHub Pages</h2><p>之前的步骤中，我们已经完成了对 GitHub 账户的注册以及 Github Pages 的创建，并且为 GitHub 配置了 SSH key,接下来我们来将这个初始化的博客进行一下部署，放到 GitHub Pages 上面验证一下其可用性。成功之后我们可以再进行后续的修改，比如修改主题、修改页面配置等等。</p>
+<p>详细请参考：<a href="http://sitoi.cn/posts/6666.html">基于 Hexo GitHub 从零开始搭建个人博客（一）：环境准备篇</a></p>
+<h3 id="安装-hexo-deployer-git-插件"><a href="#安装-hexo-deployer-git-插件" class="headerlink" title="安装 hexo-deployer-git 插件"></a>安装 hexo-deployer-git 插件</h3><p>在博客项目目录下运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改-config-yml-文件"><a href="#修改-config-yml-文件" class="headerlink" title="修改 _config.yml 文件"></a>修改 _config.yml 文件</h3><blockquote>
+<p>配置站点信息</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/Sitoi/cdn/img/hexo_config.png" alt="HEXO CONFIG"></p>
+<blockquote>
+<p>添加部署信息</p>
+</blockquote>
+<p>修改内容，在 _config.yml 文件最下面</p>
+<p><strong>修改前：</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>修改后：</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:crawlmkt/crawlmkt.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>git@github.com:crawlmkt/crawlmkt.github.io.git</code> 其中 crawlmkt 改成你的用户名即可</li>
+</ul>
+<h3 id="部署项目到-GitHub"><a href="#部署项目到-GitHub" class="headerlink" title="部署项目到 GitHub"></a>部署项目到 GitHub</h3><p>修改好配置后，运行如下命令，将代码部署到 GitHub</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看部署情况"><a href="#查看部署情况" class="headerlink" title="查看部署情况"></a>查看部署情况</h3><p>打开浏览器访问：<a href="https://crawlmkt.github.io/">https://crawlmkt.github.io</a>，这时候我们就可以看到跟本地一模一样的博客内容了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Sitoi/cdn/img/hexo_deploy_success.png" alt="HEXO BLOG"></p>
+<blockquote>
+<p>你已经可以独自搭建一个属于自己的博客了，剩下的就是选择一个主题，当然你也可以自己开发一个主题。</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://sitoi.cn">Sitoi</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://sitoi.cn/posts/27801.html">https://sitoi.cn/posts/27801.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://sitoi.cn" target="_blank">Sitoi</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/GitHub/">GitHub</a><a class="post-meta__tags" href="/tags/Hexo/">Hexo</a></div><div class="post-share"><div class="social-share" data-image="https://opendoodles.s3-us-west-1.amazonaws.com/zombieing.svg" data-sites="wechat,qq,weibo,twitter,facebook,linkedin"></div><link rel="stylesheet" href="https://npm.elemecdn.com/butterfly-extsrc@latest/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://npm.elemecdn.com/butterfly-extsrc@latest/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/63466.html" title="基于 Hexo GitHub 从零开始搭建个人博客（三）：Matery 主题（DIY 版）详细配置教程，附博客源码"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/reading-side.svg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">基于 Hexo GitHub 从零开始搭建个人博客（三）：Matery 主题（DIY 版）详细配置教程，附博客源码</div></div><div class="info-2"><div class="info-item-1">遇到任何问题，优先在本页面搜索，看看是否已经有该配置教程；不懂得可以百度或者 Google；还有弄不明白的可以在本站点留言，或添加站长 Wechat、QQ 等   文档目录 环境准备搭建基础主题配置主题优化 - 添加 PWA自动部署   这是一个采用 Material Design 和响应式设计的 Hexo 博客主题。   前言阅读本篇前，请确保你已经能够自己在 GitHub Pages 上搭建一个属于自己的初始化博客了。  基于 Hexo GitHub 从零开始搭建个人博客（一）：环境准备篇 基于 Hexo GitHub 从零开始搭建个人博客（二）：搭建基础篇  本篇是关于 matery 主题的一个介绍和配置教程！Demo:https://crawlmkt.github.io/ 阅读完本篇，你的博客基本上已经完全可以使用了。如果有不清楚的地方，也可以阅读本系列后面的文章，或者留言提问，也可以加我微信或 QQ。 效果截图     博客特性 简单漂亮，文章内容美观易读 Material Design 设计 响应式设计，博客在桌面端、平板、手机等设备上均能很好的展现 首页轮播文章及每...</div></div></div></a><a class="pagination-related" href="/posts/6666.html" title="基于 Hexo GitHub 从零开始搭建个人博客（一）：环境准备篇"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/sprinting.svg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">基于 Hexo GitHub 从零开始搭建个人博客（一）：环境准备篇</div></div><div class="info-2"><div class="info-item-1">遇到任何问题，优先在本页面搜索，看看是否已经有该配置教程；不懂得可以百度或者 Google；还有弄不明白的可以在本站点留言，或添加站长 Wechat、QQ 等   文档目录 环境准备搭建基础主题配置主题优化 - 添加 PWA自动部署   前言      Q: 为什么要搭建一个属于自己的个人博客呢？   高度自由化 用自己喜欢的域名，选择自己喜欢的主题，布局，特效等都可以自己编写代码完成  成就感 当网站被搜索引擎收录，输入相应关键字即可，可以小小的炫耀一番  拓展交流圈 如果你对某类感兴趣的话，你可以通过个人博客找到一些志同道合的朋友。  学会坚持刚开始搭建好属于自己的博客，那真的是三分钟热度，但是真的坚持下来的人很少  最好的个人简历当我们苦于该如何写一份个人简历时，当你拿出一个你坚持 3 年、5 年的个人博客时，或许你的机会就比别人大一点。  自己的空间 在这个地方，你可以写一些自己的东西（没有朋友看）  写作水平的提高 坚持写作，你的写作水平会得到很到的提高，对你今后的人生会有很大的帮助  赚取一点钱 当你的博客足够好，你可以开始尝试赚钱，当然啦，和坚持是离不开的。    ...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/15908.html" title="基于 Hexo GitHub 从零开始搭建个人博客（五）：自动部署篇"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/swinging.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-30</div><div class="info-item-2">基于 Hexo GitHub 从零开始搭建个人博客（五）：自动部署篇</div></div><div class="info-2"><div class="info-item-1">遇到任何问题，优先在本页面搜索，看看是否已经有该配置教程；不懂得可以百度或者 Google；还有弄不明白的可以在本站点留言，或添加站长 Wechat、QQ 等   文档目录 环境准备搭建基础主题配置主题优化 - 添加 PWA自动部署   前言本文教程教你实现，如何将你的 Hexo 博客自动部署到多个平台  GitHub GitLab Coding Gitee  优点：  编写文章，推送到 GitHub 即可实现自动部署 利用 GitHub 的私有仓库将博客源码直接保存在 GitHub 上  准备 Hexo 博客源码的仓库，在 GitHub 上。 ssh 密钥，参考文章：Windows 下利用 Git 生成 SSH KEY 并配置到 GitHub  步骤 为需要部署的平台添加密钥 修改 _config.yml 中的 deploy 配置 在 GitHub 上设置 Secrets 创建 GitHub Action  为需要部署的平台添加密钥按照之前的教程，只要你之前成功将 Hexo 的博客部署到 GitHub 上，那你电脑在 ~/.ssh 目录下一定有以下三个文件：  id_rsa：私...</div></div></div></a><a class="pagination-related" href="/posts/49115.html" title="基于 Hexo GitHub 从零开始搭建个人博客（四）：让你的博客完美支持 PWA"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/moshing.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-29</div><div class="info-item-2">基于 Hexo GitHub 从零开始搭建个人博客（四）：让你的博客完美支持 PWA</div></div><div class="info-2"><div class="info-item-1">遇到任何问题，优先在本页面搜索，看看是否已经有该配置教程；不懂得可以百度或者 Google；还有弄不明白的可以在本站点留言，或添加站长 Wechat、QQ 等   文档目录 环境准备搭建基础主题配置主题优化 - 添加 PWA自动部署   前言 Q：为什么让你的博客支持 PWA？   可以支持离线观看 可被识别成一个应用程序 响应式 适合任何形式的设备  前提 全站支持 HTTPS  安装 hexo-pwa运行如下命令，安装 hexo-pwa 1npm i hexo-pwa --save   hexo@4.2.0 目前赞不兼容 hexo-pwa,使用 hexo@4.2.0 版本的用户推荐降级到 hexo@4.1.1  查询版本 1hexo --version  安装 Hexo 指定版本 1npm i hexo@4.1.1 --save  修改配置文件 _config.yml12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455pwa: ...</div></div></div></a><a class="pagination-related" href="/posts/63466.html" title="基于 Hexo GitHub 从零开始搭建个人博客（三）：Matery 主题（DIY 版）详细配置教程，附博客源码"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/reading-side.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-28</div><div class="info-item-2">基于 Hexo GitHub 从零开始搭建个人博客（三）：Matery 主题（DIY 版）详细配置教程，附博客源码</div></div><div class="info-2"><div class="info-item-1">遇到任何问题，优先在本页面搜索，看看是否已经有该配置教程；不懂得可以百度或者 Google；还有弄不明白的可以在本站点留言，或添加站长 Wechat、QQ 等   文档目录 环境准备搭建基础主题配置主题优化 - 添加 PWA自动部署   这是一个采用 Material Design 和响应式设计的 Hexo 博客主题。   前言阅读本篇前，请确保你已经能够自己在 GitHub Pages 上搭建一个属于自己的初始化博客了。  基于 Hexo GitHub 从零开始搭建个人博客（一）：环境准备篇 基于 Hexo GitHub 从零开始搭建个人博客（二）：搭建基础篇  本篇是关于 matery 主题的一个介绍和配置教程！Demo:https://crawlmkt.github.io/ 阅读完本篇，你的博客基本上已经完全可以使用了。如果有不清楚的地方，也可以阅读本系列后面的文章，或者留言提问，也可以加我微信或 QQ。 效果截图     博客特性 简单漂亮，文章内容美观易读 Material Design 设计 响应式设计，博客在桌面端、平板、手机等设备上均能很好的展现 首页轮播文章及每...</div></div></div></a><a class="pagination-related" href="/posts/6666.html" title="基于 Hexo GitHub 从零开始搭建个人博客（一）：环境准备篇"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/sprinting.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-26</div><div class="info-item-2">基于 Hexo GitHub 从零开始搭建个人博客（一）：环境准备篇</div></div><div class="info-2"><div class="info-item-1">遇到任何问题，优先在本页面搜索，看看是否已经有该配置教程；不懂得可以百度或者 Google；还有弄不明白的可以在本站点留言，或添加站长 Wechat、QQ 等   文档目录 环境准备搭建基础主题配置主题优化 - 添加 PWA自动部署   前言      Q: 为什么要搭建一个属于自己的个人博客呢？   高度自由化 用自己喜欢的域名，选择自己喜欢的主题，布局，特效等都可以自己编写代码完成  成就感 当网站被搜索引擎收录，输入相应关键字即可，可以小小的炫耀一番  拓展交流圈 如果你对某类感兴趣的话，你可以通过个人博客找到一些志同道合的朋友。  学会坚持刚开始搭建好属于自己的博客，那真的是三分钟热度，但是真的坚持下来的人很少  最好的个人简历当我们苦于该如何写一份个人简历时，当你拿出一个你坚持 3 年、5 年的个人博客时，或许你的机会就比别人大一点。  自己的空间 在这个地方，你可以写一些自己的东西（没有朋友看）  写作水平的提高 坚持写作，你的写作水平会得到很到的提高，对你今后的人生会有很大的帮助  赚取一点钱 当你的博客足够好，你可以开始尝试赚钱，当然啦，和坚持是离不开的。    ...</div></div></div></a><a class="pagination-related" href="/posts/23395.html" title="国内加速访问 GitHub"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/clumsy.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-10-29</div><div class="info-item-2">国内加速访问 GitHub</div></div><div class="info-2"><div class="info-item-1">国内加速访问 GitHub中国访问 GitHub 的速度不忍直视，那就叫一个慢！ 12Q: 为什么访问速度会很慢？A: GitHub 在国内访问速度慢的问题原因有很多，但最直接和最主要的原因是 GitHub 的分发加速网络的域名遭到 dns 污染。  12Q: 如何解决 DNS 污染？A: 通过修改 hosts 解决污染问题。  解决方法 不需要科（）学（）上网，也不需要开代理加速器。  一、查询网址对应的 IP 地址查询地址：https://www.ipaddress.com/ 点击下面 域名（domain）自动跳转到 ipaddress.com 查询结果页面：  github.com  assets-cdn.github.com  github.global.ssl.fastly.net      二、修改本地系统 hosts 文件 hosts 文件路径：C:\Windows\System32\drivers\etc\hosts   以管理员身份打开 CMD 终端，并输入 notepad ，会打开一个记事本。    打开文件，输入 hosts 文件路径，选择所有文件，最后点击...</div></div></div></a><a class="pagination-related" href="/posts/43508.html" title="Windows 下利用 Git 生成 SSH KEY 并配置到 GitHub"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/coffee.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-25</div><div class="info-item-2">Windows 下利用 Git 生成 SSH KEY 并配置到 GitHub</div></div><div class="info-2"><div class="info-item-1">基本环境 Windows 操作系统 本地安装了 Git 一个 GitHub 帐号  生成 SSH KEY打开 Git Bash在 Windows 桌面上，鼠标右击，选择 Git Bash here，打开 Git Bash   输入命令email@email.com 填入一个你自己的邮箱，可以是注册 GitHub 的邮箱 输入以下命令，一直按回车： 1ssh-keygen -t rsa -C &quot;email@email.com&quot;   查看 SSH KEY输入以下命令查看 SSH KEY： 1cat ~/.ssh/id_rsa.pub   将 SSH KEY 添加到 GitHub 点击头像，选择 Settings 选择 SHH and GPG keys 点击 New SSH key    填入 SSH KEY 点击 Add SSH key   测试连接打开 Git Bash，输入以下命令： 1ssh -T git@github.com   </div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/avatars/avatar.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Sitoi</div><div class="author-info-description">真正的酷都是需要付诸努力的</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">95</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><a id="card-info-btn" href="https://github.com/Sitoi"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="/wechat.jpg" target="_blank" title="Wechat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="tencent://message/?uin=133397418" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=133397418" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://github.com/Sitoi/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96-Hexo-%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.1.</span> <span class="toc-text">初始化 Hexo 项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E5%8C%85"><span class="toc-number">1.1.1.</span> <span class="toc-text">安装依赖包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8-hexo-%E5%8D%9A%E5%AE%A2"><span class="toc-number">1.2.</span> <span class="toc-text">启动 hexo 博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%8D%9A%E5%AE%A2"><span class="toc-number">1.3.</span> <span class="toc-text">查看博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E5%8D%9A%E5%AE%A2%E5%8F%91%E5%B8%83%E5%88%B0-GitHub-Pages"><span class="toc-number">1.4.</span> <span class="toc-text">本地博客发布到 GitHub Pages</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-hexo-deployer-git-%E6%8F%92%E4%BB%B6"><span class="toc-number">1.4.1.</span> <span class="toc-text">安装 hexo-deployer-git 插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-config-yml-%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.2.</span> <span class="toc-text">修改 _config.yml 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%88%B0-GitHub"><span class="toc-number">1.4.3.</span> <span class="toc-text">部署项目到 GitHub</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E9%83%A8%E7%BD%B2%E6%83%85%E5%86%B5"><span class="toc-number">1.4.4.</span> <span class="toc-text">查看部署情况</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/39218.html" title="如何在 Elasticsearch 中更新索引的 Mapping"><img src="https://opendoodles.s3-us-west-1.amazonaws.com/float.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="如何在 Elasticsearch 中更新索引的 Mapping"/></a><div class="content"><a class="title" href="/posts/39218.html" title="如何在 Elasticsearch 中更新索引的 Mapping">如何在 Elasticsearch 中更新索引的 Mapping</a><time datetime="2023-10-14T06:26:21.000Z" title="发表于 2023-10-14 14:26:21">2023-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/10054.html" title="简洁登录：在 Linux 终端中去除 'Last login' 信息"><img src="https://opendoodles.s3-us-west-1.amazonaws.com/sitting.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="简洁登录：在 Linux 终端中去除 'Last login' 信息"/></a><div class="content"><a class="title" href="/posts/10054.html" title="简洁登录：在 Linux 终端中去除 'Last login' 信息">简洁登录：在 Linux 终端中去除 'Last login' 信息</a><time datetime="2023-07-28T02:25:20.000Z" title="发表于 2023-07-28 10:25:20">2023-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/46937.html" title="高效下载 NGINX 静态网站：利用 wget 进行递归下载"><img src="https://opendoodles.s3-us-west-1.amazonaws.com/selfie.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="高效下载 NGINX 静态网站：利用 wget 进行递归下载"/></a><div class="content"><a class="title" href="/posts/46937.html" title="高效下载 NGINX 静态网站：利用 wget 进行递归下载">高效下载 NGINX 静态网站：利用 wget 进行递归下载</a><time datetime="2023-07-16T01:59:04.000Z" title="发表于 2023-07-16 09:59:04">2023-07-16</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://opendoodles.s3-us-west-1.amazonaws.com/zombieing.svg);"><div class="footer-flex"><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">项目</div><div class="footer-flex-content"><a href="https://sitoi.github.io/dailycheckin/" target="_blank" title="✏️ Dailycheckin">✏️ Dailycheckin</a><a href="https://crawlaio.com/" target="_blank" title="🕷️ Crawlaio">🕷️ Crawlaio</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">备用</div><div class="footer-flex-content"><a href="https://sitoi.github.io" target="_blank" title="📑 GitHub Pages">📑 GitHub Pages</a><a href="https://www.cnblogs.com/sitoi" target="_blank" title="📑 Cnblog">📑 Cnblog</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">框架</div><div class="footer-flex-content"><a href="https://hexo.io/zh-cn/" target="_blank" title="📦 Hexo">📦 Hexo</a><a href="https://butterfly.js.org/" target="_blank" title="🎨 Butterfly">🎨 Butterfly</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">赞助</div><div class="footer-flex-content"><div><img src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/alipay.jpg' alt='Sitoi' width='100px' height='100px'></div></div></div></div></div><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2018 - 2025 By Sitoi</span><span class="framework-info"><span class="footer-separator">|</span><span>框架 </span><a href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.2</a></span></div><div class="footer_custom_text"><a href="https://beian.miit.gov.cn/"><img class="icp-icon" src="/medias/icp.png"><span>沪ICP备2025115209号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.2"></script><script src="/js/main.js?v=5.5.2"></script><script src="https://npm.elemecdn.com/@fancyapps/ui@latest/dist/fancybox/fancybox.umd.js"></script><script src="https://npm.elemecdn.com/instant.page@latest/instantpage.js" type="module"></script><script src="https://npm.elemecdn.com/node-snackbar@latest/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const config = mermaidSrc.dataset.config ? JSON.parse(mermaidSrc.dataset.config) : {}
+      if (!config.theme) {
+        config.theme = theme
+      }
+      const mermaidThemeConfig = `%%{init: ${JSON.stringify(config)}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://npm.elemecdn.com/mermaid@latest/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  let initFn = window.walineFn || null
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const destroyWaline = ele => ele.destroy()
+
+  const initWaline = (Fn, el = document, path = window.location.pathname) => {
+    const waline = Fn({
+      el: el.querySelector('#waline-wrap'),
+      serverURL: 'https://waline.sitoi.cn/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      comment: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyWaline = () => {
+        destroyWaline(waline)
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const loadWaline = (el, path) => {
+    if (initFn) initWaline(initFn, el, path)
+    else {
+      btf.getCSS('https://npm.elemecdn.com/@waline/client@latest/dist/waline.css')
+        .then(() => import('https://npm.elemecdn.com/@waline/client@latest/dist/waline.js'))
+        .then(({ init }) => {
+          initFn = init || Waline.init
+          initWaline(initFn, el, path)
+          window.walineFn = initFn
+        })
+    }
+  }
+
+  if (isShuoshuo) {
+    'Waline' === 'Waline'
+      ? window.shuoshuoComment = { loadComment: loadWaline } 
+      : window.loadOtherComment = loadWaline
+    return
+  }
+
+  if ('Waline' === 'Waline' || !false) {
+    if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><div class="app-refresh" id="app-refresh"> <div class="app-refresh-wrap"> <label>✨ 网站已更新最新版本 👉</label> <a href="javascript:void(0)" onclick="location.reload()">点击刷新</a> </div></div><script>function showNotification(){if(GLOBAL_CONFIG.Snackbar){var t="light"===document.documentElement.getAttribute("data-theme")?GLOBAL_CONFIG.Snackbar.bgLight:GLOBAL_CONFIG.Snackbar.bgDark,e=GLOBAL_CONFIG.Snackbar.position;Snackbar.show({text:"已更新最新版本",backgroundColor:t,duration:5e5,pos:e,actionText:"点击刷新",actionTextColor:"#fff",onActionClick:function(t){location.reload()}})}else{var o=`top: 0; background: ${"light"===document.documentElement.getAttribute("data-theme")?"#49b1f5":"#1f1f1f"};`;document.getElementById("app-refresh").style.cssText=o}}"serviceWorker"in navigator&&(navigator.serviceWorker.controller&&navigator.serviceWorker.addEventListener("controllerchange",function(){showNotification()}),window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")}));</script><script id="click-heart" src="https://npm.elemecdn.com/butterfly-extsrc@latest/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="/"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.2"></script></div></div></body></html>

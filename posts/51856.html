@@ -1,0 +1,1091 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Docker 三剑客（一）：Docker 常用命令 | Sitoi</title><meta name="author" content="Sitoi"><meta name="copyright" content="Sitoi"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Docker 目录资源汇总   类型 名称 地址    官方网站 docker 官网 http:&#x2F;&#x2F;www.docker.com   官方教程 Docker windows 入门 https:&#x2F;&#x2F;docs.docker.com&#x2F;windows   官方教程 Docker Linux 入门 https:&#x2F;&#x2F;docs.docker.com&#x2F;linux   官方教程 Docker mac 入门 http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker 三剑客（一）：Docker 常用命令">
+<meta property="og:url" content="https://sitoi.cn/posts/51856.html">
+<meta property="og:site_name" content="Sitoi">
+<meta property="og:description" content="Docker 目录资源汇总   类型 名称 地址    官方网站 docker 官网 http:&#x2F;&#x2F;www.docker.com   官方教程 Docker windows 入门 https:&#x2F;&#x2F;docs.docker.com&#x2F;windows   官方教程 Docker Linux 入门 https:&#x2F;&#x2F;docs.docker.com&#x2F;linux   官方教程 Docker mac 入门 http">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://opendoodles.s3-us-west-1.amazonaws.com/laying.svg">
+<meta property="article:published_time" content="2018-10-01T10:17:00.000Z">
+<meta property="article:modified_time" content="2025-11-12T05:28:30.732Z">
+<meta property="article:author" content="Sitoi">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="微服务">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://opendoodles.s3-us-west-1.amazonaws.com/laying.svg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Docker 三剑客（一）：Docker 常用命令",
+  "url": "https://sitoi.cn/posts/51856.html",
+  "image": "https://opendoodles.s3-us-west-1.amazonaws.com/laying.svg",
+  "datePublished": "2018-10-01T10:17:00.000Z",
+  "dateModified": "2025-11-12T05:28:30.732Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Sitoi",
+      "url": "https://sitoi.cn"
+    }
+  ]
+}</script><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/favicon.ico"><link rel="canonical" href="https://sitoi.cn/posts/51856.html"><link rel="preconnect" href="https://npm.elemecdn.com"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/medias/logo_32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/medias/logo_16.png"/><link rel="mask-icon" href="/apple-touch-icon.png" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css?v=5.5.2"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free@latest/css/all.min.css"><link rel="stylesheet" href="https://npm.elemecdn.com/node-snackbar@latest/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/@fancyapps/ui@latest/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?c29e2dcbe60cb0ec619a76c424a71b11";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+btf.addGlobalFn('pjaxComplete', () => {
+  _hmt.push(['_trackPageview',window.location.pathname])
+}, 'baidu_analytics')
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-136865061-1"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'UA-136865061-1')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'UA-136865061-1', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;b618d0d8bcf448af935bd89530ccffcd&quot;}"></script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://npm.elemecdn.com/@egjs/infinitegrid@latest/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Docker 三剑客（一）：Docker 常用命令',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><script async src="https://umami.sitoi.cn/script.js" data-website-id="b23bdc64-5e23-46d5-9e2c-c862f9413a1f"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/background.css"><meta name="baidu_union_verify" content="8822ba856d99c65163dd207aaffc3510"><style type="text/css">.app-refresh{position:fixed;top:-2.2rem;left:0;right:0;z-index:99999;padding:0 1rem;font-size:15px;height:2.2rem;transition:all .3s ease}.app-refresh-wrap{display:flex;color:#fff;height:100%;align-items:center;justify-content:center}.app-refresh-wrap a{color:#fff;text-decoration:underline;cursor:pointer}</style><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Sitoi" type="application/atom+xml">
+</head><body><div id="web_bg" style="background-color: #efefef;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/avatars/avatar.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">95</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw fas fa-envelope"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友人</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 项目</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://sitoi.github.io/dailycheckin/"><i class="fa-fw fas fa-location-arrow"></i><span> Dailycheckin</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="https://crawlaio.github.io"><i class="fa-fw fas fa-location-arrow"></i><span> 导航</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://opendoodles.s3-us-west-1.amazonaws.com/laying.svg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Sitoi</span></a><a class="nav-page-title" href="/"><span class="site-name">Docker 三剑客（一）：Docker 常用命令</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw fas fa-envelope"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友人</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 项目</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://sitoi.github.io/dailycheckin/"><i class="fa-fw fas fa-location-arrow"></i><span> Dailycheckin</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="https://crawlaio.github.io"><i class="fa-fw fas fa-location-arrow"></i><span> 导航</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Docker 三剑客（一）：Docker 常用命令</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2018-10-01T10:17:00.000Z" title="发表于 2018-10-01 18:17:00">2018-10-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-12T05:28:30.732Z" title="更新于 2025-11-12 13:28:30">2025-11-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Docker/">Docker</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Docker-目录"><a href="#Docker-目录" class="headerlink" title="Docker 目录"></a>Docker 目录</h1><h2 id="资源汇总"><a href="#资源汇总" class="headerlink" title="资源汇总"></a>资源汇总</h2><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">名称</th>
+<th align="center">地址</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">官方网站</td>
+<td align="center">docker 官网</td>
+<td align="center"><a href="http://www.docker.com/">http://www.docker.com</a></td>
+</tr>
+<tr>
+<td align="center">官方教程</td>
+<td align="center">Docker windows 入门</td>
+<td align="center"><a href="https://docs.docker.com/windows">https://docs.docker.com/windows</a></td>
+</tr>
+<tr>
+<td align="center">官方教程</td>
+<td align="center">Docker Linux 入门</td>
+<td align="center"><a href="https://docs.docker.com/linux">https://docs.docker.com/linux</a></td>
+</tr>
+<tr>
+<td align="center">官方教程</td>
+<td align="center">Docker mac 入门</td>
+<td align="center"><a href="https://docs.docker.com/mac">https://docs.docker.com/mac</a></td>
+</tr>
+<tr>
+<td align="center">官方教程</td>
+<td align="center">Docker 用户指引</td>
+<td align="center"><a href="https://docs.docker.com/engine/userguide">https://docs.docker.com/engine/userguide</a></td>
+</tr>
+<tr>
+<td align="center">官方博客</td>
+<td align="center">Docker 官方博客</td>
+<td align="center"><a href="http://blog.docker.com/">http://blog.docker.com</a></td>
+</tr>
+<tr>
+<td align="center">官方镜像</td>
+<td align="center">Docker Hub</td>
+<td align="center"><a href="https://hub.docker.com/">https://hub.docker.com</a></td>
+</tr>
+<tr>
+<td align="center">官方开源</td>
+<td align="center">Docker 开源</td>
+<td align="center"><a href="https://www.docker.com/open-source">https://www.docker.com/open-source</a></td>
+</tr>
+<tr>
+<td align="center">中文资源</td>
+<td align="center">Docker 中文网站</td>
+<td align="center"><a href="https://www.docker-cn.com/">https://www.docker-cn.com</a></td>
+</tr>
+<tr>
+<td align="center">中文资源</td>
+<td align="center">Docker 安装手册</td>
+<td align="center"><a href="https://docs.docker-cn.com/engine/installation">https://docs.docker-cn.com/engine/installation</a></td>
+</tr>
+<tr>
+<td align="center">国内镜像</td>
+<td align="center">网易加速器</td>
+<td align="center"><a href="http://hub-mirror.c.163.com/">http://hub-mirror.c.163.com</a></td>
+</tr>
+<tr>
+<td align="center">国内镜像</td>
+<td align="center">官方中国加速器</td>
+<td align="center"><a href="https://registry.docker-cn.com/">https://registry.docker-cn.com</a></td>
+</tr>
+<tr>
+<td align="center">国内镜像</td>
+<td align="center">ustc 的镜像</td>
+<td align="center"><a href="https://docker.mirrors.ustc.edu.cn/">https://docker.mirrors.ustc.edu.cn</a></td>
+</tr>
+<tr>
+<td align="center">国内镜像</td>
+<td align="center">daocloud</td>
+<td align="center"><a href="https://www.daocloud.io/mirror">https://www.daocloud.io/mirror</a></td>
+</tr>
+</tbody></table>
+<h2 id="Docker-常用命令"><a href="#Docker-常用命令" class="headerlink" title="Docker 常用命令"></a>Docker 常用命令</h2><h3 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h3><h4 id="info"><a href="#info" class="headerlink" title="info"></a>info</h4><p>显示 Docker 系统信息，包括镜像和容器数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker info</span><br></pre></td></tr></table></figure>
+
+<h4 id="version"><a href="#version" class="headerlink" title="version"></a>version</h4><p>显示 Docker 版本信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker version</span><br></pre></td></tr></table></figure>
+
+<h4 id="search"><a href="#search" class="headerlink" title="search"></a>search</h4><p>从 Docker Hub 查找镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search [OPTIONS] TERM</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>OPTIONS 说明</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>--automated</code></td>
+<td align="left">只列出 automated build 类型的镜像</td>
+</tr>
+<tr>
+<td align="left"><code>--no-trunc</code></td>
+<td align="left">显示完整的镜像描述</td>
+</tr>
+<tr>
+<td align="left"><code>-s</code></td>
+<td align="left">列出收藏数不小于指定值的镜像</td>
+</tr>
+</tbody></table>
+<p><strong>样例</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search mssql</span><br></pre></td></tr></table></figure>
+
+<h4 id="login"><a href="#login" class="headerlink" title="login"></a>login</h4><p>登陆到一个 Docker 镜像仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker login</span><br></pre></td></tr></table></figure>
+
+<p><strong>样例</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker login -u 用户名 -p 密码</span><br></pre></td></tr></table></figure>
+
+<h4 id="logout"><a href="#logout" class="headerlink" title="logout"></a>logout</h4><p>登出一个 Docker 镜像仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">logout</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="pull"><a href="#pull" class="headerlink" title="pull"></a>pull</h4><p>从镜像仓库中拉取或者更新指定镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull [OPTIONS] NAME[:TAG|@DIGEST]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>OPTIONS 说明</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-a</code></td>
+<td align="left">拉取所有 tagged 镜像</td>
+</tr>
+<tr>
+<td align="left"><code>--disable-content-trust</code></td>
+<td align="left">忽略镜像的校验,默认开启</td>
+</tr>
+</tbody></table>
+<p><strong>样例</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull hub.c.163.com/library/mysql:latest</span><br></pre></td></tr></table></figure>
+
+<h4 id="push"><a href="#push" class="headerlink" title="push"></a>push</h4><p>将本地的镜像上传到镜像仓库,要先登陆到镜像仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull NAME[:TAG|@DIGEST]</span><br></pre></td></tr></table></figure>
+
+<p><strong>样例</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker push myapache:v1</span><br></pre></td></tr></table></figure>
+
+<h3 id="本地镜像管理"><a href="#本地镜像管理" class="headerlink" title="本地镜像管理"></a>本地镜像管理</h3><h4 id="images"><a href="#images" class="headerlink" title="images"></a>images</h4><p>列出本地镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images [OPTIONS] [REPOSITORY[:TAG]]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>OPTIONS 说明</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-a</code></td>
+<td align="left">列出本地所有的镜像（含中间映像层，默认情况下，过滤掉中间映像层）</td>
+</tr>
+<tr>
+<td align="left"><code>--digests</code></td>
+<td align="left">显示镜像的摘要信息</td>
+</tr>
+<tr>
+<td align="left"><code>-f</code></td>
+<td align="left">显示满足条件的镜像</td>
+</tr>
+<tr>
+<td align="left"><code>--format</code></td>
+<td align="left">指定返回值的模板文件</td>
+</tr>
+<tr>
+<td align="left"><code>--no-trunc</code></td>
+<td align="left">显示完整的镜像信息</td>
+</tr>
+<tr>
+<td align="left"><code>-q</code></td>
+<td align="left">只显示镜像 ID</td>
+</tr>
+</tbody></table>
+<p><strong>样例</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images -a</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">REPOSITORY</th>
+<th align="center">TAG</th>
+<th align="center">IMAGE ID</th>
+<th align="center">CREATED</th>
+<th align="center">SIZE</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">hub.c.163.com&#x2F;library&#x2F;mysql</td>
+<td align="center">latest</td>
+<td align="center">9e64176cd8a2</td>
+<td align="center">9 months ago</td>
+<td align="center">407 MB</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>各个项目说明：</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">项目</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>REPOSITORY</code></td>
+<td align="left">表示镜像的仓库源</td>
+</tr>
+<tr>
+<td align="left"><code>TAG</code></td>
+<td align="left">镜像的标签</td>
+</tr>
+<tr>
+<td align="left"><code>IMAGE ID</code></td>
+<td align="left">镜像 ID</td>
+</tr>
+<tr>
+<td align="left"><code>CREATED</code></td>
+<td align="left">镜像创建时间</td>
+</tr>
+<tr>
+<td align="left"><code>SIZE</code></td>
+<td align="left">镜像大小</td>
+</tr>
+</tbody></table>
+<p>同一仓库源可以有多个 TAG，代表这个仓库源的不同个版本，如 ubuntu 仓库源里，有 15.10、14.04 等多个不同的版本，我们使用 REPOSITORY:TAG 来定义不同的镜像<br>所以，我们如果要使用版本为 15.10 的 ubuntu 系统镜像来运行容器时，命令如下：<code>docker run -it ubuntu:15.10 /bin/bash</code><br>如果要使用版本为 14.04 的 ubuntu 系统镜像来运行容器时，命令如下：<code>docker run -it ubuntu:14.04 /bin/bash</code></p>
+<h4 id="rmi"><a href="#rmi" class="headerlink" title="rmi"></a>rmi</h4><p>删除本地一个或多少镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi [OPTIONS] IMAGE</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>OPTIONS 说明</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-f</code></td>
+<td align="left">强制删除</td>
+</tr>
+<tr>
+<td align="left"><code>--no-prune</code></td>
+<td align="left">不移除该镜像的过程镜像，默认移除</td>
+</tr>
+</tbody></table>
+<p>删除单个镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi 9e6</span><br></pre></td></tr></table></figure>
+
+<p>删除 id 为 none 的镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi $(docker images | grep <span class="string">&quot;^&lt;none&gt;&quot;</span> | awk <span class="string">&quot;&#123;print <span class="variable">$3</span>&#125;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>强制删除 id 为 none 的镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi -f $(docker images | grep <span class="string">&quot;^&lt;none&gt;&quot;</span> | awk <span class="string">&quot;&#123;print <span class="variable">$3</span>&#125;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>删除全部镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi $(docker images -q)</span><br></pre></td></tr></table></figure>
+
+<p>强制删除全部镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi -f $(docker images -q)</span><br></pre></td></tr></table></figure>
+
+<h4 id="build"><a href="#build" class="headerlink" title="build"></a>build</h4><p>使用 Dockerfile 创建镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build [OPTIONS] PATH | URL | -</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>OPTIONS 说明</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>--build-arg=[]</code></td>
+<td align="left">设置镜像创建时的变量</td>
+</tr>
+<tr>
+<td align="left"><code>--cpu-shares</code></td>
+<td align="left">设置 CPU 使用权重</td>
+</tr>
+<tr>
+<td align="left"><code>--cpu-period</code></td>
+<td align="left">限制 CPU CFS 周期</td>
+</tr>
+<tr>
+<td align="left"><code>--cpu-quota</code></td>
+<td align="left">限制 CPU CFS 配额</td>
+</tr>
+<tr>
+<td align="left"><code>--cpuset-cpus</code></td>
+<td align="left">指定使用的 CPU id</td>
+</tr>
+<tr>
+<td align="left"><code>--cpuset-mems</code></td>
+<td align="left">指定使用的内存 id</td>
+</tr>
+<tr>
+<td align="left"><code>--disable-content-trust</code></td>
+<td align="left">忽略校验，默认开启</td>
+</tr>
+<tr>
+<td align="left"><code>-f</code></td>
+<td align="left">指定要使用的 Dockerfile 路径</td>
+</tr>
+<tr>
+<td align="left"><code>--force-rm</code></td>
+<td align="left">设置镜像过程中删除中间容器</td>
+</tr>
+<tr>
+<td align="left"><code>--isolation</code></td>
+<td align="left">使用容器隔离技术</td>
+</tr>
+<tr>
+<td align="left"><code>--label=[]</code></td>
+<td align="left">设置镜像使用的元数据</td>
+</tr>
+<tr>
+<td align="left"><code>-m</code></td>
+<td align="left">设置内存最大值</td>
+</tr>
+<tr>
+<td align="left"><code>--memory-swap</code></td>
+<td align="left">设置 Swap 的最大值为内存 +swap，”-1”表示不限 swap</td>
+</tr>
+<tr>
+<td align="left"><code>--no-cache</code></td>
+<td align="left">创建镜像的过程不使用缓存</td>
+</tr>
+<tr>
+<td align="left"><code>--pull</code></td>
+<td align="left">尝试去更新镜像的新版本</td>
+</tr>
+<tr>
+<td align="left"><code>-q</code></td>
+<td align="left">安静模式，成功后只输出镜像 ID</td>
+</tr>
+<tr>
+<td align="left"><code>--rm</code></td>
+<td align="left">设置镜像成功后删除中间容器</td>
+</tr>
+<tr>
+<td align="left"><code>--shm-size</code></td>
+<td align="left">设置 &#x2F;dev&#x2F;shm 的大小，默认值是 64M</td>
+</tr>
+<tr>
+<td align="left"><code>--ulimit</code></td>
+<td align="left">Ulimit 配置</td>
+</tr>
+</tbody></table>
+<p><strong>样例</strong></p>
+<p>从已经创建的容器中更新镜像，并且提交这个镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit -m=<span class="string">&quot;has update&quot;</span> -a=<span class="string">&quot;shitao&quot;</span> ede0be5f1842 mysql:v2</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>OPTIONS 说明</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-m</code></td>
+<td align="left">提交的描述信息</td>
+</tr>
+<tr>
+<td align="left"><code>-a</code></td>
+<td align="left">指定镜像作者</td>
+</tr>
+<tr>
+<td align="left"><code>ede0be5f1842</code></td>
+<td align="left">容器 ID (通过<code>docker ps -a</code>查看)</td>
+</tr>
+<tr>
+<td align="left"><code>mysql:v2</code></td>
+<td align="left"><code>mysql</code> 镜像的仓库源名 <code>v2</code> 镜像的标签</td>
+</tr>
+</tbody></table>
+<p><strong>样例</strong></p>
+<p>使用 Dockerfile 指令来创建一个新的镜像</p>
+<p>我们使用命令 <code>docker build</code>，从零开始来创建一个新的镜像。为此，我们需要创建一个 Dockerfile 文件，其中包含一组指令来告诉 Docker 如何构建我们的镜像。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t imagesname:2.0 /home/shitao/file/</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>OPTIONS 说明</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-t</code></td>
+<td align="left">指定要创建的目标镜像名</td>
+</tr>
+<tr>
+<td align="left"><code>imagesname:2.0</code></td>
+<td align="left"><code>imagesname</code> 镜像的仓库源名 <code>2.0</code> 镜像的标签</td>
+</tr>
+<tr>
+<td align="left"><code>/home/shitao/file/</code></td>
+<td align="left">dockerfile 路径</td>
+</tr>
+</tbody></table>
+<h4 id="tag"><a href="#tag" class="headerlink" title="tag"></a>tag</h4><p>标记本地镜像，将其归入某一仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker tag 9e64176cd8a2 mysql163:2.0.1</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>OPTIONS 说明</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>9e64176cd8a2</code></td>
+<td align="left">镜像 id (镜像名)</td>
+</tr>
+<tr>
+<td align="left"><code>mysql163:2.0.1</code></td>
+<td align="left"><code>mysql163</code> 镜像的仓库源名 <code>2.0.1</code> 镜像的标签</td>
+</tr>
+</tbody></table>
+<p>使用 <code>docker images</code> 命令可以看到，ID 为 <code>9e64176cd8a2</code> 的镜像多个标签</p>
+<h4 id="save"><a href="#save" class="headerlink" title="save"></a>save</h4><p>将指定镜像保存成 tar 归档文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker save -o /home/shitao/Downloads/mysql.tar 9e64176cd8a2</span><br></pre></td></tr></table></figure>
+
+<p>将镜像 runoob&#x2F;ubuntu:v3 生成 my_ubuntu_v3.tar 文档</p>
+<blockquote>
+<p>OPTIONS 说明</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>9e64176cd8a2</code></td>
+<td align="left">镜像 id (镜像名)</td>
+</tr>
+<tr>
+<td align="left"><code>/home/shitao/Downloads/mysql.tar</code></td>
+<td align="left">保存的地址</td>
+</tr>
+</tbody></table>
+<h4 id="import"><a href="#import" class="headerlink" title="import"></a>import</h4><p>从归档文件中创建镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker import /home/shitao/Downloads/mysql.tar mysql:0.2</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>OPTIONS 说明</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>mysql:0.2</code></td>
+<td align="left"><code>mysql</code> 镜像的仓库源名 <code>0.2</code> 镜像的标签</td>
+</tr>
+<tr>
+<td align="left"><code>/home/shitao/Downloads/mysql.tar</code></td>
+<td align="left">归档文件地址</td>
+</tr>
+</tbody></table>
+<h4 id="inspect"><a href="#inspect" class="headerlink" title="inspect"></a>inspect</h4><p>获取容器&#x2F;镜像的元数据</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect [OPTIONS] NAME|ID [NAME|ID...]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>OPTIONS 说明</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-f</code></td>
+<td align="left">指定返回值的模板文件</td>
+</tr>
+<tr>
+<td align="left"><code>-s</code></td>
+<td align="left">显示总的文件大小</td>
+</tr>
+<tr>
+<td align="left"><code>--type</code></td>
+<td align="left">为指定类型返回 JSON</td>
+</tr>
+</tbody></table>
+<p><strong>样例</strong></p>
+<p><code>docker inspect 9e6</code></p>
+<h3 id="容器生命周期管理"><a href="#容器生命周期管理" class="headerlink" title="容器生命周期管理"></a>容器生命周期管理</h3><h4 id="run"><a href="#run" class="headerlink" title="run"></a>run</h4><p><code>docker run -it hub.c.163.com/library/mysql /bin/bash</code></p>
+<blockquote>
+<p>OPTIONS 说明</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-i</code></td>
+<td align="left">以交互模式运行容器，通常与 <code>-t</code> 同时使用</td>
+</tr>
+<tr>
+<td align="left"><code>-t</code></td>
+<td align="left">为容器重新分配一个伪输入终端，通常与 <code>-i</code> 同时使用</td>
+</tr>
+<tr>
+<td align="left"><code>hub.c.163.com/library/mysql</code></td>
+<td align="left">镜像名</td>
+</tr>
+<tr>
+<td align="left"><code>-P</code></td>
+<td align="left">将容器内部使用的网络端口映射到我们使用的主机上</td>
+</tr>
+<tr>
+<td align="left"><code>-d</code></td>
+<td align="left">后台运行容器，并返回容器 ID</td>
+</tr>
+</tbody></table>
+<h4 id="start"><a href="#start" class="headerlink" title="start"></a>start</h4><p>启动一个或多少已经被停止的容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start &#123;容器ID|容器名称&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="stop"><a href="#stop" class="headerlink" title="stop"></a>stop</h4><p>停止一个运行中的容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop &#123;容器ID|容器名称&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="restart"><a href="#restart" class="headerlink" title="restart"></a>restart</h4><p>重启容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker restart &#123;容器ID|容器名称&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="kill"><a href="#kill" class="headerlink" title="kill"></a>kill</h4><p>杀掉一个运行中的容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> &#123;容器ID|容器名称&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h4><p>删除一个或多少容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">rm</span> [OPTIONS] CONTAINER [CONTAINER...]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>OPTIONS 说明</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-f</code></td>
+<td align="left">通过 SIGKILL 信号强制删除一个运行中的容器</td>
+</tr>
+<tr>
+<td align="left"><code>-l</code></td>
+<td align="left">移除容器间的网络连接，而非容器本身</td>
+</tr>
+<tr>
+<td align="left"><code>-v</code></td>
+<td align="left">删除与容器关联的卷</td>
+</tr>
+</tbody></table>
+<p>删除指定容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">rm</span> &#123;容器ID|容器名称&#125;</span><br></pre></td></tr></table></figure>
+
+<p>删除所有容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">rm</span> $(docker ps -a -q)</span><br></pre></td></tr></table></figure>
+
+<h4 id="exec"><a href="#exec" class="headerlink" title="exec"></a>exec</h4><p>在运行的容器中执行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> [OPTIONS] CONTAINER COMMAND [ARG...]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>OPTIONS 说明</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-d</code></td>
+<td align="left">分离模式: 在后台运行</td>
+</tr>
+<tr>
+<td align="left"><code>-i</code></td>
+<td align="left">即使没有附加也保持 STDIN 打开</td>
+</tr>
+<tr>
+<td align="left"><code>-t</code></td>
+<td align="left">分配一个伪终端</td>
+</tr>
+</tbody></table>
+<p><strong>样例</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it &#123;容器ID|容器名称&#125; /bin/bash</span><br></pre></td></tr></table></figure>
+
+<h3 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h3><h4 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h4><p>查看正在运行的容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps [OPTIONS]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>OPTIONS 说明</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-a</code></td>
+<td align="left">显示所有的容器，包括未运行的</td>
+</tr>
+<tr>
+<td align="left"><code>-f</code></td>
+<td align="left">根据条件过滤显示的内容</td>
+</tr>
+<tr>
+<td align="left"><code>--format</code></td>
+<td align="left">指定返回值的模板文件</td>
+</tr>
+<tr>
+<td align="left"><code>-l</code></td>
+<td align="left">显示最近创建的容器</td>
+</tr>
+<tr>
+<td align="left"><code>-n</code></td>
+<td align="left">列出最近创建的 n 个容器</td>
+</tr>
+<tr>
+<td align="left"><code>--no-trunc</code></td>
+<td align="left">不截断输出</td>
+</tr>
+<tr>
+<td align="left"><code>-q</code></td>
+<td align="left">静默模式，只显示容器编号</td>
+</tr>
+<tr>
+<td align="left"><code>-s</code></td>
+<td align="left">显示总的文件大小</td>
+</tr>
+</tbody></table>
+<p><strong>样例</strong></p>
+<p><code>docker ps</code></p>
+<table>
+<thead>
+<tr>
+<th align="center">CONTAINER ID</th>
+<th align="center">IMAGE</th>
+<th align="center">COMMAND</th>
+<th align="center">CREATED</th>
+<th align="center">STATUS</th>
+<th align="center">PORTS</th>
+<th align="center">NAMES</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">5a0ec27520c6</td>
+<td align="center">hub.c.163.com&#x2F;library&#x2F;mysql</td>
+<td align="center">“docker-entrypoint…”</td>
+<td align="center">12 seconds ago</td>
+<td align="center">Up 9 seconds</td>
+<td align="center">3306&#x2F;tcp</td>
+<td align="center">amazing_ardinghelli</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>各个项目说明：</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">项目</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>CONTAINER ID</code></td>
+<td align="left">容器 ID</td>
+</tr>
+<tr>
+<td align="left"><code>IMAGE</code></td>
+<td align="left">镜像名称</td>
+</tr>
+<tr>
+<td align="left"><code>COMMAND</code></td>
+<td align="left">命令</td>
+</tr>
+<tr>
+<td align="left"><code>CREATED</code></td>
+<td align="left">容器创建时间</td>
+</tr>
+<tr>
+<td align="left"><code>PORTS</code></td>
+<td align="left">端口</td>
+</tr>
+<tr>
+<td align="left"><code>NAMES</code></td>
+<td align="left">容器名称</td>
+</tr>
+</tbody></table>
+<h4 id="inspect-1"><a href="#inspect-1" class="headerlink" title="inspect"></a>inspect</h4><p>获取容器&#x2F;镜像的元数据</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect [OPTIONS] NAME|ID [NAME|ID...]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>OPTIONS 说明</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-f</code></td>
+<td align="left">指定返回值的模板文件</td>
+</tr>
+<tr>
+<td align="left"><code>-s</code></td>
+<td align="left">显示总的文件大小</td>
+</tr>
+<tr>
+<td align="left"><code>--type</code></td>
+<td align="left">为指定类型返回 JSON</td>
+</tr>
+</tbody></table>
+<p><strong>样例</strong></p>
+<p><code>docker inspect 9e6</code></p>
+<h4 id="top"><a href="#top" class="headerlink" title="top"></a>top</h4><p>查看容器中运行的进程信息，支持 ps 命令参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker top CONTAINER</span><br></pre></td></tr></table></figure>
+
+<h4 id="logs"><a href="#logs" class="headerlink" title="logs"></a>logs</h4><p>获取容器的日志</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs [OPTIONS] CONTAINER</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>OPTIONS 说明</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-f</code></td>
+<td align="left">跟踪日志输出</td>
+</tr>
+<tr>
+<td align="left"><code>--since</code></td>
+<td align="left">显示某个开始时间的所有日志</td>
+</tr>
+<tr>
+<td align="left"><code>-t</code></td>
+<td align="left">显示时间戳</td>
+</tr>
+<tr>
+<td align="left"><code>--tail</code></td>
+<td align="left">仅列出最新 N 条容器日志</td>
+</tr>
+</tbody></table>
+<p><strong>样例</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs -f 9e6</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Sitoi/cdn/img/docker_cmd_logic.png" alt="Docker 命令"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://sitoi.cn">Sitoi</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://sitoi.cn/posts/51856.html">https://sitoi.cn/posts/51856.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://sitoi.cn" target="_blank">Sitoi</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Docker/">Docker</a><a class="post-meta__tags" href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a></div><div class="post-share"><div class="social-share" data-image="https://opendoodles.s3-us-west-1.amazonaws.com/laying.svg" data-sites="wechat,qq,weibo,twitter,facebook,linkedin"></div><link rel="stylesheet" href="https://npm.elemecdn.com/butterfly-extsrc@latest/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://npm.elemecdn.com/butterfly-extsrc@latest/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/43818.html" title="Docker 三剑客（二）：Dockerfile 创建镜像教程"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/reading.svg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Docker 三剑客（二）：Dockerfile 创建镜像教程</div></div><div class="info-2"><div class="info-item-1">Dockerfile（从无到有创建镜像）结构DockerFile 分为四部分组成：  基础镜像信息 维护者信息 镜像操作指令 容器启动时执行指令  基础镜像信息第一行必须指定基于的基础镜像 1FROM alpine:3.8-python-3.6  维护者信息1MAINTAINER Shi Tao &lt;shitao0418@gamil.com&gt;  镜像操作指令1234567WORKDIR /opt/appENV HOME /opt/appADD . /opt/appRUN pip3.6 install -r requirements.txt --upgrade -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simpleEXPOSE 8000  容器启动时执行指令12ENTRYPOINT [&quot;gunicorn&quot;]CMD [&quot;-b 0.0.0.0:8000&quot;, &quot;application:app&quot;]  指令From 指令格式为 From 或者 From: Docker...</div></div></div></a><a class="pagination-related" href="/posts/5308.html" title="OpenLDAP 常用命令"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/sitting-reading.svg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">OpenLDAP 常用命令</div></div><div class="info-2"><div class="info-item-1">OpenLDAP 常用命令ldapsearch ldapsearch - ldap 搜索工具  ldapsearch 实用程序可打开与 LDAP 服务器的连接，使用过滤器 filter 绑定并执行搜索。 如果 ldapsearch 找到一个或多个条目，则会检索由 attrs 指定的属性并且会将条目和值输出到标准输出。如果没有列出 attrs，则会返回所有属性。    选项 描述    -d debuglevel 设置 LDAP 调试级别。适用于 ldapdelete 的有用调试级别包括：1:跟踪 2:包 4:选项 32:过滤器 128:访问控制 要请求多个类别的调试信息，请将掩码相加。例如，要请求跟踪和过滤器信息，请将 debuglevel 指定为 33。   -x 进行简单认证   -D 用来绑定服务器的 DN   -w 绑定 DN 的密码   -b 指定要查询的根节点   -H 制定要查询的服务器   例子 查询所有用户1ldapsearch -x -b &quot;dc=sitoi,dc=cn&quot; -H ldap://192.168.1.143  指定条件的查询1l...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/40630.html" title="利用 Docker 搭建 IPFS 私有网络"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/reading-side.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-03</div><div class="info-item-2">利用 Docker 搭建 IPFS 私有网络</div></div><div class="info-2"><div class="info-item-1">利用 Docker 搭建 IPFS 私有网络下载项目  项目地址：https://github.com/Sitoi/Private-Network-IPFS.git  环境两台 Linux 设备，分别配置他们的 ip 地址为 192.168.1.244 和 192.168.1.246 步骤 修改挂载目录 通过 docker 创建 IPFS 容器 确保配置 IPFS API 以允许跨源（CORS）请求 生成并分发一个共享 key 移除默认的 boostrap 节点 添加节点创建网络 重启服务 查看邻居  修改挂载目录 该步骤可跳过，默认挂载目录为 项目目录下的 data 和 staging 文件夹  1234567891011121314version: &quot;3&quot;services:  ipfs_host:    container_name: ipfs_host    image: docker.io/ipfs/go-ipfs:latest    restart: always    volumes:      - ./staging:/export # (可不修...</div></div></div></a><a class="pagination-related" href="/posts/23955.html" title="Docker 三剑客（三）：Docker-Compose 创建容器"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/sleek.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2018-10-03</div><div class="info-item-2">Docker 三剑客（三）：Docker-Compose 创建容器</div></div><div class="info-2"><div class="info-item-1">Docker-compose（创建容器）样例 12345678910111213141516171819202122232425262728version: &quot;2&quot;services:  spark-dashboard:    build:      context: .    container_name: spark-dashboard    image: docker.io/sitoi/spark-dashboard    environment:      - SPARK_TYPE=master    ports:      - 5000:5000  redis:    image: docker.io/redis:4    ports:      - &#x27;6379:6379&#x27;    volumes:      - ./db/redis:/data    command: &gt;      --requirepass password  neo4j:    image: docker.io/neo4j:3.3    ports:   ...</div></div></div></a><a class="pagination-related" href="/posts/43818.html" title="Docker 三剑客（二）：Dockerfile 创建镜像教程"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/reading.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2018-10-02</div><div class="info-item-2">Docker 三剑客（二）：Dockerfile 创建镜像教程</div></div><div class="info-2"><div class="info-item-1">Dockerfile（从无到有创建镜像）结构DockerFile 分为四部分组成：  基础镜像信息 维护者信息 镜像操作指令 容器启动时执行指令  基础镜像信息第一行必须指定基于的基础镜像 1FROM alpine:3.8-python-3.6  维护者信息1MAINTAINER Shi Tao &lt;shitao0418@gamil.com&gt;  镜像操作指令1234567WORKDIR /opt/appENV HOME /opt/appADD . /opt/appRUN pip3.6 install -r requirements.txt --upgrade -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simpleEXPOSE 8000  容器启动时执行指令12ENTRYPOINT [&quot;gunicorn&quot;]CMD [&quot;-b 0.0.0.0:8000&quot;, &quot;application:app&quot;]  指令From 指令格式为 From 或者 From: Docker...</div></div></div></a><a class="pagination-related" href="/posts/19006.html" title="多机分布式环境下的 selenium 集群"><img class="cover" src="https://opendoodles.s3-us-west-1.amazonaws.com/loving.svg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-09</div><div class="info-item-2">多机分布式环境下的 selenium 集群</div></div><div class="info-2"><div class="info-item-1">前言还是爬虫里面的某个场景需要重度使用 selenium 场景 ，所以需要起这样一个集群  对比   单机版 Docker 单机版 Docker 单机集群版 Docker 分布式集群版  我们在使用 selenium 的时候，我们一般就使用以上的环境和模式 单机版单机怎么操作呢，下载相应的 webdriver，安装配置参考教程 Selenium &amp; ChromeDriver 全平台安装教程（Mac、Windows、Linux） 对于小型的使用环境，比如单线程操作，我们安装好环境直接使用就可以了  使用案例（Chrome）  123456from selenium import webdriverbrowser = webdriver.Chrome()browser.get(&#x27;https://sitoi.cn/&#x27;)browser.get_screenshot_as_file(&quot;sitoi.cn.png&quot;)browser.close()  Docker 单机版保证安装好 docker 和 docker-compose ，这里就直接使用 ...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/avatars/avatar.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Sitoi</div><div class="author-info-description">真正的酷都是需要付诸努力的</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">95</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><a id="card-info-btn" href="https://github.com/Sitoi"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="/wechat.jpg" target="_blank" title="Wechat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="tencent://message/?uin=133397418" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=133397418" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://github.com/Sitoi/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker-%E7%9B%AE%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">Docker 目录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB"><span class="toc-number">1.1.</span> <span class="toc-text">资源汇总</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">Docker 常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.1.</span> <span class="toc-text">基础命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#info"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">info</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#version"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">version</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#search"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">search</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#login"><span class="toc-number">1.2.1.4.</span> <span class="toc-text">login</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#logout"><span class="toc-number">1.2.1.5.</span> <span class="toc-text">logout</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pull"><span class="toc-number">1.2.1.6.</span> <span class="toc-text">pull</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#push"><span class="toc-number">1.2.1.7.</span> <span class="toc-text">push</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E9%95%9C%E5%83%8F%E7%AE%A1%E7%90%86"><span class="toc-number">1.2.2.</span> <span class="toc-text">本地镜像管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#images"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">images</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rmi"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">rmi</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#build"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">build</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tag"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">tag</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#save"><span class="toc-number">1.2.2.5.</span> <span class="toc-text">save</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#import"><span class="toc-number">1.2.2.6.</span> <span class="toc-text">import</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#inspect"><span class="toc-number">1.2.2.7.</span> <span class="toc-text">inspect</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%AE%A1%E7%90%86"><span class="toc-number">1.2.3.</span> <span class="toc-text">容器生命周期管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#run"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">run</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#start"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">start</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#stop"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">stop</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#restart"><span class="toc-number">1.2.3.4.</span> <span class="toc-text">restart</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#kill"><span class="toc-number">1.2.3.5.</span> <span class="toc-text">kill</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rm"><span class="toc-number">1.2.3.6.</span> <span class="toc-text">rm</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#exec"><span class="toc-number">1.2.3.7.</span> <span class="toc-text">exec</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.4.</span> <span class="toc-text">容器操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ps"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">ps</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#inspect-1"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">inspect</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#top"><span class="toc-number">1.2.4.3.</span> <span class="toc-text">top</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#logs"><span class="toc-number">1.2.4.4.</span> <span class="toc-text">logs</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/39218.html" title="如何在 Elasticsearch 中更新索引的 Mapping"><img src="https://opendoodles.s3-us-west-1.amazonaws.com/float.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="如何在 Elasticsearch 中更新索引的 Mapping"/></a><div class="content"><a class="title" href="/posts/39218.html" title="如何在 Elasticsearch 中更新索引的 Mapping">如何在 Elasticsearch 中更新索引的 Mapping</a><time datetime="2023-10-14T06:26:21.000Z" title="发表于 2023-10-14 14:26:21">2023-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/10054.html" title="简洁登录：在 Linux 终端中去除 'Last login' 信息"><img src="https://opendoodles.s3-us-west-1.amazonaws.com/sitting.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="简洁登录：在 Linux 终端中去除 'Last login' 信息"/></a><div class="content"><a class="title" href="/posts/10054.html" title="简洁登录：在 Linux 终端中去除 'Last login' 信息">简洁登录：在 Linux 终端中去除 'Last login' 信息</a><time datetime="2023-07-28T02:25:20.000Z" title="发表于 2023-07-28 10:25:20">2023-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/46937.html" title="高效下载 NGINX 静态网站：利用 wget 进行递归下载"><img src="https://opendoodles.s3-us-west-1.amazonaws.com/selfie.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/loading/404.jpg'" alt="高效下载 NGINX 静态网站：利用 wget 进行递归下载"/></a><div class="content"><a class="title" href="/posts/46937.html" title="高效下载 NGINX 静态网站：利用 wget 进行递归下载">高效下载 NGINX 静态网站：利用 wget 进行递归下载</a><time datetime="2023-07-16T01:59:04.000Z" title="发表于 2023-07-16 09:59:04">2023-07-16</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://opendoodles.s3-us-west-1.amazonaws.com/laying.svg);"><div class="footer-flex"><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">项目</div><div class="footer-flex-content"><a href="https://sitoi.github.io/dailycheckin/" target="_blank" title="✏️ Dailycheckin">✏️ Dailycheckin</a><a href="https://crawlaio.com/" target="_blank" title="🕷️ Crawlaio">🕷️ Crawlaio</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">备用</div><div class="footer-flex-content"><a href="https://sitoi.github.io" target="_blank" title="📑 GitHub Pages">📑 GitHub Pages</a><a href="https://www.cnblogs.com/sitoi" target="_blank" title="📑 Cnblog">📑 Cnblog</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">框架</div><div class="footer-flex-content"><a href="https://hexo.io/zh-cn/" target="_blank" title="📦 Hexo">📦 Hexo</a><a href="https://butterfly.js.org/" target="_blank" title="🎨 Butterfly">🎨 Butterfly</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">赞助</div><div class="footer-flex-content"><div><img src='https://cdn.jsdelivr.net/gh/Sitoi/Sitoi.github.io/medias/reward/alipay.jpg' alt='Sitoi' width='100px' height='100px'></div></div></div></div></div><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2018 - 2025 By Sitoi</span><span class="framework-info"><span class="footer-separator">|</span><span>框架 </span><a href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.2</a></span></div><div class="footer_custom_text"><a href="https://beian.miit.gov.cn/"><img class="icp-icon" src="/medias/icp.png"><span>沪ICP备2025115209号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.2"></script><script src="/js/main.js?v=5.5.2"></script><script src="https://npm.elemecdn.com/@fancyapps/ui@latest/dist/fancybox/fancybox.umd.js"></script><script src="https://npm.elemecdn.com/instant.page@latest/instantpage.js" type="module"></script><script src="https://npm.elemecdn.com/node-snackbar@latest/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const config = mermaidSrc.dataset.config ? JSON.parse(mermaidSrc.dataset.config) : {}
+      if (!config.theme) {
+        config.theme = theme
+      }
+      const mermaidThemeConfig = `%%{init: ${JSON.stringify(config)}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://npm.elemecdn.com/mermaid@latest/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  let initFn = window.walineFn || null
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const destroyWaline = ele => ele.destroy()
+
+  const initWaline = (Fn, el = document, path = window.location.pathname) => {
+    const waline = Fn({
+      el: el.querySelector('#waline-wrap'),
+      serverURL: 'https://waline.sitoi.cn/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      comment: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyWaline = () => {
+        destroyWaline(waline)
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const loadWaline = (el, path) => {
+    if (initFn) initWaline(initFn, el, path)
+    else {
+      btf.getCSS('https://npm.elemecdn.com/@waline/client@latest/dist/waline.css')
+        .then(() => import('https://npm.elemecdn.com/@waline/client@latest/dist/waline.js'))
+        .then(({ init }) => {
+          initFn = init || Waline.init
+          initWaline(initFn, el, path)
+          window.walineFn = initFn
+        })
+    }
+  }
+
+  if (isShuoshuo) {
+    'Waline' === 'Waline'
+      ? window.shuoshuoComment = { loadComment: loadWaline } 
+      : window.loadOtherComment = loadWaline
+    return
+  }
+
+  if ('Waline' === 'Waline' || !false) {
+    if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><div class="app-refresh" id="app-refresh"> <div class="app-refresh-wrap"> <label>✨ 网站已更新最新版本 👉</label> <a href="javascript:void(0)" onclick="location.reload()">点击刷新</a> </div></div><script>function showNotification(){if(GLOBAL_CONFIG.Snackbar){var t="light"===document.documentElement.getAttribute("data-theme")?GLOBAL_CONFIG.Snackbar.bgLight:GLOBAL_CONFIG.Snackbar.bgDark,e=GLOBAL_CONFIG.Snackbar.position;Snackbar.show({text:"已更新最新版本",backgroundColor:t,duration:5e5,pos:e,actionText:"点击刷新",actionTextColor:"#fff",onActionClick:function(t){location.reload()}})}else{var o=`top: 0; background: ${"light"===document.documentElement.getAttribute("data-theme")?"#49b1f5":"#1f1f1f"};`;document.getElementById("app-refresh").style.cssText=o}}"serviceWorker"in navigator&&(navigator.serviceWorker.controller&&navigator.serviceWorker.addEventListener("controllerchange",function(){showNotification()}),window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")}));</script><script id="click-heart" src="https://npm.elemecdn.com/butterfly-extsrc@latest/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="/"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.2"></script></div></div></body></html>
